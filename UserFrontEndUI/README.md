@@ -1,6 +1,6 @@
 <a href="">
   <img alt="AI-Powered Mock Interviews" src="">
-  <h1 align="center">AIIA Interviews</h1>
+  <h1 align="center">AIIA Interviews - User Interface (UI) Service</h1>
 </a>
 
 <p align="center">
