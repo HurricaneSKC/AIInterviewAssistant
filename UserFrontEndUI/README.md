@@ -41,8 +41,18 @@ AIIA is an interview preparation tool that provides AI feedback on your mock int
 - [React Webcam](https://github.com/mozmorris/react-webcam) - Webcam component for React
 - [Stripe Gradient Animation](https://whatamesh.vercel.app/) - [@jordienr](https://twitter.com/jordienr) released a Mesh Gradient that uses WebGL and animates a beautiful gradient
 
-## How it all works
+## To build the project locally
+Requirements: node 18.17 or later
 
-AIIA uses FFmpeg to transcode the raw video into MP3. Chrome, Safari, and Firefox all record with different codecs, and FFmpeg is great for standardizing them.
+Steps to run locally: 
+- clone repo ```git clone ```
+- run ```npm install```
+- then ```npm run dev```
+  
+Steps to build:
 
-We then send the audio directly to be transcribed by OpenAI's Whisper endpoint, and then stream feedback from the edge using OpenAI's gpt-3.5-turbo.
+## to build remote: 
+- commit to main branch and vercel will build to https://ai-interview-assistant-gkk560vf5-hurricaneskcs-projects.vercel.app/
+
+## contact 
+sanjay.chopra@epam.com or sanjaykchopra@gmail.com
