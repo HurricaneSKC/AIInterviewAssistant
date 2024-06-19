@@ -1,6 +1,6 @@
 ## This is the main entry point for AIIA
 
-It will consist of 3 main repositries for the application
+It will consist of 3 main repositries for the application, note each repositry should have its own setup and running details
 
 ## FrontEnd User Interface (UI) Service 
   - This service will handle the user-facing components of the application, such as the home page, question type selector, interview selector, and the video avatar interface.
