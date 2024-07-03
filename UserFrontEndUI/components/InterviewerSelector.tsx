@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import React from "react";
-import RightArrowButton from "./RightArrowButton";
+import RightArrowButton from "./CTAs/RightArrowButton";
 import SelectedInterviewerRadioGroup, {
   Interviewer,
 } from "./SelectedInterviewerRadioGroup";
-import WhiteButton from "./WhiteButton";
+import WhiteButton from "./CTAs/WhiteButton";
 import StepHeading from "./textTags/StepHeading";
 import StepParagraph from "./textTags/StepParagraph";
 

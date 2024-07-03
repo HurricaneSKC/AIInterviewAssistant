@@ -4,14 +4,18 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { gradient } from "@/components/Gradient";
 import { useEffect } from "react";
-import WhiteLinkButton from "@/components/WhiteLinkButton";
-import RightArrowWhiteSVG from "@/components/RightArrowWhiteSVG";
-import RightArrowButton from "@/components/RightArrowButton";
+import LinkButton from "@/components/CTAs/LinkButton";
+import RightArrowWhiteSVG from "@/components/SVGs/RightArrowWhiteSVG";
+import RightArrowButton from "@/components/CTAs/RightArrowButton";
 
 export default function Home() {
   useEffect(() => {
     gradient.initGradient("#gradient-canvas");
   }, []);
+
+  const openModal = () => {
+    console.log("open modal");
+  };
 
   return (
     <AnimatePresence>
@@ -89,11 +93,7 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <WhiteLinkButton
-                pageLink="/demo"
-                buttonText="Try it out"
-                rightArrow
-              />
+              <LinkButton pageLink="/demo" buttonText="Try it out" rightArrow />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -104,7 +104,18 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <RightArrowButton onClick={() => {}} buttonText="Sign Up" />
+              <LinkButton pageLink="/login" buttonText="Login" rightArrow />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.65,
+                duration: 0.55,
+                ease: [0.075, 0.82, 0.965, 1],
+              }}
+            >
+              <RightArrowButton onClick={openModal} buttonText="Sign Up" />
             </motion.div>
           </div>
         </main>

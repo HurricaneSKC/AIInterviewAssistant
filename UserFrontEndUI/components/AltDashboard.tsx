@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import DashboardListItem from "./DashboardListItem";
 import AvatarVideoImage from "./AvatarVideoImage";
-import SearchIcon from "./SearchIcon";
+import SearchIcon from "./SVGs/SearchIcon";
 import Pagination from "./Pagination";
 
 interface Question {

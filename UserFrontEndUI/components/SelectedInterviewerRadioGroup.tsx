@@ -1,6 +1,6 @@
-import { RadioGroup } from "@headlessui/react";
 import React from "react";
-import USFlagSVG from "./USFlagSVG";
+import USFlagSVG from "./SVGs/USFlagSVG";
+import { RadioGroup } from "@headlessui/react";
 
 export interface Interviewer {
   id: string;

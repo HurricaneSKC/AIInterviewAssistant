@@ -1,5 +1,5 @@
 import React from "react";
-import RightArrowWhiteSVG from "./RightArrowWhiteSVG";
+import RightArrowWhiteSVG from "../SVGs/RightArrowWhiteSVG";
 
 interface Props {
   onClick: () => void;

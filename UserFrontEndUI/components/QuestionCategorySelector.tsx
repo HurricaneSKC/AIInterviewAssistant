@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import React from "react";
 import QuestionTypeRadioGroup, { Question } from "./QuestionTypeRadioGroup";
-import RightArrowButton from "./RightArrowButton";
-import WhiteLinkButton from "./WhiteLinkButton";
+import RightArrowButton from "./CTAs/RightArrowButton";
+import LinkButton from "./CTAs/LinkButton";
 import StepHeading from "./textTags/StepHeading";
 import StepParagraph from "./textTags/StepParagraph";
 import { DataStructure, InterviewCategory } from "@/pages/demo";
@@ -50,7 +50,7 @@ const QuestionCategorySelector = ({
       </div>
       <div className="flex gap-[15px] justify-end mt-8">
         <div>
-          <WhiteLinkButton pageLink="/" buttonText="Back to home" />
+          <LinkButton pageLink="/" buttonText="Back to home" />
         </div>
         <div>
           <RightArrowButton onClick={() => setStep(2)} buttonText="Continue" />

@@ -1,7 +1,7 @@
 import { RadioGroup } from "@headlessui/react";
 import React, { Dispatch, SetStateAction } from "react";
-import EasySVG from "./EasySVG";
-import MediumSVG from "./MediumSVG";
+import EasySVG from "./SVGs/EasySVG";
+import MediumSVG from "./SVGs/MediumSVG";
 import { InterviewCategory } from "@/pages/demo";
 
 export interface Question {
