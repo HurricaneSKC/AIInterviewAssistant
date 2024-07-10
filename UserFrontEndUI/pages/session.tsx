@@ -3,7 +3,6 @@ import BackGroundSVG from "@/components/SVGs/BackGroundSVG";
 import CountDownTimer from "@/components/CountDownTimer";
 import InterviewerSelector from "@/components/InterviewerSelector";
 import LoadingSpinner from "@/components/SVGs/LoadingSpinner";
-import QuestionCategorySelector from "@/components/QuestionCategorySelector";
 import RightArrowButton from "@/components/CTAs/RightArrowButton";
 import RightArrowWhiteSVG from "@/components/SVGs/RightArrowWhiteSVG";
 import WhiteButton from "@/components/CTAs/WhiteButton";
