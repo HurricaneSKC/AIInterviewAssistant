@@ -20,7 +20,7 @@ interface Props {
   seconds: number;
   isVisible: boolean;
   setVideoEnded: (value: boolean) => void;
-  currentVideoSrc: string;
+  currentVideoSrc: string | null;
   vidRef: React.RefObject<HTMLVideoElement>;
   webcamRef: React.RefObject<Webcam>;
   videoConstraints: {
