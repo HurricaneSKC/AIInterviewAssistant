@@ -104,7 +104,7 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <LinkButton pageLink="/login" buttonText="Login" rightArrow />
+              <LinkButton pageLink="/dashboard" buttonText="Login" rightArrow />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 40 }}

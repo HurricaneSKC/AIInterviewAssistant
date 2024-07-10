@@ -1,0 +1,327 @@
+[
+  {
+    "id": 1,
+    "question": "Explain the principles of Object-Oriented Programming (OOP).",
+    "answer": "The main principles of OOP are inheritance, abstraction, encapsulation, and polymorphism. Inheritance allows classes to inherit properties and methods from other classes. Abstraction simplifies complex reality by modeling classes appropriate to the problem. Encapsulation hides the internal state of the object and only exposes what is necessary. Polymorphism allows methods to do different things based on the object it is acting upon.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["OOP", "Programming Paradigms", "Java"]
+  },
+  {
+    "id": 2,
+    "question": "What are the pros and cons of Functional Programming?",
+    "answer": "Pros of functional programming include easier reasoning about code, avoidance of side effects, and easier debugging and testing. Cons include a steeper learning curve, potential performance issues due to immutability, and less intuitive flow for those accustomed to imperative programming.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Functional Programming", "Programming Paradigms"]
+  },
+  {
+    "id": 3,
+    "question": "Compare and contrast Functional Programming and Object-Oriented Programming.",
+    "answer": "Functional Programming focuses on pure functions and immutability, leading to side-effect-free code and easier testing. Object-Oriented Programming emphasizes objects and their interactions to model real-world entities, using principles like inheritance and polymorphism. While FP promotes composition over inheritance, OOP often relies on inheritance hierarchies.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Functional Programming", "OOP", "Programming Paradigms"]
+  },
+  {
+    "id": 4,
+    "question": "Explain the OSI Model and its layers.",
+    "answer": "The OSI Model is a conceptual framework used to understand network interactions in seven layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application. Each layer serves specific functions and interacts with the layers directly above and below it.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Communication Protocols", "OSI Model", "Networking"]
+  },
+  {
+    "id": 5,
+    "question": "What are the differences between TCP and UDP?",
+    "answer": "TCP (Transmission Control Protocol) is connection-oriented, providing reliable communication through error checking and flow control. UDP (User Datagram Protocol) is connectionless, allowing faster transmission at the expense of reliability and error checking.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Communication Protocols", "TCP", "UDP", "Networking"]
+  },
+  {
+    "id": 6,
+    "question": "Describe Man-in-the-Middle Attacks and how to prevent them.",
+    "answer": "Man-in-the-Middle (MitM) attacks involve an attacker intercepting communication between two parties. Prevention techniques include using strong encryption, secure protocols like HTTPS, and ensuring proper certificate validation.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Security Basics", "MitM", "Encryption"]
+  },
+  {
+    "id": 7,
+    "question": "What are the OWASP Top 10 security risks?",
+    "answer": "The OWASP Top 10 lists the most critical security risks to web applications: Injection, Broken Authentication, Sensitive Data Exposure, XML External Entities (XXE), Broken Access Control, Security Misconfiguration, Cross-Site Scripting (XSS), Insecure Deserialization, Using Components with Known Vulnerabilities, and Insufficient Logging and Monitoring.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Security Basics", "OWASP Top 10", "Web Security"]
+  },
+  {
+    "id": 8,
+    "question": "Explain the Critical Rendering Path in web performance.",
+    "answer": "The Critical Rendering Path refers to the sequence of steps the browser takes to convert HTML, CSS, and JavaScript into pixels on the screen. Optimizing this path is crucial for improving web performance and includes minimizing render-blocking resources and reducing the number of critical resources.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Performance Optimizations", "Web Performance", "Rendering"]
+  },
+  {
+    "id": 9,
+    "question": "What are the benefits and drawbacks of Single Page Applications (SPA) compared to Multi-Page Applications (MPA)?",
+    "answer": "SPAs offer a more dynamic and responsive user experience, reduce server load, and provide smoother navigation. However, they can have longer initial load times and may be more complex to develop. MPAs have better SEO capabilities and simpler architecture but can result in slower navigation and higher server load.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Web App Design", "SPA", "MPA", "Web Development"]
+  },
+  {
+    "id": 10,
+    "question": "What is the purpose of the React Reconciliation algorithm?",
+    "answer": "The React Reconciliation algorithm efficiently updates the DOM by comparing the previous and current state of the virtual DOM, determining the minimal number of changes needed. This process improves performance by avoiding unnecessary re-renders.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["React", "JavaScript", "React Reconciliation"]
+  },
+  {
+    "id": 11,
+    "question": "What is the difference between REST and GraphQL?",
+    "answer": "REST is an architectural style for designing networked applications, relying on stateless, client-server communication. GraphQL is a query language for APIs that allows clients to request specific data, making it more flexible and efficient. While REST endpoints often return fixed data structures, GraphQL lets clients define the shape and amount of data returned.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Communication Protocols", "REST", "GraphQL", "API"]
+  },
+  {
+    "id": 12,
+    "question": "Describe the concept of 'Composition over Inheritance' in software design.",
+    "answer": "Composition over Inheritance is a design principle that favors assembling behavior through the composition of objects rather than inheriting from a parent class. This approach promotes greater flexibility and reuse, as objects can be composed with various behaviors without being tied to a rigid class hierarchy.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Programming Paradigms", "Composition", "Inheritance", "Software Design"]
+  },
+  {
+    "id": 13,
+    "question": "What are WebSockets, and how do they compare to HTTP Polling?",
+    "answer": "WebSockets provide a full-duplex communication channel over a single TCP connection, allowing real-time interaction between client and server with minimal overhead. HTTP Polling involves repeatedly requesting data from the server at intervals, which can lead to increased latency and resource consumption compared to WebSockets.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Communication Protocols", "WebSockets", "HTTP Polling", "Real-Time Communication"]
+  },
+  {
+    "id": 14,
+    "question": "Explain the concept of Cross-Site Scripting (XSS) and how to prevent it.",
+    "answer": "Cross-Site Scripting (XSS) is a security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. Prevention techniques include input validation, encoding output, using Content Security Policy (CSP), and employing security libraries to sanitize inputs.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Security Basics", "XSS", "Web Security", "CSP"]
+  },
+  {
+    "id": 15,
+    "question": "What is the PRPL pattern, and how does it improve web performance?",
+    "answer": "The PRPL pattern stands for Push, Render, Pre-cache, and Lazy-load. It is a performance optimization technique for delivering high-performance web applications by prioritizing critical resources, rendering initial content quickly, pre-caching assets for future navigation, and lazy-loading non-critical resources.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Performance Optimizations", "PRPL Pattern", "Web Performance"]
+  },
+  {
+    "id": 16,
+    "question": "Compare Server-Side Rendering (SSR) and Client-Side Rendering (CSR).",
+    "answer": "Server-Side Rendering (SSR) involves rendering web pages on the server and sending the fully rendered HTML to the client, improving initial load times and SEO. Client-Side Rendering (CSR) renders content in the browser using JavaScript, allowing for faster subsequent page loads and dynamic user interactions but potentially slower initial load times.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Web App Design", "SSR", "CSR", "Web Development"]
+  },
+  {
+    "id": 17,
+    "question": "Explain the purpose of the SOLID principles in software architecture.",
+    "answer": "The SOLID principles are a set of guidelines for designing maintainable and scalable software. They include: Single Responsibility Principle, Open/Closed Principle, Liskov Substitution Principle, Interface Segregation Principle, and Dependency Inversion Principle. These principles help create code that is easier to understand, extend, and maintain.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Architecture", "SOLID", "Software Design"]
+  },
+  {
+    "id": 18,
+    "question": "What is the RAIL model in web performance optimization?",
+    "answer": "The RAIL model is a user-centric performance model that stands for Response, Animation, Idle, and Load. It emphasizes delivering a smooth and responsive user experience by focusing on quickly responding to user input, maintaining smooth animations, ensuring efficient idle periods, and optimizing page load times.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Performance Optimizations", "RAIL Model", "Web Performance"]
+  },
+  {
+    "id": 19,
+    "question": "Describe the differences between HTTP/1.1 and HTTP/2.",
+    "answer": "HTTP/1.1 is a text-based protocol that establishes a new connection for each request/response pair. HTTP/2 introduces multiplexing, allowing multiple requests and responses to be sent over a single connection, reducing latency. HTTP/2 also includes header compression and server push features, improving overall performance.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Communication Protocols", "HTTP", "Web Development"]
+  },
+  {
+    "id": 20,
+    "question": "Explain the concept of 'Single Page Applications' (SPAs) and how they differ from traditional web applications.",
+    "answer": "Single Page Applications (SPAs) load a single HTML page and dynamically update content as the user interacts with the app, providing a seamless user experience. Traditional web applications, on the other hand, require loading new pages from the server for each interaction, which can be slower and less responsive.",
+    "category": "Technical",
+    "difficulty": "Medium",
+    "tags": ["Web App Design", "SPA", "Web Development"]
+  },
+  {
+    "id": 21,
+    "question": "How does the React Fiber architecture improve the performance of React applications?",
+    "answer": "React Fiber is a reimplementation of the React core algorithm to enable incremental rendering of the virtual DOM. It allows React to pause and resume work on components, yielding to the browser for higher-priority tasks, and improving responsiveness and fluidity, especially in complex applications.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["React", "React Fiber", "JavaScript"]
+  },
+  {
+    "id": 22,
+    "question": "What are the trade-offs between using Monorepos and Polyrepos in large-scale projects?",
+    "answer": "Monorepos house multiple projects in a single repository, promoting code reuse, easier dependency management, and unified versioning. However, they can become unwieldy with large codebases, leading to slower CI/CD pipelines and complex merges. Polyrepos separate projects into individual repositories, simplifying management at the cost of potential duplication and versioning challenges.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["Web App Design", "Monorepos", "Polyrepos", "Software Architecture"]
+  },
+  {
+    "id": 23,
+    "question": "Describe the process and importance of profiling JavaScript performance in web applications.",
+    "answer": "Profiling JavaScript performance involves analyzing and identifying bottlenecks using tools like Chrome DevTools. It helps pinpoint slow functions, memory leaks, and inefficient DOM manipulations. Effective profiling can significantly improve application performance, providing a smoother user experience and better resource utilization.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["Performance Optimizations", "JavaScript", "Profiling"]
+  },
+  {
+    "id": 24,
+    "question": "Explain the concept and benefits of using gRPC over traditional REST APIs.",
+    "answer": "gRPC is a high-performance, open-source RPC framework that uses HTTP/2 for transport, Protocol Buffers for efficient serialization, and supports multiple languages. It offers benefits like improved performance, bi-directional streaming, and built-in code generation. Compared to REST, gRPC is more efficient in handling real-time communication and complex interactions.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["Communication Protocols", "gRPC", "REST", "API"]
+  },
+  {
+    "id": 25,
+    "question": "Discuss the principles and challenges of implementing micro-frontends in a large-scale web application.",
+    "answer": "Micro-frontends decompose a web application into smaller, independently deployable fragments. Principles include isolation, autonomy, and technology agnosticism. Challenges involve ensuring seamless integration, consistent styling, shared state management, and maintaining performance. Successful implementation requires robust communication protocols and effective collaboration across teams.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["Web App Design", "Micro-frontends", "Web Development"]
+  },
+  {
+    "id": 26,
+    "question": "What are the key considerations for ensuring efficient memory management in JavaScript applications?",
+    "answer": "Efficient memory management in JavaScript involves avoiding memory leaks by properly handling closures, event listeners, and DOM references. Using tools like Chrome DevTools' Memory panel can help identify and fix memory issues. Other considerations include minimizing global variables, using efficient data structures, and optimizing garbage collection.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["JavaScript", "Memory Management", "Performance Optimizations"]
+  },
+  {
+    "id": 27,
+    "question": "Explain the importance and challenges of implementing Continuous Integration and Continuous Deployment (CI/CD) in a microservices architecture.",
+    "answer": "CI/CD automates the integration and deployment of code changes, ensuring rapid and reliable delivery in microservices architectures. Importance lies in maintaining code quality, reducing manual errors, and enabling frequent releases. Challenges include managing dependencies, orchestrating complex deployment pipelines, ensuring consistency across services, and maintaining system stability.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["CI/CD", "Microservices", "DevOps"]
+  },
+  {
+    "id": 28,
+    "question": "Discuss the role of Web Workers and Service Workers in enhancing web application performance.",
+    "answer": "Web Workers allow JavaScript to run in the background, off the main thread, improving performance by preventing UI blocking. Service Workers enable caching and offline capabilities, intercepting network requests to deliver cached responses, enhancing load times and reliability. Both contribute to smoother, faster web applications, especially for resource-intensive tasks.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["Performance Optimizations", "Web Workers", "Service Workers", "Web Development"]
+  },
+  {
+    "id": 29,
+    "question": "What are the core differences between JSON-RPC and gRPC, and when would you use each?",
+    "answer": "JSON-RPC is a simple remote procedure call protocol encoded in JSON, ideal for lightweight, straightforward communication. gRPC, built on HTTP/2 and Protocol Buffers, is more feature-rich, supporting bi-directional streaming, multiplexing, and strong typing, suitable for high-performance, complex systems. Use JSON-RPC for simplicity and gRPC for advanced, scalable communication needs.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["Communication Protocols", "JSON-RPC", "gRPC", "API"]
+  },
+  {
+    "id": 30,
+    "question": "Explain the V8 engine's role in JavaScript performance optimization, particularly hidden classes and inline caching.",
+    "answer": "The V8 engine optimizes JavaScript performance through techniques like hidden classes and inline caching. Hidden classes improve object property access speed by creating hidden class structures during execution. Inline caching stores the location of frequently accessed properties, reducing lookup time. These optimizations significantly enhance execution speed and efficiency.",
+    "category": "Technical",
+    "difficulty": "Hard",
+    "tags": ["JavaScript", "V8 Engine", "Performance Optimizations"]
+  },
+  {
+    "id": 31,
+    "question": "What is inheritance in Object-Oriented Programming?",
+    "answer": "Inheritance is a principle in Object-Oriented Programming where a new class (child class) inherits properties and methods from an existing class (parent class). This allows for code reuse and the creation of a hierarchical relationship between classes.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["OOP", "Programming Paradigms"]
+  },
+  {
+    "id": 32,
+    "question": "What is the purpose of the ARP protocol?",
+    "answer": "The Address Resolution Protocol (ARP) is used to map IP addresses to the physical MAC addresses of devices on a local network. This allows devices to find each other on the same network and communicate effectively.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Communication Protocols", "ARP", "Networking"]
+  },
+  {
+    "id": 33,
+    "question": "What is a Man-in-the-Middle Attack?",
+    "answer": "A Man-in-the-Middle (MitM) attack occurs when an attacker intercepts and potentially alters the communication between two parties without their knowledge. This can lead to data theft, unauthorized access, and other malicious activities.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Security Basics", "MitM", "Web Security"]
+  },
+  {
+    "id": 34,
+    "question": "What are Cookies used for in web development?",
+    "answer": "Cookies are small pieces of data stored on the user's browser by a website. They are used to remember information about the user, such as login status, preferences, and tracking activity across sessions.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Security Basics", "Cookies", "Web Development"]
+  },
+  {
+    "id": 35,
+    "question": "What is the difference between HTTP and HTTPS?",
+    "answer": "HTTP (HyperText Transfer Protocol) is the protocol used for transferring web pages on the internet. HTTPS (HTTP Secure) is the secure version of HTTP, using SSL/TLS encryption to protect data transmitted between the client and server.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Communication Protocols", "HTTP", "HTTPS", "Web Security"]
+  },
+  {
+    "id": 36,
+    "question": "What is the purpose of JSON in web development?",
+    "answer": "JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy to read and write for humans and easy to parse and generate for machines. It is commonly used for transmitting data between a server and a web application.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Communication Protocols", "JSON", "Web Development"]
+  },
+  {
+    "id": 37,
+    "question": "What are the key features introduced in ECMAScript 2015 (ES6)?",
+    "answer": "ECMAScript 2015, also known as ES6, introduced several key features including arrow functions, classes, template literals, destructuring assignments, default parameters, let and const keywords, and promises.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["JavaScript", "ES6", "Programming"]
+  },
+  {
+    "id": 38,
+    "question": "What is a Single Page Application (SPA)?",
+    "answer": "A Single Page Application (SPA) is a web application that loads a single HTML page and dynamically updates content as the user interacts with the app. SPAs provide a smoother user experience by avoiding full page reloads.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Web App Design", "SPA", "Web Development"]
+  },
+  {
+    "id": 39,
+    "question": "What is the purpose of a Service Worker in web applications?",
+    "answer": "A Service Worker is a script that runs in the background, separate from the web page, enabling features like push notifications, background sync, and offline functionality by intercepting and handling network requests.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Performance Optimizations", "Service Workers", "Web Development"]
+  },
+  {
+    "id": 40,
+    "question": "What is Cross-Origin Resource Sharing (CORS) and why is it important?",
+    "answer": "Cross-Origin Resource Sharing (CORS) is a security feature implemented in browsers to prevent web pages from making requests to a different domain than the one that served the web page. It is important for protecting user data and ensuring secure communication between clients and servers.",
+    "category": "Technical",
+    "difficulty": "Easy",
+    "tags": ["Security Basics", "CORS", "Web Security"]
+  }
+]
+
+
+
+
+
