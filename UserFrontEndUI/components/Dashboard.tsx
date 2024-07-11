@@ -31,6 +31,7 @@ const Dashboard = () => {
   const addQuestionToQuestionPlaylist = useQuestionPlaylistStore(
     (state) => state.addQuestion
   );
+  console.log(QuestionPlaylist);
 
   const questionArray = Object.values(questionsMock);
 

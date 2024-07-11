@@ -29,7 +29,7 @@ interface QuestionType {
 
 interface Props {
   step: number;
-  selected: Question;
+  selected?: Question;
   selectedInterviewer: Interviewer;
   questionTypes?: QuestionType;
 }
@@ -43,54 +43,25 @@ const AltDashboard = ({
   return (
     <>
       <div className="bg-white text-[#667380] p-[18px] flex flex-col">
-        {step === 1 ? (
-          <div>
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-              key={selected.id}
-              className="text-[#1a2b3b] text-[14px] leading-[18px] font-semibold absolute"
-            >
-              {selected.name} Questions
-            </motion.span>
+        <div>
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+            key={selectedInterviewer.id}
+            className="text-[#1a2b3b] text-[14px] leading-[18px] font-semibold absolute"
+          >
+            Meet {selectedInterviewer.name}
+          </motion.span>
 
-            <ul className="mt-[28px] flex">
-              <li className="list-none max-w-[400px]">
-                Search through all of the questions in the question bank. If you
-                don{`'`}t see one you{`'`}re looking for, you can always add it
-                in your the {`"`}My Questions{`"`} section.
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <div>
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-              key={selected.id}
-              className="text-[#1a2b3b] text-[14px] leading-[18px] font-semibold absolute"
-            >
-              Meet {selectedInterviewer.name}
-            </motion.span>
-
-            <ul className="mt-[28px] flex">
-              {selected.name === "Behavioral" ? (
-                <li className="list-none max-w-[400px]">
-                  Start off by walking me through your resume.
-                </li>
-              ) : (
-                <li className="list-none max-w-[400px]">
-                  Hi there! I{`'`}m {selectedInterviewer.name}, and I{`'`}m here
-                  to help you with your interview skills
-                </li>
-              )}
-            </ul>
-          </div>
-        )}
+          <ul className="mt-[28px] flex">
+            <li className="list-none max-w-[400px]">
+              Hi there! I{`'`}m {selectedInterviewer.name}, and I{`'`}m here to
+              help you with your interview skills
+            </li>
+          </ul>
+        </div>
         {step === 2 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -126,7 +97,7 @@ const AltDashboard = ({
             <p>Search</p>
           </ul>
         )}
-        {step === 1 &&
+        {/* {step === 2 &&
           (selected.name === "Behavioral" ? (
             <motion.ul
               initial={{ opacity: 0, y: 10 }}
@@ -208,7 +179,7 @@ const AltDashboard = ({
                 interviewTag={"Brainteaser"}
               />
             </motion.ul>
-          ))}
+          ))} */}
         {step === 1 && <Pagination />}
       </div>
     </>

@@ -1,20 +1,15 @@
+import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
 import AltDashboard from "@/components/AltDashboard";
-import BackGroundSVG from "@/components/SVGs/BackGroundSVG";
-import CountDownTimer from "@/components/CountDownTimer";
+import InterviewSession from "@/components/InterviewSession/InterviewSession";
 import InterviewerSelector from "@/components/InterviewerSelector";
-import LoadingSpinner from "@/components/SVGs/LoadingSpinner";
-import RightArrowButton from "@/components/CTAs/RightArrowButton";
-import RightArrowWhiteSVG from "@/components/SVGs/RightArrowWhiteSVG";
-import WhiteButton from "@/components/CTAs/WhiteButton";
+import BackGroundSVG from "@/components/SVGs/BackGroundSVG";
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { v4 as uuid } from "uuid";
 import interviewMockData from "../app/data/interviewData.json";
-import InterviewSession from "@/components/InterviewSession/InterviewSession";
-import MockQuestionPlaylist from "../app/data/questionData.json";
-import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
+import useInterviewerStore from "@/app/data/stores/interviewers";
 
 export interface Interviewer {
   id: string;
@@ -64,15 +59,21 @@ function classNames(...classes: string[]) {
 
 export default function DemoPage() {
   const playList = useQuestionPlaylistStore((state) => state.questions);
-  console.log(playList);
+  const interviewers = useInterviewerStore((state) => state.interviewers);
+  console.log("playlist", playList);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selected, setSelected] = useState(interviewData.Behavioral);
-  const [selectedInterviewer, setSelectedInterviewer] = useState<Interviewer>(
-    interviewData.Behavioral.interviewers[0]
-  );
+  console.log("currentQuestionIndex", currentQuestionIndex);
 
-  const [step, setStep] = useState(2);
+  const [selected, setSelected] = useState(interviewData.Behavioral);
+  // console.log("selected", selected);
+
+  const [selectedInterviewer, setSelectedInterviewer] = useState<Interviewer>(
+    interviewers[0]
+  );
+  console.log("selectedInterviewer", selectedInterviewer);
+
+  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(true);
   const webcamRef = useRef<Webcam | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -242,7 +243,7 @@ export default function DemoPage() {
           const prompt = `Please give feedback on the following interview question: ${question} given the following transcript: ${
             results.transcript
           }. ${
-            selected.name === "Behavioral"
+            currentQuestion.category === "Behavioral"
               ? "Please also give feedback on the candidate's communication skills. Make sure their response is structured"
               : "Please also give feedback on the candidate's communication skills. Make sure they accurately explain their thoughts in a coherent way. Make sure they stay on topic and relevant to the question."
           } \n\n\ Feedback on the candidate's response:`;
@@ -289,6 +290,7 @@ export default function DemoPage() {
     }
   };
 
+  // fix restart video
   function restartVideo() {
     setRecordedChunks([]);
     setVideoEnded(false);
@@ -308,6 +310,7 @@ export default function DemoPage() {
     }, 1000);
   };
 
+  // fix next question
   const handleNextQuestion = () => {
     setStep(3);
     setCompleted(false);
@@ -319,32 +322,28 @@ export default function DemoPage() {
     setIsVisible(true);
     setSeconds(150);
     setIsSuccess(false);
-    if (selected && currentQuestionIndex < selected.questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      // Handle completion or end of questions
-    }
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
   const currentQuestion = playList[currentQuestionIndex];
-  console.log(currentQuestion);
+  console.log("currentQuestion", currentQuestion);
 
   // const currentQuestion = MockQuestionPlaylist[currentQuestionIndex];
 
   // needs to built and passed
   const currentVideoSrc = selectedInterviewer
-    ? `video/${selectedInterviewer.name}${playList[
+    ? `videos/${selectedInterviewer.name}${playList[
         currentQuestionIndex
-      ].id.toString()}`
+      ].id.toString()}.mp4`
     : null;
 
-  console.log(currentVideoSrc);
+  console.log("src", currentVideoSrc);
 
   //currentVideoSrc = `video/{interviewer}
 
   return (
     <AnimatePresence>
-      {step === 3 ? (
+      {step === 2 ? (
         <InterviewSession
           completed={completed}
           recordedChunks={recordedChunks}
@@ -377,15 +376,14 @@ export default function DemoPage() {
         <div className="flex flex-col md:flex-row w-full md:overflow-hidden">
           <div className="w-full min-h-[60vh] md:w-1/2 md:h-screen flex flex-col px-4 pt-2 pb-8 md:px-0 md:py-2 bg-[#FCFCFC] justify-center">
             <div className="h-full w-full items-center justify-center flex flex-col">
-              {step === 2 ? (
+              {step === 1 ? (
                 <InterviewerSelector
                   setStep={setStep}
                   selectedInterviewer={selectedInterviewer}
                   setSelectedInterviewer={setSelectedInterviewer}
-                  interviewers={interviewData[selected.name].interviewers}
                 />
               ) : (
-                <p>Step 3</p>
+                <p>Step 2</p>
               )}
             </div>
           </div>
@@ -401,7 +399,7 @@ export default function DemoPage() {
             >
               <div className="z-20 absolute h-full w-full bg-transparent cursor-default"></div>
               <AltDashboard
-                step={step}
+                step={2}
                 selected={selected}
                 selectedInterviewer={selectedInterviewer}
               />
