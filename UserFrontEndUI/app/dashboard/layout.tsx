@@ -1,6 +1,7 @@
 import "../../styles/globals.css";
 import { Metadata } from "next";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
+import { MobileNav } from "@/components/MobileNav/MobileNav";
 
 export const metadata: Metadata = {
   title: "AIIA - Home",
@@ -19,9 +20,12 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex scroll-smooth antialiased [font-feature-settings:'ss01']">
+      <body className="flex overflow-hidden h-[100dvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
         <Sidebar />
-        <div className="w-full p-12 pt-16">{children}</div>
+        <div className="w-full p-12 pt-16 overflow-y-auto flex-grow">
+          {children}
+        </div>
+        <MobileNav />
       </body>
     </html>
   );
