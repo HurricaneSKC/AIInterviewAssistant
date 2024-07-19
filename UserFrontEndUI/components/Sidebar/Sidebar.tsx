@@ -2,24 +2,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const Sidebar = () => {
+interface NavLinkProps {
+  path: string;
+  name: string;
+}
+
+const NavLink = ({ path, name }: NavLinkProps) => {
   const pathname = usePathname();
-  console.log(pathname);
+  return (
+    <Link
+      href={path}
+      className={`mb-4 ${pathname === path ? "font-bold" : ""}`}
+    >
+      {name}
+    </Link>
+  );
+};
+export const Sidebar = () => {
   return (
     <div className="md:flex bg-gray-100 w-[300px] p-10 hidden flex-col text-[20px]">
       <div className="w-full h-[100px] bg-white mb-12"></div>
-      <Link
-        href="/dashboard"
-        className={`mb-4 ${pathname === "/dashboard" ? "font-bold" : ""}`}
-      >
-        Dashboard
-      </Link>
-      <Link
-        href="/dashboard/my-interviews"
-        className={pathname === "/dashboard/my-interviews" ? "font-bold" : ""}
-      >
-        My Interviews
-      </Link>
+      <NavLink path="/dashboard" name="Dashboard" />
+      <NavLink path="/dashboard/my-interviews" name="My Interviews" />
+      <NavLink path="/dashboard/questions" name="Questions" />
+      <NavLink path="/dashboard/settings" name="Settings" />
     </div>
   );
 };

@@ -2,7 +2,10 @@ import { AddQuestion } from "../AddQuestion/AddQuestion";
 import { Question } from "../Question/Question";
 import AddIcon from "@mui/icons-material/Add";
 
-export const InterviewCreator = () => {
+interface Props {
+  setEditingQuestionPlaylist: (x: Boolean) => void;
+}
+export const InterviewCreator = ({ setEditingQuestionPlaylist }: Props) => {
   return (
     <>
       <h3 className="font-bold mb-4">Create your interview</h3>
@@ -14,7 +17,10 @@ export const InterviewCreator = () => {
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
             <h3 className="font-bold h-fit">Select your questions</h3>
-            <div className="flex items-center">
+            <div
+              onClick={() => setEditingQuestionPlaylist(true)}
+              className="flex items-center cursor-pointer"
+            >
               <p className="h-fit mr-4">Add a question</p>
               <button className="p-2 bg-white rounded-lg flex justify-center align-middle text-2xl">
                 <AddIcon />
@@ -31,7 +37,10 @@ export const InterviewCreator = () => {
           <div className="mb-4">
             <Question />
           </div>
-          <div className="mb-8">
+          <div
+            onClick={() => setEditingQuestionPlaylist(true)}
+            className="mb-8 cursor-pointer"
+          >
             <AddQuestion />
           </div>
           <div className="flex justify-end">

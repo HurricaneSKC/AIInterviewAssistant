@@ -20,9 +20,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex overflow-hidden h-[100dvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
+      <body className="bg-green flex overflow-hidden h-[100lvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
         <Sidebar />
-        <div className="w-full p-12 pt-16 overflow-y-auto flex-grow">
+        <div className="w-full md:p-12 md:pt-16 p-4 overflow-y-auto flex-grow">
           {children}
         </div>
         <MobileNav />

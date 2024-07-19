@@ -1,15 +1,34 @@
-export const Question = () => {
+import AddIcon from "@mui/icons-material/Add";
+
+interface Props {
+  background: string;
+}
+
+interface TagProps {
+  tag: string;
+}
+
+const Tag = ({ tag }: TagProps) => {
   return (
-    <div className="bg-white rounded-lg p-4 flex w-full justify-between items-center flex-wrap">
+    <p className="bg-gray-300 text-bold rounded-full px-2 py-1 h-fit whitespace-nowrap truncate text-xs">
+      {tag}
+    </p>
+  );
+};
+
+export const Question = ({ background }: Props) => {
+  return (
+    <div
+      className={`${
+        background === "gray" ? "bg-gray-100" : "bg-white"
+      } rounded-lg p-4 flex w-full justify-between items-center flex-wrap`}
+    >
       <h3 className="md:mb-0 mb-4">Walk me through this function</h3>
-      <div className="flex flex-wrap">
-        <div className="tags grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 items-center">
-          <p className="bg-gray-300 text-bold rounded-full px-4 py-2 h-fit text-sm">
-            Software engineering
-          </p>
-          <p className="bg-gray-300 text-bold rounded-full px-4 py-2 h-fit text-sm">
-            Software engineering
-          </p>
+
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="tags flex gap-2 items-center">
+          <Tag tag="Software Engineering" />
+          <Tag tag="JavaScript" />
         </div>
         <div className="difficulty flex py-4">
           <p className="mr-2 text-sm">Hard</p>
@@ -20,6 +39,9 @@ export const Question = () => {
             <div className="h-[20px] w-[10px] bg-gray-300 rounded-sm"></div>
           </div>
         </div>
+        <button className="float-right h-fit p-1 bg-black text-white rounded-lg flex justify-center align-middle">
+          <AddIcon />
+        </button>
       </div>
     </div>
   );
