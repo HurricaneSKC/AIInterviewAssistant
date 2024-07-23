@@ -1,17 +1,25 @@
 "use client";
 
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { gradient } from "@/components/Gradient";
 import { useEffect } from "react";
 import WhiteLinkButton from "@/components/WhiteLinkButton";
-import RightArrowWhiteSVG from "@/components/RightArrowWhiteSVG";
 import RightArrowButton from "@/components/RightArrowButton";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   useEffect(() => {
     gradient.initGradient("#gradient-canvas");
   }, []);
+
+  if (status === "loading") {
+    // TODO: had a nicer loading state
+    return <div>Loading...</div>;
+  }
 
   return (
     <AnimatePresence>
@@ -90,8 +98,8 @@ export default function Home() {
               }}
             >
               <WhiteLinkButton
-                pageLink="/demo"
-                buttonText="Try it out"
+                pageLink={!session ? "/guest-signin" : "/demo"}
+                buttonText={!session ? "Try it out" : "Start Interview"}
                 rightArrow
               />
             </motion.div>
@@ -104,7 +112,16 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <RightArrowButton onClick={() => {}} buttonText="Sign Up" />
+              <RightArrowButton
+                onClick={
+                  !session
+                    ? () => {}
+                    : () => {
+                        router.push("/dashboard");
+                      }
+                }
+                buttonText={!session ? "Sign Up" : "Dashboard"}
+              />
             </motion.div>
           </div>
         </main>
@@ -128,9 +145,11 @@ export default function Home() {
             duration: 1,
             ease: [0.075, 0.82, 0.965, 1],
           }}
-          style={{
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-          }}
+          style={
+            {
+              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+            } as React.CSSProperties
+          }
           id="gradient-canvas"
           data-transition-in
           className="hidden md:block z-50 fixed top-0 right-[-2px] w-full h-screen bg-[#c3e4ff]"

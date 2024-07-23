@@ -1,5 +1,8 @@
-import Dashboard from "../components/Dashboard";
 import React from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import Dashboard from "../components/Dashboard";
 
 const questionTypes = {
   behaviour: `Tell me about yourself. Why don${`’`}t you walk me through your resume?`,
@@ -25,20 +28,36 @@ const selected = {
 };
 
 const DashboardPage = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
   return (
-    <figure
-      className="absolute grid h-full w-full overflow-hidden"
-      style={{
-        grid: "100%/repeat(1,calc(10px * 28)) 1fr",
-      }}
-    >
-      <Dashboard
-        step={1}
-        selected={selected}
-        selectedInterviewer={selectedInterviewer}
-        questionTypes={questionTypes}
-      />
-    </figure>
+    <>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
+      <figure
+        className="absolute grid h-full w-full overflow-hidden"
+        style={{
+          grid: "100%/repeat(1,calc(10px * 28)) 1fr",
+        }}
+      >
+        <Dashboard
+          step={1}
+          selected={selected}
+          selectedInterviewer={selectedInterviewer}
+          questionTypes={questionTypes}
+        />
+      </figure>
+    </>
   );
 };
 
