@@ -1,10 +1,9 @@
 "use client";
 
-import Dashboard from "@/components/Dashboard";
 import React from "react";
 
 const DashboardPage = () => {
-  return <Dashboard />;
+  return <h1>DASHBOARD</h1>;
 };
 
 export default DashboardPage;
