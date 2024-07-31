@@ -19,14 +19,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-green flex overflow-hidden h-[100lvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
-        <Sidebar />
-        <div className="w-full md:p-12 md:pt-16 p-4 overflow-y-auto flex-grow">
-          {children}
-        </div>
-        <MobileNav />
-      </body>
-    </html>
+    <section className="bg-green flex overflow-hidden h-[100lvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
+      <Sidebar />
+      <div className="w-full md:p-12 md:pt-16 p-4 overflow-y-auto flex-grow">
+        {children}
+      </div>
+      <MobileNav />
+    </section>
   );
 }

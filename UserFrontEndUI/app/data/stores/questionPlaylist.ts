@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface Question {
+export interface Question {
   id: number;
   question: string;
   answer: string;
@@ -18,22 +18,6 @@ interface QuestionState {
 
 const useQuestionPlaylistStore = create<QuestionState>((set) => ({
   questions: [
-    {
-      "id": 2,
-      "question": "What are the pros and cons of Functional Programming?",
-      "answer": "Pros of functional programming include easier reasoning about code, avoidance of side effects, and easier debugging and testing. Cons include a steeper learning curve, potential performance issues due to immutability, and less intuitive flow for those accustomed to imperative programming.",
-      "category": "Technical",
-      "difficulty": "Medium",
-      "tags": ["Functional Programming", "Programming Paradigms"]
-    },
-    {
-      "id": 3,
-      "question": "Compare and contrast Functional Programming and Object-Oriented Programming.",
-      "answer": "Functional Programming focuses on pure functions and immutability, leading to side-effect-free code and easier testing. Object-Oriented Programming emphasizes objects and their interactions to model real-world entities, using principles like inheritance and polymorphism. While FP promotes composition over inheritance, OOP often relies on inheritance hierarchies.",
-      "category": "Technical",
-      "difficulty": "Medium",
-      "tags": ["Functional Programming", "OOP", "Programming Paradigms"]
-    },
     {
       id: 1,
       question: "Explain the principles of Object-Oriented Programming (OOP).",

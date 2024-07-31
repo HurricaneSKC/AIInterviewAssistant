@@ -57,10 +57,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DemoPage() {
+export default function Interview() {
   const playList = useQuestionPlaylistStore((state) => state.questions);
   const interviewers = useInterviewerStore((state) => state.interviewers);
-  console.log("playlist", playList);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   console.log("currentQuestionIndex", currentQuestionIndex);
