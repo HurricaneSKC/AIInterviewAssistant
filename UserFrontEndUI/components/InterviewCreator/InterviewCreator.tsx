@@ -5,6 +5,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { DisplayQuestion } from "../Question/DisplayQuestion";
 import { AddQuestion } from "./AddQuestion";
 import Link from "next/link";
+import LinkButton from "../CTAs/LinkButton";
+import WhiteButton from "../CTAs/WhiteButton";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -53,21 +55,21 @@ export const InterviewCreator = ({ toggleQuestionSelector }: Props) => {
             <AddQuestion toggleQuestionSelector={toggleQuestionSelector} />
           </div>
           <div className="flex justify-end">
-            <button
-              className="bg-white text-black rounded-full p-2 px-8 mr-2"
-              onClick={() => {
-                useQuestionPlaylistStore.persist.clearStorage();
-                removeAllQuestions();
-              }}
-            >
-              Clear
-            </button>
-            <Link
-              className="bg-primary text-white rounded-full p-2 px-8"
-              href={"/interview"}
-            >
-              Start interview
-            </Link>
+            <div className="mr-2">
+              <WhiteButton
+                onClick={() => {
+                  useQuestionPlaylistStore.persist.clearStorage();
+                  removeAllQuestions();
+                }}
+                buttonText="Clear"
+              />
+            </div>
+            <LinkButton
+              pageLink={"/interview"}
+              buttonText="Start interview"
+              Primary
+              rightArrow
+            />
           </div>
         </div>
       </div>
