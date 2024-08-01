@@ -8,6 +8,9 @@ import WhiteButton from "./CTAs/WhiteButton";
 import StepParagraph from "./textTags/StepParagraph";
 import useInterviewerStore from "@/app/data/stores/interviewers";
 import H2 from "./textTags/H2";
+import Link from "next/link";
+import LinkButton from "./CTAs/LinkButton";
+import Button from "./CTAs/Button";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -50,10 +53,15 @@ const InterviewerSelector = ({
       </div>
       <div className="flex gap-[15px] justify-end mt-8">
         <div>
-          {/* <WhiteButton onClick={() => setStep(1)} buttonText="Previous step" /> */}
+          <LinkButton pageLink="/dashboard/my-interviews" buttonText="Back" />
         </div>
         <div>
-          <RightArrowButton onClick={() => setStep(2)} buttonText="Continue" />
+          <Button
+            onClick={() => setStep(2)}
+            buttonText="Continue"
+            primary
+            rightArrow
+          />
         </div>
       </div>
     </motion.div>

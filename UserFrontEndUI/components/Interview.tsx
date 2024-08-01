@@ -389,7 +389,7 @@ export default function Interview() {
         />
       ) : (
         <div className="flex flex-col md:flex-row w-full md:overflow-hidden">
-          <div className="w-full min-h-[60vh] md:w-1/2 md:h-screen flex flex-col px-4 pt-2 pb-8 md:px-0 md:py-2 bg-[#FCFCFC] justify-center">
+          <div className="w-full min-h-[60vh] md:w-1/2 md:h-screen flex flex-col px-4 pt-2 pb-8 md:px-0 md:py-2 bg-gray-100 justify-center">
             <div className="h-full w-full items-center justify-center flex flex-col">
               {step === 1 ? (
                 <InterviewerSelector
@@ -415,7 +415,6 @@ export default function Interview() {
               <div className="z-20 absolute h-full w-full bg-transparent cursor-default"></div>
               <AltDashboard
                 step={2}
-                selected={selected}
                 selectedInterviewer={selectedInterviewer}
               />
             </figure>

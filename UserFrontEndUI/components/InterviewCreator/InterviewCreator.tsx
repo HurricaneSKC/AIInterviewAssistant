@@ -7,6 +7,8 @@ import { AddQuestion } from "./AddQuestion";
 import Link from "next/link";
 import LinkButton from "../CTAs/LinkButton";
 import WhiteButton from "../CTAs/WhiteButton";
+import AddButton from "../CTAs/AddButton";
+import Button from "../CTAs/Button";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,12 +34,7 @@ export const InterviewCreator = ({ toggleQuestionSelector }: Props) => {
             <h3 className="font-bold h-fit">Select your questions</h3>
             <div className="flex items-center">
               <p className="h-fit mr-4">Add a question</p>
-              <button
-                className="p-2 bg-white rounded-lg flex justify-center align-middle text-2xl"
-                onClick={() => toggleQuestionSelector(true)}
-              >
-                <AddIcon />
-              </button>
+              <AddButton onClick={() => toggleQuestionSelector(true)} />
             </div>
           </div>
           {QuestionPlaylist.map((question) => (
@@ -56,7 +53,7 @@ export const InterviewCreator = ({ toggleQuestionSelector }: Props) => {
           </div>
           <div className="flex justify-end">
             <div className="mr-2">
-              <WhiteButton
+              <Button
                 onClick={() => {
                   useQuestionPlaylistStore.persist.clearStorage();
                   removeAllQuestions();
@@ -67,7 +64,7 @@ export const InterviewCreator = ({ toggleQuestionSelector }: Props) => {
             <LinkButton
               pageLink={"/interview"}
               buttonText="Start interview"
-              Primary
+              primary
               rightArrow
             />
           </div>

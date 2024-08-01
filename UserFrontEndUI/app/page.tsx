@@ -112,7 +112,7 @@ export default function Home() {
                 pageLink="/dashboard"
                 buttonText="Login"
                 rightArrow
-                Primary
+                primary
               />
             </motion.div>
             <motion.div
