@@ -208,7 +208,7 @@ export default function Interview() {
       formData.append("file", output, `${unique_id}.mp3`);
       formData.append("model", "whisper-1");
 
-      const question = currentQuestion?.question || "";
+      const question = currentQuestion.question;
 
       setStatus("Transcribing");
 
@@ -326,7 +326,18 @@ export default function Interview() {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
-  const currentQuestion = playList[currentQuestionIndex];
+  const currentQuestion = playList
+    ? playList[currentQuestionIndex]
+    : {
+        id: 1,
+        question:
+          "Tell me about yourself, why don't you walk me through your resume",
+        answer:
+          "I am a software engineer with 5 years of experience in the field. I have worked on a variety of projects, including web development, mobile app development, and machine learning. I am passionate about technology and enjoy learning new things. I am a team player and enjoy working with others to solve problems. I am excited about the opportunity to work with your company and contribute to its success.",
+        category: "Behavioral",
+        difficulty: "Easy",
+        tags: ["Behavioral", "Weakness"],
+      };
   console.log("currentQuestion", currentQuestion);
 
   // const currentQuestion = MockQuestionPlaylist[currentQuestionIndex];
@@ -334,8 +345,9 @@ export default function Interview() {
   // needs to built and passed
   const currentVideoSrc = selectedInterviewer
     ? `videos/${selectedInterviewer.name}${
-        playList[currentQuestionIndex].category
-      }${playList[currentQuestionIndex].id.toString()}.mp4`
+        playList[currentQuestionIndex]?.category
+      }
+        ${playList[currentQuestionIndex]?.id.toString()}.mp4`
     : null;
 
   console.log("src", currentVideoSrc);
