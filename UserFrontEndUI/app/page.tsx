@@ -7,14 +7,28 @@ import { useEffect } from "react";
 import LinkButton from "@/components/CTAs/LinkButton";
 import RightArrowWhiteSVG from "@/components/SVGs/RightArrowWhiteSVG";
 import RightArrowButton from "@/components/CTAs/RightArrowButton";
+import useQuestionPlaylistStore from "./data/stores/questionPlaylist";
 
 export default function Home() {
   useEffect(() => {
     gradient.initGradient("#gradient-canvas");
   }, []);
 
-  const openModal = () => {
-    console.log("open modal");
+  const addQuestionToQuestionPlaylist = useQuestionPlaylistStore(
+    (state) => state.addQuestion
+  );
+
+  const handleDemo = () => {
+    addQuestionToQuestionPlaylist({
+      id: 1,
+      question:
+        "Tell me about yourself, why don't you walk me through your resume",
+      answer:
+        "I am a software engineer with 5 years of experience in the field. I have worked on a variety of projects, including web development, mobile app development, and machine learning. I am passionate about technology and enjoy learning new things. I am a team player and enjoy working with others to solve problems. I am excited about the opportunity to work with your company and contribute to its success.",
+      category: "Behavioral",
+      difficulty: "Easy",
+      tags: ["Behavioral", "Weakness"],
+    });
   };
 
   return (
@@ -44,12 +58,12 @@ export default function Home() {
               duration: 0.95,
               ease: [0.165, 0.84, 0.44, 1],
             }}
-            className="relative md:ml-[-10px] md:mb-[37px] font-extrabold text-[16vw] md:text-[130px] font-inter text-[#fff] leading-[0.9] tracking-[-2px] z-[100]"
+            className="relative md:ml-[-10px] md:mb-[37px] text-[#07bcc2] text-[16vw] md:text-[130px] font-inter text-[#] leading-[0.9] tracking-[-2px] z-[100]"
           >
-            AIIA
+            <em className="not-italic text-black">AI</em>IA
             <br />
-            <span className="text-[#00f6ff] md:text-[80px]">
-              AI Powered Interview Assistant
+            <span className="text-white md:text-[80px]">
+              AI Interview Assistant
             </span>
             <span className="font-inter text-[#00f6ff]"></span>
           </motion.h1>
@@ -93,7 +107,12 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <LinkButton pageLink="/demo" buttonText="Try it out" rightArrow />
+              <LinkButton
+                pageLink="/interview"
+                buttonText="Try it out"
+                rightArrow
+                onClick={handleDemo}
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -104,7 +123,12 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <LinkButton pageLink="/dashboard" buttonText="Login" rightArrow />
+              <LinkButton
+                pageLink="/dashboard"
+                buttonText="Login"
+                rightArrow
+                Primary
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -114,9 +138,7 @@ export default function Home() {
                 duration: 0.55,
                 ease: [0.075, 0.82, 0.965, 1],
               }}
-            >
-              <RightArrowButton onClick={openModal} buttonText="Sign Up" />
-            </motion.div>
+            ></motion.div>
           </div>
         </main>
 

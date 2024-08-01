@@ -59,6 +59,8 @@ function classNames(...classes: string[]) {
 
 export default function Interview() {
   const playList = useQuestionPlaylistStore((state) => state.questions);
+  console.log("playList", playList);
+
   const interviewers = useInterviewerStore((state) => state.interviewers);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -311,7 +313,7 @@ export default function Interview() {
 
   // fix next question
   const handleNextQuestion = () => {
-    setStep(3);
+    setStep(2);
     setCompleted(false);
     setGeneratedFeedback("");
     setTranscript("");
@@ -331,9 +333,9 @@ export default function Interview() {
 
   // needs to built and passed
   const currentVideoSrc = selectedInterviewer
-    ? `videos/${selectedInterviewer.name}${playList[
-        currentQuestionIndex
-      ].id.toString()}.mp4`
+    ? `videos/${selectedInterviewer.name}${
+        playList[currentQuestionIndex].category
+      }${playList[currentQuestionIndex].id.toString()}.mp4`
     : null;
 
   console.log("src", currentVideoSrc);

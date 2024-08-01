@@ -3,7 +3,12 @@
 import React from "react";
 
 const DashboardPage = () => {
-  return <h1>DASHBOARD</h1>;
+  return (
+    <>
+      <h1 className="text-6xl mb-12">Dashboard</h1>
+      <h2 className="text-4xl mb-12">Welcome back</h2>
+    </>
+  );
 };
 
 export default DashboardPage;

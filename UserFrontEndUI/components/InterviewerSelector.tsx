@@ -5,9 +5,9 @@ import SelectedInterviewerRadioGroup, {
   Interviewer,
 } from "./SelectedInterviewerRadioGroup";
 import WhiteButton from "./CTAs/WhiteButton";
-import StepHeading from "./textTags/StepHeading";
 import StepParagraph from "./textTags/StepParagraph";
 import useInterviewerStore from "@/app/data/stores/interviewers";
+import H2 from "./textTags/H2";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -36,7 +36,7 @@ const InterviewerSelector = ({
       }}
       className="max-w-lg mx-auto px-4 lg:px-0"
     >
-      <StepHeading headingText="Select an interviewer" />
+      <H2 text="Select an interviewer" />
       <StepParagraph
         paragraphText="Choose whoever makes you feel comfortable. You can always 
         try again with another one."

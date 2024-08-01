@@ -9,7 +9,8 @@ const DashboardPage = () => {
 
   return (
     <>
-      <h1 className="text-4xl mb-12">Let&apos;s start practicing</h1>
+      <h1 className="text-6xl mb-12">My Interviews</h1>
+      <h2 className="text-4xl mb-12">Let&apos;s start practicing</h2>
       <InterviewCreator toggleQuestionSelector={toggleQuestionSelector} />
       {questionSelector && (
         <QuestionSelector toggleQuestionSelector={toggleQuestionSelector} />
