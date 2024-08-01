@@ -18,7 +18,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="scroll-smooth antialiased [font-feature-settings:'ss01']">
+      <body className="scroll-smooth antialiased [font-feature-settings:'ss01'] text-site">
         {children}
       </body>
     </html>
