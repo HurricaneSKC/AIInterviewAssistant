@@ -326,7 +326,7 @@ export default function Interview() {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
-  const currentQuestion = playList
+  const currentQuestion = playList[currentQuestionIndex]
     ? playList[currentQuestionIndex]
     : {
         id: 1,
@@ -343,12 +343,14 @@ export default function Interview() {
   // const currentQuestion = MockQuestionPlaylist[currentQuestionIndex];
 
   // needs to built and passed
-  const currentVideoSrc = selectedInterviewer
-    ? `videos/${selectedInterviewer.name}${
-        playList[currentQuestionIndex]?.category
-      }
-        ${playList[currentQuestionIndex]?.id.toString()}.mp4`
-    : null;
+  const currentVideoSrc =
+    selectedInterviewer && playList[currentQuestionIndex]
+      ? `videos/${selectedInterviewer.name}${
+          playList[currentQuestionIndex]?.category
+        }${playList[currentQuestionIndex]?.id.toString()}.mp4`
+      : `videos/${selectedInterviewer.name}${
+          currentQuestion.category
+        }${currentQuestion.id.toString()}.mp4`;
 
   console.log("src", currentVideoSrc);
 

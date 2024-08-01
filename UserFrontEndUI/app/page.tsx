@@ -1,35 +1,13 @@
 "use client";
-
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { gradient } from "@/components/Gradient";
-import { useEffect } from "react";
 import LinkButton from "@/components/CTAs/LinkButton";
-import RightArrowWhiteSVG from "@/components/SVGs/RightArrowWhiteSVG";
-import RightArrowButton from "@/components/CTAs/RightArrowButton";
-import useQuestionPlaylistStore from "./data/stores/questionPlaylist";
+import { gradient } from "@/components/Gradient";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
     gradient.initGradient("#gradient-canvas");
   }, []);
-
-  const addQuestionToQuestionPlaylist = useQuestionPlaylistStore(
-    (state) => state.addQuestion
-  );
-
-  const handleDemo = () => {
-    addQuestionToQuestionPlaylist({
-      id: 1,
-      question:
-        "Tell me about yourself, why don't you walk me through your resume",
-      answer:
-        "I am a software engineer with 5 years of experience in the field. I have worked on a variety of projects, including web development, mobile app development, and machine learning. I am passionate about technology and enjoy learning new things. I am a team player and enjoy working with others to solve problems. I am excited about the opportunity to work with your company and contribute to its success.",
-      category: "Behavioral",
-      difficulty: "Easy",
-      tags: ["Behavioral", "Weakness"],
-    });
-  };
 
   return (
     <AnimatePresence>
@@ -50,6 +28,18 @@ export default function Home() {
           <rect width="100%" height="100%" filter="url(#noise)"></rect>
         </svg>
         <main className="flex flex-col justify-center h-[90%] static md:fixed w-screen overflow-hidden grid-rows-[1fr_repeat(3,auto)_1fr] z-[100] pt-[30px] pb-[320px] px-4 md:px-20 md:py-0">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.15,
+              duration: 0.95,
+              ease: [0.165, 0.84, 0.44, 1],
+            }}
+            className="relative md:ml-[-10px] mb-4 text-[#07bcc2] text-[16vw] md:text-[130px] font-inter text-[#] leading-[0.9] tracking-[-2px] z-[100]"
+          >
+            <em className="not-italic text-black">AI</em>IA
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,13 +48,9 @@ export default function Home() {
               duration: 0.95,
               ease: [0.165, 0.84, 0.44, 1],
             }}
-            className="relative md:ml-[-10px] md:mb-[37px] text-[#07bcc2] text-[16vw] md:text-[130px] font-inter text-[#] leading-[0.9] tracking-[-2px] z-[100]"
+            className="relative md:ml-[-10px] md:mb-[37px] text-white text-[16vw] md:text-[80px] font-inter leading-[0.9] tracking-[-2px] z-[100]"
           >
-            <em className="not-italic text-black">AI</em>IA
-            <br />
-            <span className="text-white md:text-[80px]">
-              AI Interview Assistant
-            </span>
+            AI Interview Assistant
             <span className="font-inter text-[#00f6ff]"></span>
           </motion.h1>
           <motion.div
@@ -111,7 +97,6 @@ export default function Home() {
                 pageLink="/interview"
                 buttonText="Try it out"
                 rightArrow
-                onClick={handleDemo}
               />
             </motion.div>
             <motion.div

@@ -1,10 +1,9 @@
 "use client";
-
 import { InterviewCreator } from "@/components/InterviewCreator/InterviewCreator";
 import QuestionSelector from "@/components/QuestionSelector";
 import { useState } from "react";
 
-const DashboardPage = () => {
+const InterviewCreatorPage = () => {
   const [questionSelector, toggleQuestionSelector] = useState(false);
 
   return (
@@ -19,4 +18,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default InterviewCreatorPage;

@@ -1,3 +1,5 @@
+"use client";
+
 import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
 import AddIcon from "@mui/icons-material/Add";
 import { DisplayQuestion } from "../Question/DisplayQuestion";
