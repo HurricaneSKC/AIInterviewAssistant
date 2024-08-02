@@ -7,6 +7,7 @@ import CountDownTimer from "../CountDownTimer";
 import LoadingSpinner from "../SVGs/LoadingSpinner";
 import RightArrowWhiteSVG from "../SVGs/RightArrowWhiteSVG";
 import BackGroundSVG from "../SVGs/BackGroundSVG";
+import { Question } from "@/app/data/stores/questionPlaylist";
 
 interface Props {
   completed: boolean;
