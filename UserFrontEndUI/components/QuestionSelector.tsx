@@ -1,6 +1,8 @@
 import React from "react";
 import { QuestionToAdd } from "./Question/QuestionToAdd";
 import MockQuestionData from "../app/data/questionData.json";
+import Link from "next/link";
+import H2 from "./textTags/H2";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,14 +25,14 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
         onClick={() => toggleQuestionSelector(false)}
         className="fixed top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.5)]"
       >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className="flex p-8 flex-col overflow-y-auto fixed top-0 right-0 bottom-0 lg:w-[40vw] w-full bg-white"
-        >
-          <div className="flex justify-between">
-            <h3>Add a question</h3>
-            <a>View question bank</a>
+        <div className="flex p-8 flex-col overflow-y-auto fixed top-0 right-0 bottom-0 lg:w-[50vw] w-full bg-white">
+          <div className="flex justify-between mb-2">
+            <H2 text="Add a question" />
+            <Link href={"/dashboard/questions"}>Question Bank</Link>
           </div>
+
+          {/*filter questions by category, difficulty or tag with search inputs suggested dropdown with preselects */}
+
           <div className="flex-grow w-full grid grid-cols-1 gap-2">
             {questions.map((question) => (
               <QuestionToAdd
@@ -43,9 +45,6 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
                 tags={question.tags}
               />
             ))}
-            {/* <QuestionToAdd />
-            <QuestionToAdd />
-            <QuestionToAdd /> */}
           </div>
         </div>
       </div>
