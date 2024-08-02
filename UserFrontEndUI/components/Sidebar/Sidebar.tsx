@@ -10,18 +10,15 @@ interface NavLinkProps {
 const NavLink = ({ path, name }: NavLinkProps) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={path}
-      className={`mb-4 ${pathname === path ? "font-bold" : ""}`}
-    >
+    <Link href={path} className={`${pathname === path ? "font-bold" : ""}`}>
       {name}
     </Link>
   );
 };
 export const Sidebar = () => {
   return (
-    <div className="md:flex bg-gray-100 w-[300px] p-10 hidden flex-col text-[20px]">
-      <div className="w-full h-[100px] mb-12 flex items-center">
+    <div className="md:flex bg-gray-100 w-[300px] p-10 hidden flex-col text-[20px] gap-y-6">
+      <div className="w-full h-[100px] mb-6 flex items-center">
         <p className="text-6xl text-primary">
           <em className="not-italic text-black">AI</em>IA
         </p>

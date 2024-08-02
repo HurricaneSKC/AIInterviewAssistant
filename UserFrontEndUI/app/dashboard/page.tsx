@@ -1,3 +1,4 @@
+import AnimateDiv from "@/components/AnimateDiv";
 import React from "react";
 
 const DashboardPage = () => {
