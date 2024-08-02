@@ -36,7 +36,7 @@ export default function Home() {
               duration: 0.95,
               ease: [0.165, 0.84, 0.44, 1],
             }}
-            className="relative md:ml-[-10px] mb-4 text-[#07bcc2] text-[16vw] md:text-[130px] font-inter text-[#] leading-[0.9] tracking-[-2px] z-[100]"
+            className="relative md:ml-[-10px] mb-4 text-[#07bcc2] text-[16vw] md:text-[130px] leading-[0.9] tracking-[-2px] z-[100] [text-shadow:_1px_1px_2px_rgb(255_255_255_/_60%)]"
           >
             <em className="not-italic text-black">AI</em>IA
           </motion.div>
@@ -48,7 +48,7 @@ export default function Home() {
               duration: 0.95,
               ease: [0.165, 0.84, 0.44, 1],
             }}
-            className="relative md:ml-[-10px] md:mb-[37px] text-white text-[16vw] md:text-[80px] font-inter leading-[0.9] tracking-[-2px] z-[100]"
+            className="relative md:ml-[-10px] md:mb-[37px] text-white text-[16vw] md:text-[80px] font-inter leading-[0.9] tracking-[-2px] z-[100] [text-shadow:_1px_1px_2px_rgb(0_0_0_/_75%)]"
           >
             AI Interview Assistant
             <span className="font-inter text-[#00f6ff]"></span>
