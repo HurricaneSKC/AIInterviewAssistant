@@ -1,5 +1,4 @@
 import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
-import AltDashboard from "@/components/AltDashboard";
 import InterviewSession from "@/components/InterviewSession/InterviewSession";
 import InterviewerSelector from "@/components/InterviewerSelector";
 import BackGroundSVG from "@/components/SVGs/BackGroundSVG";
@@ -10,6 +9,7 @@ import Webcam from "react-webcam";
 import { v4 as uuid } from "uuid";
 import interviewMockData from "../app/data/interviewData.json";
 import useInterviewerStore from "@/app/data/stores/interviewers";
+import InterviewerPresentation from "./InterviewerPresentation";
 
 export interface Interviewer {
   id: string;
@@ -404,20 +404,10 @@ export default function Interview() {
           </div>
           <div className="w-full h-[40vh] md:w-1/2 md:h-screen bg-[#1E2B3A] relative overflow-hidden">
             <BackGroundSVG />
-            <figure
-              className="absolute md:top-1/2 ml-[-380px] md:ml-[0px] md:-mt-[240px] left-1/2 transform scale-[0.5] sm:scale-[0.6] md:scale-[130%] w-[760px] h-[540px] bg-[#f5f7f9] text-[9px] origin-[50%_15%] md:origin-[50%_25%] rounded-[15px] overflow-hidden p-2 z-20"
-              style={{
-                grid: "100%/repeat(1,calc(5px * 28)) 1fr",
-                boxShadow:
-                  "0 192px 136px rgba(26,43,59,.23),0 70px 50px rgba(26,43,59,.16),0 34px 24px rgba(26,43,59,.13),0 17px 12px rgba(26,43,59,.1),0 7px 5px rgba(26,43,59,.07), 0 50px 100px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%), inset 0 -2px 6px 0 rgb(10 37 64 / 35%)",
-              }}
-            >
-              <div className="z-20 absolute h-full w-full bg-transparent cursor-default"></div>
-              <AltDashboard
-                step={2}
-                selectedInterviewer={selectedInterviewer}
-              />
-            </figure>
+
+            <InterviewerPresentation
+              selectedInterviewer={selectedInterviewer}
+            />
           </div>
         </div>
       )}

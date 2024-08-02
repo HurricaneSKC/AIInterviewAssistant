@@ -69,11 +69,6 @@ const InterviewSession = ({
   isSuccess,
   setStep,
 }: Props) => {
-  // question
-  // questionID
-  // interviewer
-  // src="AWSS3/videos/Richard/1.mp4"
-
   return (
     <div className="w-full min-h-screen flex flex-col px-4 pt-2 pb-8 md:px-8 md:py-2 bg-[#FCFCFC] relative overflow-x-hidden">
       {completed ? (
