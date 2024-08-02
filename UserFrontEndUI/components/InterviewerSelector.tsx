@@ -5,29 +5,28 @@ import SelectedInterviewerRadioGroup, {
   Interviewer,
 } from "./SelectedInterviewerRadioGroup";
 import WhiteButton from "./CTAs/WhiteButton";
-import StepHeading from "./textTags/StepHeading";
 import StepParagraph from "./textTags/StepParagraph";
-
-interface SelectedInterviewerProps {
-  id: string;
-  name: string;
-  description: string;
-  level: string;
-}
+import useInterviewerStore from "@/app/data/stores/interviewers";
+import H2 from "./textTags/H2";
+import Link from "next/link";
+import LinkButton from "./CTAs/LinkButton";
+import Button from "./CTAs/Button";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   selectedInterviewer: Interviewer;
   setSelectedInterviewer: React.Dispatch<React.SetStateAction<Interviewer>>;
-  interviewers: Interviewer[];
 }
 
 const InterviewerSelector = ({
   setStep,
   selectedInterviewer,
   setSelectedInterviewer,
-  interviewers,
 }: Props) => {
+  const interviewers = useInterviewerStore((state) => state.interviewers);
+
+  console.log(interviewers);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -40,7 +39,7 @@ const InterviewerSelector = ({
       }}
       className="max-w-lg mx-auto px-4 lg:px-0"
     >
-      <StepHeading headingText="Select an interviewer" />
+      <H2 text="Select an interviewer" />
       <StepParagraph
         paragraphText="Choose whoever makes you feel comfortable. You can always 
         try again with another one."
@@ -54,10 +53,15 @@ const InterviewerSelector = ({
       </div>
       <div className="flex gap-[15px] justify-end mt-8">
         <div>
-          <WhiteButton onClick={() => setStep(1)} buttonText="Previous step" />
+          <LinkButton pageLink="/dashboard/my-interviews" buttonText="Back" />
         </div>
         <div>
-          <RightArrowButton onClick={() => setStep(3)} buttonText="Continue" />
+          <Button
+            onClick={() => setStep(2)}
+            buttonText="Continue"
+            primary
+            rightArrow
+          />
         </div>
       </div>
     </motion.div>

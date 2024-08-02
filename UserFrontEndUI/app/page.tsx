@@ -1,21 +1,13 @@
 "use client";
-
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { gradient } from "@/components/Gradient";
-import { useEffect } from "react";
 import LinkButton from "@/components/CTAs/LinkButton";
-import RightArrowWhiteSVG from "@/components/SVGs/RightArrowWhiteSVG";
-import RightArrowButton from "@/components/CTAs/RightArrowButton";
+import { gradient } from "@/components/Gradient";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
     gradient.initGradient("#gradient-canvas");
   }, []);
-
-  const openModal = () => {
-    console.log("open modal");
-  };
 
   return (
     <AnimatePresence>
@@ -36,6 +28,18 @@ export default function Home() {
           <rect width="100%" height="100%" filter="url(#noise)"></rect>
         </svg>
         <main className="flex flex-col justify-center h-[90%] static md:fixed w-screen overflow-hidden grid-rows-[1fr_repeat(3,auto)_1fr] z-[100] pt-[30px] pb-[320px] px-4 md:px-20 md:py-0">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.15,
+              duration: 0.95,
+              ease: [0.165, 0.84, 0.44, 1],
+            }}
+            className="relative md:ml-[-10px] mb-4 text-[#07bcc2] text-[16vw] md:text-[130px] leading-[0.9] tracking-[-2px] z-[100] [text-shadow:_1px_1px_2px_rgb(255_255_255_/_60%)]"
+          >
+            <em className="not-italic text-black">AI</em>IA
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -44,13 +48,9 @@ export default function Home() {
               duration: 0.95,
               ease: [0.165, 0.84, 0.44, 1],
             }}
-            className="relative md:ml-[-10px] md:mb-[37px] font-extrabold text-[16vw] md:text-[130px] font-inter text-[#fff] leading-[0.9] tracking-[-2px] z-[100]"
+            className="relative md:ml-[-10px] md:mb-[37px] text-white text-[16vw] md:text-[80px] font-inter leading-[0.9] tracking-[-2px] z-[100] [text-shadow:_1px_1px_2px_rgb(0_0_0_/_75%)]"
           >
-            AIIA
-            <br />
-            <span className="text-[#00f6ff] md:text-[80px]">
-              AI Powered Interview Assistant
-            </span>
+            AI Interview Assistant
             <span className="font-inter text-[#00f6ff]"></span>
           </motion.h1>
           <motion.div
@@ -93,7 +93,11 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <LinkButton pageLink="/demo" buttonText="Try it out" rightArrow />
+              <LinkButton
+                pageLink="/interview"
+                buttonText="Try it out"
+                rightArrow
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -104,7 +108,12 @@ export default function Home() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              <LinkButton pageLink="/login" buttonText="Login" rightArrow />
+              <LinkButton
+                pageLink="/dashboard"
+                buttonText="Login"
+                rightArrow
+                primary
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -114,9 +123,7 @@ export default function Home() {
                 duration: 0.55,
                 ease: [0.075, 0.82, 0.965, 1],
               }}
-            >
-              <RightArrowButton onClick={openModal} buttonText="Sign Up" />
-            </motion.div>
+            ></motion.div>
           </div>
         </main>
 
