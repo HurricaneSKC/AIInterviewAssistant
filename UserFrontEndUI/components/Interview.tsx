@@ -342,10 +342,13 @@ export default function Interview() {
 
   // const currentQuestion = MockQuestionPlaylist[currentQuestionIndex];
 
+  //AWS
+  const AWS_URL = "https://aiinterviewassistant.s3.eu-north-1.amazonaws.com/";
+
   // needs to built and passed
   const currentVideoSrc =
     selectedInterviewer && playList[currentQuestionIndex]
-      ? `videos/${selectedInterviewer.name}${
+      ? `${AWS_URL}${selectedInterviewer.name}${
           playList[currentQuestionIndex]?.category
         }${playList[currentQuestionIndex]?.id.toString()}.mp4`
       : `videos/${selectedInterviewer.name}${
