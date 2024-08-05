@@ -5,7 +5,7 @@ const BackGroundSVG = () => {
     <svg
       id="texture"
       style={{ filter: "contrast(120%) brightness(120%)" }}
-      className="fixed z-[1] w-full h-full opacity-[35%]"
+      className="fixed z-[1] w-full h-full opacity-[35%] pointer-events-none"
     >
       <filter id="noise" data-v-1d260e0e="">
         <feTurbulence

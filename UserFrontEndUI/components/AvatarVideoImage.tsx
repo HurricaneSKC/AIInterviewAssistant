@@ -15,7 +15,7 @@ const AvatarVideoImage = ({ src, alt }: Props) => {
       transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
       src={src}
       alt={alt}
-      className="absolute top-6 left-6 w-[30%] aspect-video bg-gray-700 rounded ring-1 ring-gray-900/5 shadow-md object-cover"
+      className="absolute w-full aspect-video bg-gray-100 rounded ring-1 ring-gray-900/5 shadow-md object-cover p-2 mt-6"
     />
   );
 };
