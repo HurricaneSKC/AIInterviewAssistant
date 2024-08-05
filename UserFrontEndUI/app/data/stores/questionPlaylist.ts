@@ -23,6 +23,9 @@ const useQuestionPlaylistStore = create(
     (set) => ({
       questions: [],
       addQuestion: (newQuestion) => set((state) => ({
+        // check if the question already exists - if it does, return the current state
+        // otherwise, add the new question to the state
+
         questions: [...state.questions, newQuestion]
       })),
       removeQuestion: (id) => set((state) => ({
