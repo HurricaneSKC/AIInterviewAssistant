@@ -4,10 +4,23 @@ import { gradient } from "@/components/Gradient";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 
+const fetchUsers = async () => {
+  try {
+    const data = await fetch("api/users");
+    const users = await data.json();
+    console.log(users);
+  } catch (e) {
+    console.error(e);
+  }
+};
 export default function Home() {
   useEffect(() => {
     gradient.initGradient("#gradient-canvas");
   }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  });
 
   return (
     <AnimatePresence>
