@@ -23,13 +23,14 @@ export default function Home() {
     gradient.initGradient("#gradient-canvas");
   }, []);
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   if (status === "loading") {
     // TODO: had a nicer loading state
     return <div>Loading...</div>;
   }
-  useEffect(() => {
-    fetchUsers();
-  });
 
   return (
     <AnimatePresence>
@@ -131,12 +132,7 @@ export default function Home() {
               }}
             >
               <LinkButton
-                pageLink={
-                  !session
-                    ? ""
-                    : "/dashboard"
-                }
-                
+                pageLink={!session ? "" : "/dashboard"}
                 buttonText={!session ? "Sign Up" : "Dashboard"}
                 rightArrow
                 primary

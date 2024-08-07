@@ -12,7 +12,7 @@ export default async function handler(
   }
   try {
     const guestToken = generateToken();
-    const guestTokenExpiry = new Date(Date.now() + 12 * 60 * 60 * 1000); // 12 hours from now
+    const guestTokenExpiry = new Date(Date.now() + 12 * 60 * 60 * 1000).toISOString(); // 12 hours from now
 
     console.log("Guest Token generated: ", { guestToken });
 

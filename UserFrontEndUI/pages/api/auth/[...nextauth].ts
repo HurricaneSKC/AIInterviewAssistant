@@ -1,16 +1,19 @@
 import NextAuth, { AuthOptions } from "next-auth";
-import { Adapter } from "next-auth/adapters";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "../../../app/lib/db.connection";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, GetCommand } from "@aws-sdk/lib-dynamodb";
+
 import {
   verifyGuestToken,
   getUserByEmail,
 } from "../../../app/lib/db.operations";
 import { verifyPassword } from "../../../app/lib/authUtils";
 
+const client = new DynamoDBClient({ region: "your-region" });
+const ddbDocClient = DynamoDBDocumentClient.from(client);
+
+
 export const authOptions: AuthOptions = {
-  adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
     CredentialsProvider({
       id: "guest-authorizer",
@@ -19,14 +22,11 @@ export const authOptions: AuthOptions = {
         guestToken: { label: "Guest Token", type: "text" },
       },
       async authorize(credentials) {
-        console.log({ credentials });
         if (!credentials) {
           throw new Error("Invalid credentials or guest token");
         }
         const { guestToken } = credentials;
-        console.log({ guestToken });
         const isValid = await verifyGuestToken(guestToken);
-        console.log({ isValid });
         if (!isValid) {
           throw new Error("Invalid guest token");
         }
@@ -40,24 +40,20 @@ export const authOptions: AuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(
-        credentials: Record<"email" | "password", string> | undefined
-      ): Promise<any> {
+      async authorize(credentials) {
         if (!credentials) {
           return null;
         }
         const { email, password } = credentials;
         const user = await getUserByEmail(email);
-        console.log({ user });
         if (!user) {
           throw new Error("No user found");
         }
         const isValid = await verifyPassword(password, user.password);
-        console.log({ isValid });
         if (!isValid) {
           throw new Error("Invalid credentials");
         }
-        return { id: user._id, email: user.email };
+        return { id: user.id, email: user.email };
       },
     }),
   ],
