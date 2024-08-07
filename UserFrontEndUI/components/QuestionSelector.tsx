@@ -25,7 +25,10 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
         onClick={() => toggleQuestionSelector(false)}
         className="fixed top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.5)]"
       >
-        <div className="flex p-8 flex-col overflow-y-auto fixed top-0 right-0 bottom-0 lg:w-[50vw] w-full bg-white">
+        <div
+          className="flex p-8 flex-col overflow-y-auto fixed top-0 right-0 bottom-0 lg:w-[50vw] w-full bg-white"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="flex justify-between mb-2">
             <H2 text="Add a question" />
             <Link href={"/dashboard/questions"}>Question Bank</Link>

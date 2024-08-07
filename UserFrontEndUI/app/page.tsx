@@ -6,6 +6,15 @@ import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+const fetchUsers = async () => {
+  try {
+    const data = await fetch("api/users");
+    const users = await data.json();
+    console.log(users);
+  } catch (e) {
+    console.error(e);
+  }
+};
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -18,6 +27,9 @@ export default function Home() {
     // TODO: had a nicer loading state
     return <div>Loading...</div>;
   }
+  useEffect(() => {
+    fetchUsers();
+  });
 
   return (
     <AnimatePresence>
