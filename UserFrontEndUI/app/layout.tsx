@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import { Metadata } from "next";
+import { NextAuthProvider } from "@/components/NextAuthProvider";
 
 export const metadata: Metadata = {
   title: "AIIA - AI-Powered Mock Interviews",
@@ -18,8 +19,8 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="scroll-smooth antialiased [font-feature-settings:'ss01']">
-        {children}
+      <body className="scroll-smooth antialiased [font-feature-settings:'ss01'] text-site">
+        <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );
