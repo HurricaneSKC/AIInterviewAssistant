@@ -1,9 +1,7 @@
 import NextAuth from "next-auth"
 import { DynamoDB, DynamoDBClientConfig } from "@aws-sdk/client-dynamodb"
 import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb"
-import { DynamoDBAdapter } from "@auth/dynamodb-adapter"
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs"; // For password hashing
  
 const config: DynamoDBClientConfig = {
   credentials: {
@@ -57,5 +55,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return null;
       }
     },
-  }),]
+  }),],
+  pages: {
+    signIn: "/login"
+  }
 })
