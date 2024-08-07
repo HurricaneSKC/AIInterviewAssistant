@@ -2,7 +2,7 @@ import React from "react";
 import { QuestionToAdd } from "./Question/QuestionToAdd";
 import MockQuestionData from "../app/data/questionData.json";
 import Link from "next/link";
-import H2 from "./textTags/H2";
+import H2 from "./HTMLTags/H2";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,7 +30,7 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between mb-2">
-            <H2 text="Add a question" />
+            <H2>Add a question</H2>
             <Link href={"/dashboard/questions"}>Question Bank</Link>
           </div>
 

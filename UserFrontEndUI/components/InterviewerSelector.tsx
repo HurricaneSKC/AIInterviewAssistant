@@ -1,16 +1,13 @@
+import useInterviewerStore from "@/app/data/stores/interviewers";
 import { motion } from "framer-motion";
 import React from "react";
-import RightArrowButton from "./CTAs/RightArrowButton";
+import Button from "./CTAs/Button";
+import LinkButton from "./CTAs/LinkButton";
+import H2 from "./HTMLTags/H2";
 import SelectedInterviewerRadioGroup, {
   Interviewer,
 } from "./SelectedInterviewerRadioGroup";
-import WhiteButton from "./CTAs/WhiteButton";
 import StepParagraph from "./textTags/StepParagraph";
-import useInterviewerStore from "@/app/data/stores/interviewers";
-import H2 from "./textTags/H2";
-import Link from "next/link";
-import LinkButton from "./CTAs/LinkButton";
-import Button from "./CTAs/Button";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -39,7 +36,7 @@ const InterviewerSelector = ({
       }}
       className="max-w-lg mx-auto px-4 lg:px-0"
     >
-      <H2 text="Select an interviewer" />
+      <H2>Select an interview</H2>
       <StepParagraph
         paragraphText="Choose whoever makes you feel comfortable. You can always 
         try again with another one."

@@ -1,5 +1,7 @@
 "use client";
 import AnimateDiv from "@/components/AnimateDiv";
+import H1 from "@/components/HTMLTags/H1";
+import PTag from "@/components/HTMLTags/PTag";
 import { InterviewCreator } from "@/components/InterviewCreator/InterviewCreator";
 import QuestionSelector from "@/components/QuestionSelector";
 import { motion } from "framer-motion";
@@ -10,8 +12,8 @@ const InterviewCreatorPage = () => {
 
   return (
     <AnimateDiv>
-      <h1 className="text-6xl mb-12">My Interviews</h1>
-      <h2 className="text-4xl mb-12">Let&apos;s start practicing</h2>
+      <H1>My Interviews</H1>
+      <PTag large>Let&apos;s start practicing</PTag>
       <InterviewCreator toggleQuestionSelector={toggleQuestionSelector} />
       {questionSelector && (
         <QuestionSelector toggleQuestionSelector={toggleQuestionSelector} />
