@@ -32,7 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // Query DynamoDB for the user
       const params = {
         TableName: 'users',
-        Key: { id: email },
+        Key: { email: email },
       };
 
       try {

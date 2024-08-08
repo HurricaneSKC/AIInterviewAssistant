@@ -12,7 +12,6 @@ const InterviewCreatorPage = () => {
 
   return (
     <AnimateDiv>
-      <H1>My Interviews</H1>
       <PTag large>Let&apos;s start practicing</PTag>
       <InterviewCreator toggleQuestionSelector={toggleQuestionSelector} />
       {questionSelector && (

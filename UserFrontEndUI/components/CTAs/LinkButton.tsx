@@ -35,16 +35,16 @@ const LinkButton = ({
     >
       {primary && rightArrow ? (
         <>
-          <span className="mr-2">{buttonText}</span>
+          <span className="mr-2 whitespace-nowrap">{buttonText}</span>
           <RightArrowWhiteSVG />
         </>
       ) : rightArrow ? (
         <>
-          <span className="mr-2">{buttonText}</span>
+          <span className="mr-2 whitespace-nowrap">{buttonText}</span>
           <RightArrowBlackSVG />
         </>
       ) : (
-        <span>{buttonText}</span>
+        <span className="whitespace-nowrap">{buttonText}</span>
       )}
       {children}
     </Link>
