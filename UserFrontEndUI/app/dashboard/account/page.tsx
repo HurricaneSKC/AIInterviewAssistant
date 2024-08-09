@@ -1,25 +1,72 @@
 "use client";
-import H1 from "@/components/HTMLTags/H1";
-import { auth } from "@/auth";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
-const Account = async () => {
-  const session = await auth();
+const Account = () => {
+  const session = useSession();
+
+  console.log(session);
+
+  useEffect(() => {
+    session.status === "unauthenticated" && redirect("/login");
+  }, [session]);
 
   return (
-    <div className="flex flex-col">
-      <H1>Account</H1>
-      <p>Name: {session?.user?.name}</p>
-      <p>Email: {session?.user?.email}</p>
-      <button
-        onClick={() => signOut()}
-        className="group rounded-full px-4 py-2 font-semibold transition-all flex items-center justify-center bg-primary text-white no-underline active:scale-95 scale-100 duration-75"
-        style={{
-          boxShadow: "0 1px 1px #0c192714, 0 1px 3px #0c192724",
-        }}
-      >
-        <span className="whitespace-nowrap">Sign Out</span>
-      </button>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* User Profile Section */}
+      <div className="bg-gray-100 p-6 rounded-lg flex flex-col items-center">
+        <div className="rounded-full w-24 h-24 bg-[url(/placeholder-user.jpg)] bg-cover mb-4"></div>
+        <p className="text-xl font-semibold">{session?.data?.user?.name}</p>
+        <p className="text-gray-600">{session?.data?.user?.email}</p>
+      </div>
+
+      {/* Settings Sections */}
+      <div className="bg-gray-100 p-6 rounded-lg">
+        <h2 className="text-lg font-semibold mb-4">General Settings</h2>
+        <div className="flex flex-col gap-4">
+          <button className="bg-primary text-white py-2 px-4 rounded">
+            Option 1
+          </button>
+          <button className="bg-primary text-white py-2 px-4 rounded">
+            Option 2
+          </button>
+          <label className="flex items-center">
+            <input type="checkbox" className="mr-2" />
+            Enable Feature
+          </label>
+        </div>
+      </div>
+
+      <div className="bg-gray-100 p-6 rounded-lg">
+        <h2 className="text-lg font-semibold mb-4">Privacy Settings</h2>
+        <div className="flex flex-col gap-4">
+          <button className="bg-primary text-white py-2 px-4 rounded">
+            Option 3
+          </button>
+          <button className="bg-primary text-white py-2 px-4 rounded">
+            Option 4
+          </button>
+          <label className="flex items-center">
+            <input type="checkbox" className="mr-2" />
+            Enable Privacy Mode
+          </label>
+        </div>
+      </div>
+
+      {/* Sign Out and Delete Account Sections */}
+      <div className="bg-gray-100 p-6 rounded-lg">
+        <h2 className="text-lg font-semibold mb-4">Account Management</h2>
+        <button
+          onClick={() => signOut()}
+          className="w-full bg-primary text-white py-2 px-4 rounded mb-4"
+        >
+          Sign Out
+        </button>
+        <button className="w-full bg-red-500 text-white py-2 px-4 rounded">
+          Delete Account
+        </button>
+      </div>
     </div>
   );
 };

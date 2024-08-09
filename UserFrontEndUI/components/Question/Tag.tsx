@@ -6,7 +6,7 @@ interface TagProps {
 
 const Tag = ({ tag }: TagProps) => {
   return (
-    <p className="bg-gray-300 text-bold rounded-full px-2 py-1 h-fit whitespace-nowrap truncate text-xs">
+    <p className="bg-gray-300 text-bold rounded-full px-2 py-1 h-fit whitespace-nowrap truncate text-xs flex-grow text-center">
       {tag}
     </p>
   );
