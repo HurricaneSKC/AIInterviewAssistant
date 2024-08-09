@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import { DynamoDB, DynamoDBClientConfig } from "@aws-sdk/client-dynamodb"
 import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb"
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from 'bcryptjs';
  
 const config: DynamoDBClientConfig = {
   credentials: {
@@ -18,7 +19,7 @@ const client = DynamoDBDocument.from(new DynamoDB(config), {
     convertClassInstanceToMap: true,
   },
 })
- 
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [CredentialsProvider({
     name: "credentials",
@@ -32,17 +33,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // Query DynamoDB for the user
       const params = {
         TableName: 'users',
-        Key: { id: email },
+        Key: { email: email },
       };
 
       try {
         console.log("HELLO")
-        console.log(email)
+        
         const result = await client.get(params);
         const user = result.Item;
         console.log(user)
 
-        if (user) {
+        if (user && (await bcrypt.compare(password, user.password_hash))) {
           // Password matches
           console.log("MATCH")
           return user;
@@ -57,6 +58,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
   }),],
   pages: {
-    signIn: "/login"
+    signIn: "/user/login"
   }
 })
