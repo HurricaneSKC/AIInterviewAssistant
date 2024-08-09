@@ -1,7 +1,10 @@
 import Tag from "./Tag";
 
 interface Props {
-  q: any;
+  q: {
+    question: string;
+    tags: string[];
+  };
 }
 
 export const QuestionListItem = ({ q }: Props) => {
