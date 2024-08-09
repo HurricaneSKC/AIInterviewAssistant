@@ -14,14 +14,12 @@ const Account = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {/* User Profile Section */}
       <div className="bg-gray-100 p-6 rounded-lg flex flex-col items-center">
         <div className="rounded-full w-24 h-24 bg-[url(/placeholder-user.jpg)] bg-cover mb-4"></div>
         <p className="text-xl font-semibold">{session?.data?.user?.name}</p>
         <p className="text-gray-600">{session?.data?.user?.email}</p>
       </div>
 
-      {/* Settings Sections */}
       <div className="bg-gray-100 p-6 rounded-lg">
         <h2 className="text-lg font-semibold mb-4">General Settings</h2>
         <div className="flex flex-col gap-4">
@@ -54,7 +52,6 @@ const Account = () => {
         </div>
       </div>
 
-      {/* Sign Out and Delete Account Sections */}
       <div className="bg-gray-100 p-6 rounded-lg">
         <h2 className="text-lg font-semibold mb-4">Account Management</h2>
         <button
