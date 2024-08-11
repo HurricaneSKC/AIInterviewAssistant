@@ -3,6 +3,11 @@ import { DynamoDB, DynamoDBClientConfig } from "@aws-sdk/client-dynamodb"
 import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb"
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs';
+
+type User = {
+  email: string;
+  password_hash: string;
+}
  
 const config: DynamoDBClientConfig = {
   credentials: {
@@ -28,6 +33,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       password: { label: "Password", type: "password" },
     },
     authorize: async (credentials) => {
+      if (!credentials || typeof credentials.email !== 'string' || typeof credentials.password !== 'string') {
+        return null;
+      }
+
       const { email, password } = credentials;
 
       // Query DynamoDB for the user
@@ -40,7 +49,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         console.log("HELLO")
         
         const result = await client.get(params);
-        const user = result.Item;
+        const user = result.Item as User;
         console.log(user)
 
         if (user && (await bcrypt.compare(password, user.password_hash))) {
