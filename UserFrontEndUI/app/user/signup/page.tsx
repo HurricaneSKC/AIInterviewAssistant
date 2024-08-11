@@ -1,25 +1,26 @@
 "use client";
+
 import AnimateDiv from "@/components/AnimateDiv";
 import Button from "@/components/CTAs/Button";
 import H1 from "@/components/HTMLTags/H1";
 import H2 from "@/components/HTMLTags/H2";
-import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type SignUpFormData = {
+  name: string;
+  email: string;
+  password: string;
+};
 
 export default function SignUpPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpFormData>();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form data:", formData);
+  const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
+    console.log("Form data:", data);
 
     try {
       const res = await fetch("/api/auth/signup", {
@@ -27,14 +28,14 @@ export default function SignUpPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
-      const data = await res.json();
+      const responseData = await res.json();
 
       if (res.ok) {
-        console.log("User created successfully:", data);
+        console.log("User created successfully:", responseData);
       } else {
-        console.error("Error creating user:", data);
+        console.error("Error creating user:", responseData);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -46,31 +47,58 @@ export default function SignUpPage() {
       <H1>Sign Up</H1>
       <H2>Welcome</H2>
       <div className="bg-gray-100 rounded-xl w-full flex flex-col p-8">
-        <form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full flex flex-col gap-4"
+        >
+          <label className="sr-only" htmlFor="name">
+            Name
+          </label>
           <input
             type="text"
-            name="name"
+            id="name"
             placeholder="Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
+            {...register("name", { required: "Name is required" })}
+            className="p-2 rounded-xl"
           />
+          {errors.name && <span>{errors.name.message}</span>}
+
+          <label className="sr-only" htmlFor="email">
+            Email
+          </label>
           <input
             type="email"
-            name="email"
+            id="email"
             placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                message: "Enter a valid email",
+              },
+            })}
+            className="p-2 rounded-xl"
           />
+          {errors.email && <span>{errors.email.message}</span>}
+
+          <label className="sr-only" htmlFor="password">
+            Password
+          </label>
           <input
             type="password"
-            name="password"
+            id="password"
             placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters long",
+              },
+            })}
+            className="p-2 rounded-xl"
           />
+          {errors.password && <span>{errors.password.message}</span>}
+
           <Button buttonText="Sign Up" type="submit" primary />
         </form>
       </div>
