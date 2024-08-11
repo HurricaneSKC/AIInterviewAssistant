@@ -35,8 +35,24 @@ const SignIn = async () => {
           }}
           className="w-full flex flex-col gap-6"
         >
-          <input name="email" type="text" placeholder="Email" />
-          <input name="password" type="password" placeholder="Password" />
+          <label className="sr-only" htmlFor="email">
+            Email
+          </label>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email"
+            className="p-2 rounded-xl"
+          />
+          <label className="sr-only" htmlFor="password">
+            Password
+          </label>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            className="p-2 rounded-xl"
+          />
           <Button type="submit" buttonText="Sign in" primary />
         </form>
       </div>
