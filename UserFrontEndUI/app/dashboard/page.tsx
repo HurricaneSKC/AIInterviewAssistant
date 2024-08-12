@@ -14,7 +14,7 @@ const DashboardPage = async () => {
   console.log(session);
 
   if (!session) {
-    redirect("/login");
+    redirect("/user/login");
   }
   const questions = Object.values(MockQuestionData);
   return (
