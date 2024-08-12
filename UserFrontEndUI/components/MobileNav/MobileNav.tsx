@@ -5,6 +5,7 @@ import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import FolderIcon from "@mui/icons-material/Folder";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { ReactNode } from "react";
 
 interface MobileLinkProps {
@@ -27,7 +28,7 @@ const MobileLink = ({ children, path }: MobileLinkProps) => {
 };
 export const MobileNav = () => {
   return (
-    <div className="md:hidden bg-gray-100 w-full p-2 flex justify-around text-sm">
+    <div className="md:hidden bg-gray-200 w-full p-2 flex justify-around text-sm">
       <MobileLink path="/dashboard">
         <SpaceDashboardIcon />
         <p className="hidden sm:block">Dashboard</p>
@@ -43,6 +44,10 @@ export const MobileNav = () => {
       <MobileLink path="/dashboard/resources">
         <FolderIcon />
         <p className="hidden sm:block">Resources</p>
+      </MobileLink>
+      <MobileLink path="/dashboard/account">
+        <AccountCircleIcon />
+        <p className="hidden sm:block">Account</p>
       </MobileLink>
     </div>
   );

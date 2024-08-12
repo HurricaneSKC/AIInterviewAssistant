@@ -6,6 +6,7 @@ import Button from "../CTAs/Button";
 import LinkButton from "../CTAs/LinkButton";
 import { DisplayQuestion } from "../Question/DisplayQuestion";
 import { AddQuestion } from "./AddQuestion";
+import { H2 } from "../HTMLTags/Header";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +21,7 @@ export const InterviewCreator = ({ toggleQuestionSelector }: Props) => {
 
   return (
     <>
-      <h3 className="font-bold mb-4">Create your interview</h3>
+      <H2 small>Create your interview</H2>
       <div className="bg-gray-100 rounded-xl w-full flex flex-col">
         <div className="flex justify-between items-center pl-6 pr-6 pt-8 pb-8 border-b-gray-300 border-b-[1px] ">
           <h3 className="text-xl h-fit">New Interview</h3>

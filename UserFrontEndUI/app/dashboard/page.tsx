@@ -1,26 +1,25 @@
 import AnimateDiv from "@/components/AnimateDiv";
 import React from "react";
-import { auth, signOut } from "@/auth";
-import { redirect } from "next/navigation";
 import LinkButton from "@/components/CTAs/LinkButton";
 import Link from "next/link";
 import MockQuestionData from "../../app/data/questionData.json";
 import { QuestionListItem } from "@/components/Question/QuestionListItem";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { H1, H2 } from "@/components/HTMLTags/Header";
+import PTag from "@/components/HTMLTags/PTag";
+import { auth } from "@/auth";
+import LinkText from "@/components/CTAs/LinkText";
 
 const DashboardPage = async () => {
-  const session = await auth();
-
-  console.log(session);
-
-  if (!session) {
-    redirect("/user/login");
-  }
   const questions = Object.values(MockQuestionData);
+  const session = await auth();
+  const userName = session?.user?.name?.split(" ")[0];
+
   return (
     <AnimateDiv>
-      <b>Your progress</b>
-      <div className="bg-gray-100 rounded my-2 p-4 grid grid-cols-1 md:grid-cols-3 gap-4 flex-wrap">
+      <H1>Dashboard</H1>
+      <PTag large>Welcome Back{userName ? `, ${userName}` : ""}</PTag>
+      <H2 small>Your progress</H2>
+      <div className="bg-gray-100 rounded mb-2 p-4 grid grid-cols-1 md:grid-cols-3 gap-4 flex-wrap">
         <div className="flex flex-col">
           <p className="text-sm">
             <b>Questions answered</b>
@@ -54,13 +53,15 @@ const DashboardPage = async () => {
       </div>
       <div className="flex my-8 flex-col">
         <div className="flex justify-between mb-2">
-          <b>My Questions</b>
-          <Link
-            className="text-primary flex items-center"
-            href="/dashboard/questions"
-          >
-            Go to questions <ChevronRightIcon />
-          </Link>
+          <H2 small hideMargin>
+            My Questions
+          </H2>
+          <LinkText
+            linkText="Go to questions"
+            pageLink="/dashboard/questions"
+            primary
+            rightArrow
+          />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 flex-wrap">
           {questions.map((q) => (
