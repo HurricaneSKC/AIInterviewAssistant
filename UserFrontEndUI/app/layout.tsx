@@ -1,5 +1,7 @@
+import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import { Metadata } from "next";
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: "AIIA - AI-Powered Mock Interviews",
@@ -16,11 +18,15 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
-    <html lang="en">
-      <body className="scroll-smooth antialiased [font-feature-settings:'ss01'] text-site">
-        {children}
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      <html lang="en">
+        <body className="scroll-smooth antialiased [font-feature-settings:'ss01'] text-site">
+          {children}
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

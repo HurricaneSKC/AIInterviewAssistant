@@ -2,8 +2,7 @@
 
 import AnimateDiv from "@/components/AnimateDiv";
 import Button from "@/components/CTAs/Button";
-import H1 from "@/components/HTMLTags/H1";
-import H2 from "@/components/HTMLTags/H2";
+import { H1, H2 } from "@/components/HTMLTags/Header";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type SignUpFormData = {

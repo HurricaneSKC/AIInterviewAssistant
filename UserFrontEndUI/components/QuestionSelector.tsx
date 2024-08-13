@@ -2,7 +2,7 @@ import React from "react";
 import { QuestionToAdd } from "./Question/QuestionToAdd";
 import MockQuestionData from "../app/data/questionData.json";
 import Link from "next/link";
-import H2 from "./HTMLTags/H2";
+import { H2 } from "./HTMLTags/Header";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;

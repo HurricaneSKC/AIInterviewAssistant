@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import Button from "./CTAs/Button";
 import LinkButton from "./CTAs/LinkButton";
-import H2 from "./HTMLTags/H2";
+import { H2 } from "./HTMLTags/Header";
 import SelectedInterviewerRadioGroup, {
   Interviewer,
 } from "./SelectedInterviewerRadioGroup";
