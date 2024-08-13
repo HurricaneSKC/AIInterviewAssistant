@@ -6,7 +6,7 @@ import { H1, H2 } from "@/components/HTMLTags/Header";
 import PTag from "@/components/HTMLTags/PTag";
 import { auth } from "@/auth";
 import LinkText from "@/components/CTAs/LinkText";
-import { QuestionGrid } from "@/components/QuestionGrid/QuestionGrid";
+import { QuestionFinder } from "@/components/QuestionGrid/QuestionFinder";
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
@@ -62,7 +62,7 @@ const DashboardPage = async () => {
             rightArrow
           />
         </div>
-        <QuestionGrid questions={questions} />
+        <QuestionFinder />
       </div>
     </AnimateDiv>
   );
