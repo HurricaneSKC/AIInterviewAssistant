@@ -1,10 +1,8 @@
+import { Question } from "@/interfaces/Question";
 import Tag from "./Tag";
 
 interface Props {
-  question: {
-    question: string;
-    tags: string[];
-  };
+  question: Question;
 }
 
 export const QuestionListItem = ({ question }: Props) => {
