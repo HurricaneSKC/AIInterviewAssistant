@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserProfile } from "../UserProfile/UserProfile";
-import { useSession } from "next-auth/react";
 
 interface NavLinkProps {
   path: string;
