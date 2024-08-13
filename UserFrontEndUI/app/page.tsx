@@ -110,7 +110,7 @@ export default function Home() {
             >
               <LinkButton
                 pageLink="user/login"
-                buttonText="Login"
+                buttonText="Get started"
                 rightArrow
                 primary
               />
