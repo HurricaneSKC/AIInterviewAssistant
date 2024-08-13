@@ -1,5 +1,5 @@
 import AnimateDiv from "@/components/AnimateDiv";
-import H1 from "@/components/HTMLTags/H1";
+import { H1 } from "@/components/HTMLTags/Header";
 import React from "react";
 
 const QuestionsPage = () => {

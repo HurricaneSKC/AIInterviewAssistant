@@ -1,8 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import Tag from "./Tag";
-import useQuestionPlaylistStore, {
-  Question,
-} from "../../app/data/stores/questionPlaylist";
+import useQuestionPlaylistStore from "../../app/data/stores/questionPlaylist";
+import { Question } from "@/interfaces/Question";
 
 export const QuestionToAdd = ({
   id,
