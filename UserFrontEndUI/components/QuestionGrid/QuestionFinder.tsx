@@ -1,10 +1,8 @@
 "use client";
-import AnimateDiv from "@/components/AnimateDiv";
-import { H1, H2 } from "@/components/HTMLTags/Header";
+import { H2 } from "@/components/HTMLTags/Header";
 import { QuestionGrid } from "@/components/QuestionGrid/QuestionGrid";
 import MockQuestionData from "@/app/data/questionData.json";
 import React, { useState } from "react";
-import PTag from "@/components/HTMLTags/PTag";
 import {
   Listbox,
   ListboxButton,
@@ -43,6 +41,7 @@ export const QuestionFinder = ({ showFilters }: Props) => {
     <>
       {showFilters && (
         <>
+          <H2 small>Filters</H2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 bg-gray-100 p-4 rounded mb-4">
             <input
               value={searchTerm}
