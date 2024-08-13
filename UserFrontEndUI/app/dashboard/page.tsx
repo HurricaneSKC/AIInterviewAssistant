@@ -1,13 +1,12 @@
 import AnimateDiv from "@/components/AnimateDiv";
 import React from "react";
 import LinkButton from "@/components/CTAs/LinkButton";
-import Link from "next/link";
 import MockQuestionData from "../../app/data/questionData.json";
-import { QuestionListItem } from "@/components/Question/QuestionListItem";
 import { H1, H2 } from "@/components/HTMLTags/Header";
 import PTag from "@/components/HTMLTags/PTag";
 import { auth } from "@/auth";
 import LinkText from "@/components/CTAs/LinkText";
+import { QuestionGrid } from "@/components/QuestionGrid/QuestionGrid";
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
@@ -63,11 +62,7 @@ const DashboardPage = async () => {
             rightArrow
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 flex-wrap">
-          {questions.map((q) => (
-            <QuestionListItem q={q} key={q.id} />
-          ))}
-        </div>
+        <QuestionGrid questions={questions} />
       </div>
     </AnimateDiv>
   );
