@@ -3,6 +3,8 @@ import AnimateDiv from "@/components/AnimateDiv";
 import Button from "@/components/CTAs/Button";
 import H1 from "@/components/HTMLTags/H1";
 import H2 from "@/components/HTMLTags/H2";
+import PTag from "@/components/HTMLTags/PTag";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const SignIn = async () => {
@@ -55,6 +57,12 @@ const SignIn = async () => {
           />
           <Button type="submit" buttonText="Sign in" primary />
         </form>
+        <PTag className="my-1" small>
+          Haven&apos;t registered please{" "}
+          <Link className="underline" href={"/user/signup"}>
+            sign up
+          </Link>
+        </PTag>
       </div>
     </AnimateDiv>
   );
