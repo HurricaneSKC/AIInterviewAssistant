@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <section className="bg-green flex overflow-hidden h-[100lvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
       <Sidebar />
-      <div className="w-full overflow-y-auto flex-grow md:p-12 p-4 flex justify-center">
+      <div className="w-full overflow-y-auto flex-grow md:p-12 p-4 pb-0 md:pb-12 flex justify-center">
         <div className="w-full overflow-y-auto flex-grow max-w-[1400px]">
           {children}
         </div>
