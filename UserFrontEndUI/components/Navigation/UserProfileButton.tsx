@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export const UserProfile = () => {
+export const UserProfileButton = () => {
   const session = useSession();
   return (
     <div className="flex">

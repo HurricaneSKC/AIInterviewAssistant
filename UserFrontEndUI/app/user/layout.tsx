@@ -1,7 +1,7 @@
 import "../../styles/globals.css";
 import { Metadata } from "next";
-import { Sidebar } from "@/components/Sidebar/Sidebar";
-import { MobileNav } from "@/components/MobileNav/MobileNav";
+import { Sidebar } from "@/components/Navigation/Sidebar";
+import { MobileNav } from "@/components/Navigation/MobileNav";
 import Link from "next/link";
 
 export const metadata: Metadata = {

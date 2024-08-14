@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserProfile } from "../UserProfile/UserProfile";
+import { UserProfileButton } from "./UserProfileButton";
 
 interface NavLinkProps {
   path: string;
@@ -32,7 +32,7 @@ export const Sidebar = () => {
         <NavLink path="/dashboard/questions" name="Questions" />
         <NavLink path="/dashboard/resources" name="Resources" />
       </div>
-      <UserProfile />
+      <UserProfileButton />
     </nav>
   );
 };

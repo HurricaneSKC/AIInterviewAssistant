@@ -1,7 +1,7 @@
 import "../../styles/globals.css";
 import { Metadata } from "next";
-import { Sidebar } from "@/components/Sidebar/Sidebar";
-import { MobileNav } from "@/components/MobileNav/MobileNav";
+import { Sidebar } from "@/components/Navigation/Sidebar";
+import { MobileNav } from "@/components/Navigation/MobileNav";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
@@ -30,8 +30,10 @@ export default async function RootLayout({
   return (
     <section className="bg-green flex overflow-hidden h-[100lvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
       <Sidebar />
-      <div className="w-full overflow-y-auto flex-grow md:p-12 p-4">
-        <div className="w-full overflow-y-auto flex-grow">{children}</div>
+      <div className="w-full overflow-y-auto flex-grow md:p-12 p-4 flex justify-center">
+        <div className="w-full overflow-y-auto flex-grow max-w-[1400px]">
+          {children}
+        </div>
       </div>
       <MobileNav />
     </section>

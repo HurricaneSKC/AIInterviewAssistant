@@ -6,7 +6,7 @@ import { H1, H2 } from "@/components/HTMLTags/Header";
 import PTag from "@/components/HTMLTags/PTag";
 import { auth } from "@/auth";
 import LinkText from "@/components/CTAs/LinkText";
-import { QuestionFinder } from "@/components/QuestionGrid/QuestionFinder";
+import { QuestionFinder } from "@/components/QuestionFinder/QuestionFinder";
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
