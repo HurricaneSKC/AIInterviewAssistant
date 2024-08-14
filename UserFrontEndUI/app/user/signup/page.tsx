@@ -33,6 +33,8 @@ export default function SignUpPage() {
 
       if (res.ok) {
         console.log("User created successfully:", responseData);
+        // feedback to user
+        // redirect user to login
       } else {
         console.error("Error creating user:", responseData);
       }
