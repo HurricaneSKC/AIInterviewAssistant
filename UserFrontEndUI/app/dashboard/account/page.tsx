@@ -1,6 +1,7 @@
 "use client";
 import Button from "@/components/CTAs/Button";
 import { H1, H2 } from "@/components/Typography/Header";
+import { UserProfileIcon } from "@/components/User/UserIcon";
 import { signOut, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
@@ -20,8 +21,13 @@ const Account = () => {
 
       <div className="grid grid-cols-1 gap-4">
         <div className="bg-gray-100 p-6 rounded-lg flex flex-col items-center">
-          <div className="rounded-full w-24 h-24 bg-[url(/placeholder-user.jpg)] bg-cover mb-4"></div>
-          <p className="text-xl font-semibold">{session?.data?.user?.name}</p>
+          <UserProfileIcon
+            fullName={session?.data?.user?.name}
+            sizeMultiplier={3}
+          />
+          <p className="text-xl font-semibold mt-4">
+            {session?.data?.user?.name}
+          </p>
           <p className="text-gray-600">{session?.data?.user?.email}</p>
         </div>
         <div>
