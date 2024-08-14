@@ -1,5 +1,5 @@
 "use client";
-import { H1 } from "@/components/HTMLTags/Header";
+import { H1 } from "@/components/Typography/Header";
 import { signOut, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";

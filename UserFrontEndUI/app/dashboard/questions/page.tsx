@@ -1,9 +1,9 @@
 "use client";
-import AnimateDiv from "@/components/AnimateDiv";
-import { H1 } from "@/components/HTMLTags/Header";
+import AnimateDiv from "@/components/Animation/AnimateDiv";
+import { H1 } from "@/components/Typography/Header";
 import React from "react";
-import PTag from "@/components/HTMLTags/PTag";
-import { QuestionFinder } from "@/components/QuestionGrid/QuestionFinder";
+import PTag from "@/components/Typography/PTag";
+import { QuestionFinder } from "@/components/QuestionFinder/QuestionFinder";
 
 const QuestionsPage = () => {
   return (

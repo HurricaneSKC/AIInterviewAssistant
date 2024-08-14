@@ -1,7 +1,7 @@
 "use client";
-import AnimateDiv from "@/components/AnimateDiv";
-import { H1 } from "@/components/HTMLTags/Header";
-import PTag from "@/components/HTMLTags/PTag";
+import AnimateDiv from "@/components/Animation/AnimateDiv";
+import { H1 } from "@/components/Typography/Header";
+import PTag from "@/components/Typography/PTag";
 import { InterviewCreator } from "@/components/InterviewCreator/InterviewCreator";
 import QuestionSelector from "@/components/QuestionSelector";
 import { useState } from "react";
