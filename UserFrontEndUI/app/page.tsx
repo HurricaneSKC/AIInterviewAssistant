@@ -1,6 +1,6 @@
 "use client";
 import LinkButton from "@/components/CTAs/LinkButton";
-import { gradient } from "@/components/Gradient";
+import { gradient } from "@/components/Animation/Gradient";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 

@@ -1,9 +1,9 @@
 import { signIn, auth } from "@/auth";
-import AnimateDiv from "@/components/AnimateDiv";
+import AnimateDiv from "@/components/Animation/AnimateDiv";
 import Button from "@/components/CTAs/Button";
-import PTag from "@/components/HTMLTags/PTag";
+import PTag from "@/components/Typography/PTag";
 import Link from "next/link";
-import { H1, H2 } from "@/components/HTMLTags/Header";
+import { H1, H2 } from "@/components/Typography/Header";
 import { redirect } from "next/navigation";
 
 const SignIn = async () => {

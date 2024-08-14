@@ -1,5 +1,6 @@
 "use client";
-import { H1 } from "@/components/HTMLTags/Header";
+import Button from "@/components/CTAs/Button";
+import { H1, H2 } from "@/components/Typography/Header";
 import { signOut, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
@@ -17,24 +18,18 @@ const Account = () => {
     <>
       <H1>Account Settings</H1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <div className="bg-gray-100 p-6 rounded-lg flex flex-col items-center">
           <div className="rounded-full w-24 h-24 bg-[url(/placeholder-user.jpg)] bg-cover mb-4"></div>
           <p className="text-xl font-semibold">{session?.data?.user?.name}</p>
           <p className="text-gray-600">{session?.data?.user?.email}</p>
         </div>
-
-        <div className="bg-gray-100 p-6 rounded-lg">
-          <h2 className="text-lg font-semibold mb-4">Account Management</h2>
-          <button
-            onClick={() => signOut()}
-            className="w-full bg-primary text-white py-2 px-4 rounded mb-4"
-          >
-            Sign Out
-          </button>
-          <button className="w-full bg-red-500 text-white py-2 px-4 rounded">
-            Delete Account
-          </button>
+        <div>
+          <H2 small>Account Management</H2>
+          <div className="grid gap-2 grid-cols-1 md:grid-cols-2 mb-4">
+            <Button primary buttonText="Sign Out" onClick={() => signOut()} />
+            <Button buttonText="Delete Account" onClick={() => {}} />
+          </div>
         </div>
       </div>
     </>

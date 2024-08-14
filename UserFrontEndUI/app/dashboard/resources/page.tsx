@@ -1,5 +1,5 @@
-import AnimateDiv from "@/components/AnimateDiv";
-import { H1 } from "@/components/HTMLTags/Header";
+import AnimateDiv from "@/components/Animation/AnimateDiv";
+import { H1 } from "@/components/Typography/Header";
 import React from "react";
 
 const ResourcesPage = () => {
