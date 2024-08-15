@@ -1,11 +1,11 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { AvatarComponent } from "avatar-initials";
 import { UserProfileIcon } from "../User/UserIcon";
 
 export const UserProfileButton = () => {
   const session = useSession();
+  if (!session?.data?.user) return null;
   const name = session.data?.user?.name;
 
   return (

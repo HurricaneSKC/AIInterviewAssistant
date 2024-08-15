@@ -56,10 +56,15 @@ const SignIn = async () => {
           />
           <Button type="submit" buttonText="Sign in" primary />
         </form>
-        <PTag className="my-1" small>
-          Haven&apos;t registered please{" "}
+        <PTag className="my-1 mt-2 block md:hidden" small>
+          <Link className="underline" href={"/user/forgot-password"}>
+            I forgot my password
+          </Link>
+        </PTag>
+        <PTag className="my-1 block md:hidden" small>
+          New here? Click to{" "}
           <Link className="underline" href={"/user/signup"}>
-            sign up
+            create an account!
           </Link>
         </PTag>
       </div>

@@ -1,18 +1,18 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import FolderIcon from "@mui/icons-material/Folder";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { ReactNode } from "react";
 
 interface MobileLinkProps {
   children: ReactNode;
   path: string;
 }
-const MobileLink = ({ children, path }: MobileLinkProps) => {
+
+interface MobileNavProps {
+  children: ReactNode;
+}
+
+export const MobileLink = ({ children, path }: MobileLinkProps) => {
   const pathname = usePathname();
 
   return (
@@ -26,29 +26,14 @@ const MobileLink = ({ children, path }: MobileLinkProps) => {
     </Link>
   );
 };
-export const MobileNav = () => {
+
+export const MobileLinkText = ({ text }: { text: string }) => {
+  return <p className="hidden sm:block">{text}</p>;
+};
+export const MobileNav = ({ children }: MobileNavProps) => {
   return (
     <div className="md:hidden bg-gray-200 w-full p-2 flex justify-around text-sm">
-      <MobileLink path="/dashboard">
-        <SpaceDashboardIcon />
-        <p className="hidden sm:block">Dashboard</p>
-      </MobileLink>
-      <MobileLink path="/dashboard/my-interviews">
-        <BusinessCenterIcon />
-        <p className="hidden sm:block">My Interviews</p>
-      </MobileLink>
-      <MobileLink path="/dashboard/questions">
-        <QuestionMarkIcon />
-        <p className="hidden sm:block">Questions</p>
-      </MobileLink>
-      <MobileLink path="/dashboard/resources">
-        <FolderIcon />
-        <p className="hidden sm:block">Resources</p>
-      </MobileLink>
-      <MobileLink path="/dashboard/account">
-        <AccountCircleIcon />
-        <p className="hidden sm:block">Account</p>
-      </MobileLink>
+      {children}
     </div>
   );
 };
