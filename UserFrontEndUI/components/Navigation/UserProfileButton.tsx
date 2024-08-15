@@ -10,8 +10,11 @@ export const UserProfileButton = () => {
 
   return (
     <div className="flex">
-      <Link href="/dashboard/account" className="flex items-center">
-        <p className="mr-4 hidden md:block h-fit">
+      <Link
+        href="/dashboard/account"
+        className="flex items-center w-full justify-between"
+      >
+        <p className="mr-4 hidden md:block h-fit text-sm">
           {session?.data?.user?.name}
         </p>
         <UserProfileIcon fullName={name} />
