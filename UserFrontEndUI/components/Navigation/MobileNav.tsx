@@ -12,6 +12,10 @@ interface MobileNavProps {
   children: ReactNode;
 }
 
+interface MobileLinkTextProps {
+  text: string;
+}
+
 export const MobileLink = ({ children, path }: MobileLinkProps) => {
   const pathname = usePathname();
 
@@ -27,7 +31,7 @@ export const MobileLink = ({ children, path }: MobileLinkProps) => {
   );
 };
 
-export const MobileLinkText = ({ text }: { text: string }) => {
+export const MobileLinkText = ({ text }: MobileLinkTextProps) => {
   return <p className="hidden sm:block">{text}</p>;
 };
 export const MobileNav = ({ children }: MobileNavProps) => {

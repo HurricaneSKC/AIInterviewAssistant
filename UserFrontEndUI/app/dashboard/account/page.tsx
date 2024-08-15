@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/CTAs/Button";
 import { H1, H2 } from "@/components/Typography/Header";
-import { UserProfileIcon } from "@/components/User/UserIcon";
+import { UserProfileIcon } from "@/components/User/UserProfileIcon";
 import { signOut, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
