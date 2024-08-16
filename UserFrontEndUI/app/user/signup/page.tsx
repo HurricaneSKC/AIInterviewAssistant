@@ -2,6 +2,7 @@
 
 import AnimateDiv from "@/components/Animation/AnimateDiv";
 import Button from "@/components/CTAs/Button";
+import { useRouter } from "next/navigation";
 import { H1, H2 } from "@/components/Typography/Header";
 import PTag from "@/components/Typography/PTag";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormData>();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
     console.log("Form data:", data);
@@ -35,8 +37,7 @@ export default function SignUpPage() {
 
       if (res.ok) {
         console.log("User created successfully:", responseData);
-        // feedback to user
-        // redirect user to login
+        router.push("/user/login");
       } else {
         console.error("Error creating user:", responseData);
       }

@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 const SignIn = async () => {
   const session = await auth();
 
-  console.log(session);
+  console.log("dashboard", session);
 
   if (session) {
     redirect("/dashboard");
@@ -23,8 +23,6 @@ const SignIn = async () => {
         <form
           action={async (formdata) => {
             "use server";
-            console.log(formdata);
-            debugger;
 
             try {
               await signIn("credentials", formdata, {
