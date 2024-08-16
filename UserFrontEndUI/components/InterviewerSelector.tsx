@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import React from "react";
 import Button from "./CTAs/Button";
 import LinkButton from "./CTAs/LinkButton";
-import { H2 } from "./HTMLTags/Header";
+import { H2 } from "./Typography/Header";
 import SelectedInterviewerRadioGroup, {
   Interviewer,
 } from "./SelectedInterviewerRadioGroup";
-import StepParagraph from "./textTags/StepParagraph";
+import StepParagraph from "./Typography/StepParagraph";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<number>>;

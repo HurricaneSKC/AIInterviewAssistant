@@ -1,4 +1,3 @@
-import AddIcon from "@mui/icons-material/Add";
 import AddButton from "../CTAs/AddButton";
 
 interface Props {

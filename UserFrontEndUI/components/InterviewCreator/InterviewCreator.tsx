@@ -6,7 +6,7 @@ import Button from "../CTAs/Button";
 import LinkButton from "../CTAs/LinkButton";
 import { DisplayQuestion } from "../Question/DisplayQuestion";
 import { AddQuestion } from "./AddQuestion";
-import { H2 } from "../HTMLTags/Header";
+import { H2 } from "../Typography/Header";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
