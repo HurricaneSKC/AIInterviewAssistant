@@ -7,8 +7,8 @@ interface QuestionAnswered {
   evaluation: string;
 }
 
-interface User {
-  id: number;
+export interface User {
+  id: string;
   name: string;
   email: string;
   role: string;
@@ -29,7 +29,7 @@ const useUserStore = create(
   persist<UserState>(
     (set) => ({
       user: {
-        id: 0,
+        id: '',
         name: '',
         email: '',
         role: '',

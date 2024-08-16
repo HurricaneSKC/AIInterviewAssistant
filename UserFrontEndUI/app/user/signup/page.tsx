@@ -3,6 +3,7 @@
 import AnimateDiv from "@/components/AnimateDiv";
 import Button from "@/components/CTAs/Button";
 import { H1, H2 } from "@/components/HTMLTags/Header";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type SignUpFormData = {
@@ -17,6 +18,7 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormData>();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
     console.log("Form data:", data);
@@ -33,6 +35,7 @@ export default function SignUpPage() {
 
       if (res.ok) {
         console.log("User created successfully:", responseData);
+        router.push("/user/login");
       } else {
         console.error("Error creating user:", responseData);
       }
