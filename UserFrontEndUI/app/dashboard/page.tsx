@@ -63,10 +63,7 @@ const DashboardPage = async () => {
             rightArrow
           />
         </div>
-        {/* <QuestionFinder /> */}
-        {/* // question that have been completed matched from user IDs in the database
-            use QuesitonGrid to display the questions 
-        */}
+        <QuestionFinder questions={questions} />
       </div>
     </AnimateDiv>
   );

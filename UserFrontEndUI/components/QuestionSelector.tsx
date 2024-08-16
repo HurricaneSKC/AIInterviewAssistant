@@ -1,8 +1,8 @@
 import React from "react";
-import { QuestionToAdd } from "./Question/QuestionToAdd";
 import MockQuestionData from "../app/data/questionData.json";
 import Link from "next/link";
 import { H2 } from "./Typography/Header";
+import { QuestionFinder } from "./QuestionFinder/QuestionFinder";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,21 +34,7 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
             <Link href={"/dashboard/questions"}>Question Bank</Link>
           </div>
 
-          {/*filter questions by category, difficulty or tag with search inputs suggested dropdown with preselects */}
-
-          <div className="flex-grow w-full grid grid-cols-1 gap-2">
-            {questions.map((question) => (
-              <QuestionToAdd
-                key={question.id}
-                id={question.id}
-                question={question.question}
-                answer={question.answer}
-                category={question.category}
-                difficulty={question.difficulty}
-                tags={question.tags}
-              />
-            ))}
-          </div>
+          <QuestionFinder questions={questions} showFilters add />
         </div>
       </div>
     </>

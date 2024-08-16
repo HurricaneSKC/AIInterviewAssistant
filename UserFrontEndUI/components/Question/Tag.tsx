@@ -13,7 +13,7 @@ const Tag = ({ tag, selected, toggleTag }: TagProps) => {
       onClick={toggleTag}
       className={`${
         selected ? "bg-primary text-white" : "bg-gray-300"
-      } text-bold rounded-full px-2 py-1 h-fit whitespace-nowrap truncate text-xs flex-grow text-center cursor-pointer`}
+      } text-bold rounded-full px-2 py-1 h-fit whitespace-nowrap truncate text-xs text-center cursor-pointer`}
     >
       {tag}
     </p>
