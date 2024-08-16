@@ -42,7 +42,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // Query DynamoDB for the user
       const params = {
         TableName: 'users',
-        Key: { email: email },
+        Key: { 
+          email: email,
+          id: email
+        },
       };
 
       try {
@@ -57,6 +60,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           console.log("MATCH")
           return user;
         } else {
+          console.log("NO MATCH");
+          
           // Invalid credentials
           return null;
         }
@@ -68,5 +73,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   }),],
   pages: {
     signIn: "/user/login"
-  }
+  },
+
 })
