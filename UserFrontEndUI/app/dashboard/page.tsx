@@ -7,12 +7,22 @@ import PTag from "@/components/Typography/PTag";
 import { auth } from "@/auth";
 import LinkText from "@/components/CTAs/LinkText";
 import { QuestionFinder } from "@/components/QuestionFinder/QuestionFinder";
+import { QuestionAnswered } from "../data/stores/user";
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
   // user specific question data - user object
   const session = await auth();
+  console.log("dashboard", session?.user?.id);
+
   const userName = session?.user?.name?.split(" ")[0];
+
+  //filter questions that have been answered by the user
+  const answeredQuestions = questions.filter((question) => {
+    return session?.user?.questionsAnswered.some(
+      (qa: QuestionAnswered) => qa.QuestionId === question.id
+    );
+  });
 
   return (
     <AnimateDiv>
@@ -63,6 +73,28 @@ const DashboardPage = async () => {
             rightArrow
           />
         </div>
+        {answeredQuestions.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {answeredQuestions.map((question) => (
+              <div
+                key={question.id}
+                className="bg-gray-100 rounded p-4 flex flex-col"
+              >
+                <p>
+                  <b>Question:</b> {question.question}
+                </p>
+                <p>
+                  <b>Category:</b> {question.category}
+                </p>
+                <p>
+                  <b>Difficulty:</b> {question.difficulty}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <PTag>No questions answered yet</PTag>
+        )}
         {/* <QuestionFinder /> */}
         {/* // question that have been completed matched from user IDs in the database
             use QuesitonGrid to display the questions 
