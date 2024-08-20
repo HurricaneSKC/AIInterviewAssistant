@@ -7,7 +7,6 @@ import { AnimatePresence } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { v4 as uuid } from "uuid";
-import interviewMockData from "../app/data/interviewData.json";
 import useInterviewerStore from "@/app/data/stores/interviewers";
 import InterviewerPresentation from "./InterviewerPresentation";
 
@@ -44,18 +43,12 @@ export interface DataStructure {
   [key: string]: InterviewCategory;
 }
 
-const interviewData: DataStructure = interviewMockData;
-
 const ffmpeg = createFFmpeg({
   // corePath: `http://localhost:3000/ffmpeg/dist/ffmpeg-core.js`,
   // I've included a default import above (and files in the public directory), but you can also use a CDN like this:
   corePath: "https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js",
   log: true,
 });
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function Interview() {
   const playList = useQuestionPlaylistStore((state) => state.questions);
@@ -65,9 +58,6 @@ export default function Interview() {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   console.log("currentQuestionIndex", currentQuestionIndex);
-
-  const [selected, setSelected] = useState(interviewData.Behavioral);
-  // console.log("selected", selected);
 
   const [selectedInterviewer, setSelectedInterviewer] = useState<Interviewer>(
     interviewers[0]
