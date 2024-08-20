@@ -1,3 +1,5 @@
+"use client";
+
 import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
 import InterviewSession from "@/components/InterviewSession/InterviewSession";
 import InterviewerSelector from "@/components/InterviewerSelector";
@@ -50,7 +52,7 @@ const ffmpeg = createFFmpeg({
   log: true,
 });
 
-export default function Interview() {
+export default function Interview({ userEmail }: { userEmail: string }) {
   const playList = useQuestionPlaylistStore((state) => state.questions);
   console.log("playList", playList);
 
@@ -379,6 +381,7 @@ export default function Interview() {
           isSubmitting={isSubmitting}
           isSuccess={isSuccess}
           setStep={setStep}
+          userEmail={userEmail}
         />
       ) : (
         <div className="flex flex-col md:flex-row w-full md:overflow-hidden">
