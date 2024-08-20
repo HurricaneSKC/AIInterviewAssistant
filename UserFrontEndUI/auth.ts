@@ -5,7 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs';
 import { DynamoDBAdapter } from "@auth/dynamodb-adapter";
 import { AdapterUser } from "next-auth/adapters";
-import { QuestionAnswered, User } from "./app/data/stores/user";
+import { QuestionAnswered } from "./app/data/stores/user";
  
 const config: DynamoDBClientConfig = {
   credentials: {
@@ -65,10 +65,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     
         // Direct DynamoDB query
         const params: GetCommandInput = {
-          TableName: "users", // Ensure this matches your DynamoDB table name
+          TableName: "users", // Ensure this matches DynamoDB table name
           Key: { 
             email: email,
-            id: email // Assuming 'id' is the same as email or change this as needed
+            id: email // 'id' is the same as email for now change this as needed
           }
         };
     
@@ -102,17 +102,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter,
   callbacks: {
     async session({ session, token }) {
-      // Add user ID and other user properties to the session object
-      if (token) {
-        session.user = token as unknown as CustomUser;
-        // Add any other properties you need
+      // Fetch the latest user data from DynamoDB
+      const params = {
+        TableName: "users",
+        Key: { email: token.email, id: token.email },
+      };
+  
+      try {
+        const result = await client.send(new GetCommand(params));
+        const user = result.Item as CustomUser | null;
+  
+        if (user) {
+          session.user = user; // Update the session with the latest user data
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
       }
+  
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
-        const customUser = user as CustomUser; // Assert the type here
-
+        const customUser = user as CustomUser;
+  
         token.id = customUser.id;
         token.name = customUser.name;
         token.email = customUser.email;
@@ -124,6 +136,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }
   },
   session: {
-    strategy: "jwt",  // Use JWT sessions, which is the default
+    strategy: "jwt", 
   },
 })

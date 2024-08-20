@@ -4,23 +4,21 @@ import LinkButton from "@/components/CTAs/LinkButton";
 import MockQuestionData from "../../app/data/questionData.json";
 import { H1, H2 } from "@/components/Typography/Header";
 import PTag from "@/components/Typography/PTag";
-import { auth } from "@/auth";
+import { CustomUser, auth } from "@/auth";
 import LinkText from "@/components/CTAs/LinkText";
-import { QuestionFinder } from "@/components/QuestionFinder/QuestionFinder";
 import { QuestionAnswered } from "../data/stores/user";
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
-  // user specific question data - user object
   const session = await auth();
-  console.log("dashboard", session?.user?.id);
+  const user = session?.user as CustomUser;
 
-  const userName = session?.user?.name?.split(" ")[0];
+  const userName = user.name?.split(" ")[0];
 
-  //filter questions that have been answered by the user
-  const answeredQuestions = questions.filter((question) => {
-    return session?.user?.questionsAnswered.some(
-      (qa: QuestionAnswered) => qa.QuestionId === question.id
+  const usersQuestions = questions.filter((question) => {
+    return user.questionsAnswered.some(
+      (userQuestion: QuestionAnswered) =>
+        userQuestion.QuestionId === question.id
     );
   });
 
@@ -36,12 +34,6 @@ const DashboardPage = async () => {
           </p>
           <h2 className="text-4xl">15</h2>
         </div>
-        {/* <div className="flex flex-col">
-          <p className="text-sm">
-            <b>Interviews conducted</b>
-          </p>
-          <h2 className="text-4xl">6</h2>
-        </div> */}
         {/* <div className="flex flex-col">
           <p className="text-sm">
             <b>Overview</b>
@@ -73,9 +65,9 @@ const DashboardPage = async () => {
             rightArrow
           />
         </div>
-        {answeredQuestions.length > 0 ? (
+        {usersQuestions.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {answeredQuestions.map((question) => (
+            {usersQuestions.map((question) => (
               <div
                 key={question.id}
                 className="bg-gray-100 rounded p-4 flex flex-col"
@@ -95,10 +87,6 @@ const DashboardPage = async () => {
         ) : (
           <PTag>No questions answered yet</PTag>
         )}
-        {/* <QuestionFinder /> */}
-        {/* // question that have been completed matched from user IDs in the database
-            use QuesitonGrid to display the questions 
-        */}
       </div>
     </AnimateDiv>
   );
