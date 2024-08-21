@@ -52,7 +52,7 @@ const ffmpeg = createFFmpeg({
   log: true,
 });
 
-export default function Interview({ userEmail }: { userEmail: string }) {
+export default function Interview({ userEmail }: { userEmail: string | null }) {
   const playList = useQuestionPlaylistStore((state) => state.questions);
   console.log("playList", playList);
 
@@ -318,19 +318,20 @@ export default function Interview({ userEmail }: { userEmail: string }) {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
-  const currentQuestion = playList[currentQuestionIndex]
-    ? playList[currentQuestionIndex]
-    : {
-        id: 1,
-        question:
-          "Tell me about yourself, why don't you walk me through your resume",
-        answer:
-          "I am a software engineer with 5 years of experience in the field. I have worked on a variety of projects, including web development, mobile app development, and machine learning. I am passionate about technology and enjoy learning new things. I am a team player and enjoy working with others to solve problems. I am excited about the opportunity to work with your company and contribute to its success.",
-        category: "Behavioral",
-        difficulty: "Easy",
-        tags: ["Behavioral", "Weakness"],
-      };
-  console.log("currentQuestion", currentQuestion);
+  const fallbackQuestion = {
+    id: 1,
+    question:
+      "Tell me about yourself, why don't you walk me through your resume",
+    answer:
+      "I am a software engineer with 5 years of experience in the field. I have worked on a variety of projects, including web development, mobile app development, and machine learning. I am passionate about technology and enjoy learning new things. I am a team player and enjoy working with others to solve problems. I am excited about the opportunity to work with your company and contribute to its success.",
+    category: "Behavioral",
+    difficulty: "Easy",
+    tags: ["Demo"],
+  };
+
+  const currentQuestion = playList[currentQuestionIndex] || fallbackQuestion;
+
+  const isFallbackQuestion = currentQuestion === fallbackQuestion;
 
   // const currentQuestion = MockQuestionPlaylist[currentQuestionIndex];
 
@@ -382,6 +383,7 @@ export default function Interview({ userEmail }: { userEmail: string }) {
           isSuccess={isSuccess}
           setStep={setStep}
           userEmail={userEmail}
+          isFallbackQuestion={isFallbackQuestion}
         />
       ) : (
         <div className="flex flex-col md:flex-row w-full md:overflow-hidden">

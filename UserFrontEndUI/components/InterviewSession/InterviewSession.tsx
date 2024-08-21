@@ -1,18 +1,16 @@
-import { motion } from "framer-motion";
-import React, { Dispatch, SetStateAction, use } from "react";
-import Webcam from "react-webcam";
-import RightArrowButton from "../CTAs/RightArrowButton";
-import WhiteButton from "../CTAs/WhiteButton";
-import CountDownTimer from "../CountDownTimer";
-import LoadingSpinner from "../SVGs/LoadingSpinner";
-import RightArrowWhiteSVG from "../SVGs/RightArrowWhiteSVG";
-import BackGroundSVG from "../SVGs/BackGroundSVG";
-import { Question } from "@/interfaces/Question";
 import { QuestionAnswered } from "@/app/data/stores/user";
-import { useSession } from "next-auth/react";
+import { Question } from "@/interfaces/Question";
+import { motion } from "framer-motion";
+import React, { Dispatch, SetStateAction } from "react";
+import Webcam from "react-webcam";
 import Button from "../CTAs/Button";
 import LinkButton from "../CTAs/LinkButton";
 import LinkText from "../CTAs/LinkText";
+import WhiteButton from "../CTAs/WhiteButton";
+import CountDownTimer from "../CountDownTimer";
+import BackGroundSVG from "../SVGs/BackGroundSVG";
+import LoadingSpinner from "../SVGs/LoadingSpinner";
+import RightArrowWhiteSVG from "../SVGs/RightArrowWhiteSVG";
 
 interface Props {
   completed: boolean;
@@ -45,7 +43,8 @@ interface Props {
   isSubmitting: boolean;
   isSuccess: boolean;
   setStep: Dispatch<SetStateAction<number>>;
-  userEmail: string;
+  userEmail: string | null;
+  isFallbackQuestion: boolean;
 }
 
 const InterviewSession = ({
@@ -76,6 +75,7 @@ const InterviewSession = ({
   isSuccess,
   setStep,
   userEmail,
+  isFallbackQuestion,
 }: Props) => {
   const handleQuestionAnswered = async () => {
     if (completed) {
@@ -172,10 +172,21 @@ const InterviewSession = ({
               </div>
             </motion.div>
             <div className="flex flex-row space-x-4 mt-8 justify-end">
-              <RightArrowButton
-                onClick={handleContinue}
-                buttonText="Continue"
-              />
+              {isFallbackQuestion ? (
+                <LinkButton
+                  pageLink="/user/signup"
+                  buttonText="sign up"
+                  rightArrow
+                  primary
+                />
+              ) : (
+                <Button
+                  onClick={handleContinue}
+                  buttonText="Continue"
+                  primary
+                  rightArrow
+                />
+              )}
             </div>
           </div>
         ) : (

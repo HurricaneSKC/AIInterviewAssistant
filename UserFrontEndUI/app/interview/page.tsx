@@ -5,7 +5,7 @@ import React from "react";
 const InterviewPage = async () => {
   const session = await auth();
   const user = session?.user as CustomUser;
-  const email = user.email;
+  const email = user ? user.email : null;
 
   return <Interview userEmail={email} />;
 };
