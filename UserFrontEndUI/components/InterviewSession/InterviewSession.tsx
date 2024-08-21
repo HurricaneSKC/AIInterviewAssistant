@@ -198,7 +198,7 @@ const InterviewSession = ({
                 </h2>
                 <p className="mb-2 font-semibold">
                   <LinkText
-                    pageLink="/dashboard/questions"
+                    pageLink="/dashboard"
                     linkText="Back to dashboard"
                     rightArrow
                     primary
