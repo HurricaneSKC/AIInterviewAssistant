@@ -1,19 +1,19 @@
-"use client";
 import { redirect, useParams } from "next/navigation";
 import MockQuestionData from "@/app/data/questionData.json";
 import AnimateDiv from "@/components/Animation/AnimateDiv";
 import { H1, H2, H3, H4 } from "@/components/Typography/Header";
 import PTag from "@/components/Typography/PTag";
-import { useSession } from "next-auth/react";
 import { Difficulty } from "@/components/Question/Difficulty";
 import Tag from "@/components/Question/Tag";
 import { Card } from "@/components/Layout/Card";
 import { TagGrid } from "@/components/Layout/TagGrid";
+import { CtaCard } from "@/components/CTAs/CtaCard";
+import { auth } from "@/auth";
 
-const QuestionPage = () => {
-  const { questionId } = useParams();
+const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
+  const { questionId } = params;
   const questions = Object.values(MockQuestionData);
-  const session = useSession();
+  const session = await auth();
   console.log(session);
 
   const question = questions.find(
@@ -33,6 +33,7 @@ const QuestionPage = () => {
     <AnimateDiv>
       <H1>Question {question.id}</H1>
       <H2>{question.question}</H2>
+
       <H2 small>Question Details</H2>
       <Card className="mb-4">
         <TagGrid>
@@ -43,7 +44,11 @@ const QuestionPage = () => {
           ))}
         </TagGrid>
       </Card>
-
+      <CtaCard
+        mainText="Need some more practice?"
+        pageLink="/interview"
+        buttonText="Retry this question"
+      />
       <H2 small>My Answer</H2>
 
       <Card>

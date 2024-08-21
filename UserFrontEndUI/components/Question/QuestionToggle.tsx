@@ -2,6 +2,7 @@ import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
 import { Question } from "@/interfaces/Question";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import CheckIcon from "@mui/icons-material/Check";
 
 interface QuestionToggleProps {
   question: Question;
@@ -26,13 +27,16 @@ export const QuestionToggle = ({ question }: QuestionToggleProps) => {
       ? removeQuestionToQuestionPlaylist(question.id)
       : addQuestionToQuestionPlaylist(question);
   };
+  const added = questionsAdded.includes(question);
 
   return (
     <button
-      className="float-right h-fit p-1 bg-black text-white rounded-lg flex justify-center align-middle"
+      className={`float-right h-fit p-1 text-white rounded-lg flex justify-center align-middle ${
+        added ? "bg-primary" : "bg-black"
+      }`}
       onClick={(e) => toggleQuestion(e, question)}
     >
-      {questionsAdded.includes(question) ? <RemoveIcon /> : <AddIcon />}
+      {added ? <CheckIcon /> : <AddIcon />}
     </button>
   );
 };

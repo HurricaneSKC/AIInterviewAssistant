@@ -8,6 +8,7 @@ import { auth } from "@/auth";
 import LinkText from "@/components/CTAs/LinkText";
 import { QuestionFinder } from "@/components/QuestionFinder/QuestionFinder";
 import { Card } from "@/components/Layout/Card";
+import { CtaCard } from "@/components/CTAs/CtaCard";
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
@@ -28,15 +29,11 @@ const DashboardPage = async () => {
           <h2 className="text-4xl">15</h2>
         </div>
       </Card>
-      <div className="bg-primary rounded mb-2 p-4 grid gap-4 grid-cols-1 sm:grid-cols-2 flex-wrap justify-between items-center">
-        <p className="text-white">Need some more practice?</p>
-        <div className="md:flex justify-end">
-          <LinkButton
-            pageLink="/dashboard/my-interviews"
-            buttonText="Create an interview"
-          />
-        </div>
-      </div>
+      <CtaCard
+        mainText="Need some more practice?"
+        pageLink="dashboard/my-interviews"
+        buttonText="Create an interview"
+      />
       <div className="flex my-8 flex-col">
         <div className="flex justify-between mb-2">
           <H2 small hideMargin>
