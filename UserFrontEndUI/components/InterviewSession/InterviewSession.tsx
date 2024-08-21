@@ -1,13 +1,16 @@
+import { QuestionAnswered } from "@/app/data/stores/user";
+import { Question } from "@/interfaces/Question";
 import { motion } from "framer-motion";
 import React, { Dispatch, SetStateAction } from "react";
 import Webcam from "react-webcam";
-import RightArrowButton from "../CTAs/RightArrowButton";
+import Button from "../CTAs/Button";
+import LinkButton from "../CTAs/LinkButton";
+import LinkText from "../CTAs/LinkText";
 import WhiteButton from "../CTAs/WhiteButton";
 import CountDownTimer from "../CountDownTimer";
+import BackGroundSVG from "../SVGs/BackGroundSVG";
 import LoadingSpinner from "../SVGs/LoadingSpinner";
 import RightArrowWhiteSVG from "../SVGs/RightArrowWhiteSVG";
-import BackGroundSVG from "../SVGs/BackGroundSVG";
-import { Question } from "@/interfaces/Question";
 
 interface Props {
   completed: boolean;
@@ -40,6 +43,8 @@ interface Props {
   isSubmitting: boolean;
   isSuccess: boolean;
   setStep: Dispatch<SetStateAction<number>>;
+  userEmail: string | null;
+  isFallbackQuestion: boolean;
 }
 
 const InterviewSession = ({
@@ -69,7 +74,46 @@ const InterviewSession = ({
   isSubmitting,
   isSuccess,
   setStep,
+  userEmail,
+  isFallbackQuestion,
 }: Props) => {
+  const handleQuestionAnswered = async () => {
+    if (completed) {
+      const questionsAnswered: QuestionAnswered = {
+        QuestionId: currentQuestion.id,
+        transcript: transcript,
+        evaluation: generatedFeedback,
+      };
+
+      const email = userEmail;
+
+      console.log("status", email, questionsAnswered);
+
+      try {
+        const response = await fetch("api/user/addQuestionAnswered", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, questionAnswered: questionsAnswered }),
+        });
+
+        if (response.ok) {
+          console.log("Question answered updated successfully");
+        } else {
+          console.error("Failed to update questionsAnswered");
+        }
+      } catch (error) {
+        console.error("Error submitting data:", error);
+      }
+    }
+  };
+
+  const handleContinue = () => {
+    handleQuestionAnswered();
+    handleNextQuestion();
+  };
+
   return (
     <>
       <BackGroundSVG />
@@ -128,10 +172,21 @@ const InterviewSession = ({
               </div>
             </motion.div>
             <div className="flex flex-row space-x-4 mt-8 justify-end">
-              <RightArrowButton
-                onClick={handleNextQuestion}
-                buttonText="Continue"
-              />
+              {isFallbackQuestion ? (
+                <LinkButton
+                  pageLink="/user/signup"
+                  buttonText="sign up"
+                  rightArrow
+                  primary
+                />
+              ) : (
+                <Button
+                  onClick={handleContinue}
+                  buttonText="Continue"
+                  primary
+                  rightArrow
+                />
+              )}
             </div>
           </div>
         ) : (
@@ -141,6 +196,14 @@ const InterviewSession = ({
                 <h2 className="text-2xl font-semibold text-left text-white mb-2">
                   {currentQuestion && currentQuestion.question}
                 </h2>
+                <p className="mb-2 font-semibold">
+                  <LinkText
+                    pageLink="/dashboard"
+                    linkText="Back to dashboard"
+                    rightArrow
+                    primary
+                  />
+                </p>
                 <motion.div
                   initial={{ y: -20 }}
                   animate={{ y: 0 }}

@@ -1,3 +1,5 @@
+"use client";
+
 import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
 import InterviewSession from "@/components/InterviewSession/InterviewSession";
 import InterviewerSelector from "@/components/InterviewerSelector";
@@ -7,7 +9,6 @@ import { AnimatePresence } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { v4 as uuid } from "uuid";
-import interviewMockData from "../app/data/interviewData.json";
 import useInterviewerStore from "@/app/data/stores/interviewers";
 import InterviewerPresentation from "./InterviewerPresentation";
 
@@ -44,8 +45,6 @@ export interface DataStructure {
   [key: string]: InterviewCategory;
 }
 
-const interviewData: DataStructure = interviewMockData;
-
 const ffmpeg = createFFmpeg({
   // corePath: `http://localhost:3000/ffmpeg/dist/ffmpeg-core.js`,
   // I've included a default import above (and files in the public directory), but you can also use a CDN like this:
@@ -53,11 +52,7 @@ const ffmpeg = createFFmpeg({
   log: true,
 });
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export default function Interview() {
+export default function Interview({ userEmail }: { userEmail: string | null }) {
   const playList = useQuestionPlaylistStore((state) => state.questions);
   console.log("playList", playList);
 
@@ -65,9 +60,6 @@ export default function Interview() {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   console.log("currentQuestionIndex", currentQuestionIndex);
-
-  const [selected, setSelected] = useState(interviewData.Behavioral);
-  // console.log("selected", selected);
 
   const [selectedInterviewer, setSelectedInterviewer] = useState<Interviewer>(
     interviewers[0]
@@ -326,19 +318,20 @@ export default function Interview() {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
-  const currentQuestion = playList[currentQuestionIndex]
-    ? playList[currentQuestionIndex]
-    : {
-        id: 1,
-        question:
-          "Tell me about yourself, why don't you walk me through your resume",
-        answer:
-          "I am a software engineer with 5 years of experience in the field. I have worked on a variety of projects, including web development, mobile app development, and machine learning. I am passionate about technology and enjoy learning new things. I am a team player and enjoy working with others to solve problems. I am excited about the opportunity to work with your company and contribute to its success.",
-        category: "Behavioral",
-        difficulty: "Easy",
-        tags: ["Behavioral", "Weakness"],
-      };
-  console.log("currentQuestion", currentQuestion);
+  const fallbackQuestion = {
+    id: 1,
+    question:
+      "Tell me about yourself, why don't you walk me through your resume",
+    answer:
+      "I am a software engineer with 5 years of experience in the field. I have worked on a variety of projects, including web development, mobile app development, and machine learning. I am passionate about technology and enjoy learning new things. I am a team player and enjoy working with others to solve problems. I am excited about the opportunity to work with your company and contribute to its success.",
+    category: "Behavioral",
+    difficulty: "Easy",
+    tags: ["Demo"],
+  };
+
+  const currentQuestion = playList[currentQuestionIndex] || fallbackQuestion;
+
+  const isFallbackQuestion = currentQuestion === fallbackQuestion;
 
   // const currentQuestion = MockQuestionPlaylist[currentQuestionIndex];
 
@@ -389,6 +382,8 @@ export default function Interview() {
           isSubmitting={isSubmitting}
           isSuccess={isSuccess}
           setStep={setStep}
+          userEmail={userEmail}
+          isFallbackQuestion={isFallbackQuestion}
         />
       ) : (
         <div className="flex flex-col md:flex-row w-full md:overflow-hidden">
