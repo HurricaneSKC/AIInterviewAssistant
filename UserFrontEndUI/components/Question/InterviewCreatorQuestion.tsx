@@ -12,7 +12,7 @@ export const InterviewCreatorQuestion = ({ question, id }: Props) => {
     (state) => state.removeQuestion
   );
   return (
-    <div className="bg-white rounded-lg p-4 flex w-full justify-between items-center flex-wrap">
+    <div className="bg-white rounded-lg p-4 flex w-full justify-between items-center">
       <h3 className="md:mb-0 mb-4">{question}</h3>
       <IconButton
         size="small"
@@ -22,7 +22,6 @@ export const InterviewCreatorQuestion = ({ question, id }: Props) => {
       >
         <DeleteIcon />
       </IconButton>
-      <div className="flex flex-wrap items-center gap-4 justify-between w-full"></div>
     </div>
   );
 };
