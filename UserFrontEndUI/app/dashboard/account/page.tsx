@@ -1,4 +1,5 @@
 "use client";
+import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
 import Button from "@/components/CTAs/Button";
 import { H1, H2 } from "@/components/Typography/Header";
 import { UserProfileIcon } from "@/components/User/UserProfileIcon";
@@ -9,11 +10,14 @@ import { useEffect } from "react";
 const Account = () => {
   const session = useSession();
 
-  console.log(session);
-
   useEffect(() => {
     session.status === "unauthenticated" && redirect("/user/login");
   }, [session]);
+
+  const handleSignOut = () => {
+    useQuestionPlaylistStore.persist.clearStorage();
+    signOut();
+  };
 
   return (
     <>
@@ -33,7 +37,11 @@ const Account = () => {
         <div>
           <H2 small>Account Management</H2>
           <div className="grid gap-2 grid-cols-1 md:grid-cols-2 mb-4">
-            <Button primary buttonText="Sign Out" onClick={() => signOut()} />
+            <Button
+              primary
+              buttonText="Sign Out"
+              onClick={() => handleSignOut()}
+            />
             <Button buttonText="Delete Account" onClick={() => {}} />
           </div>
         </div>
