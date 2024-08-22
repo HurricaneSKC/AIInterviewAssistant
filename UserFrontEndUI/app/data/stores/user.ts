@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-interface QuestionAnswered {
+export interface QuestionAnswered {
   QuestionId: number;
   transcript: string;
   evaluation: string;
