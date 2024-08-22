@@ -3,6 +3,7 @@ import { QuestionToAdd } from "./Question/QuestionToAdd";
 import MockQuestionData from "../app/data/questionData.json";
 import Link from "next/link";
 import { H2 } from "./Typography/Header";
+import LinkText from "./CTAs/LinkText";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,9 +30,15 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
           className="flex p-8 flex-col overflow-y-auto fixed top-0 right-0 bottom-0 lg:w-[50vw] w-full bg-white"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex justify-between mb-2">
+          <div className="flex justify-between mb-2 items-start">
             <H2>Add a question</H2>
-            <Link href={"/dashboard/questions"}>Question Bank</Link>
+            <LinkText
+              linkText="Question Bank"
+              pageLink={"/dashboard/questions"}
+              primary
+              rightArrow
+              className="mt-2"
+            ></LinkText>
           </div>
 
           {/*filter questions by category, difficulty or tag with search inputs suggested dropdown with preselects */}
