@@ -9,6 +9,7 @@ import { Filters } from "./Filters";
 interface Props {
   showFilters?: boolean;
   add?: boolean;
+  list?: boolean;
   questions: Question[];
 }
 
@@ -17,7 +18,12 @@ const getUniqueTags = (questions: Question[]): string[] => {
   return Array.from(tagsSet);
 };
 
-export const QuestionFinder = ({ showFilters, add, questions }: Props) => {
+export const QuestionFinder = ({
+  showFilters,
+  add,
+  questions,
+  list,
+}: Props) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -45,6 +51,7 @@ export const QuestionFinder = ({ showFilters, add, questions }: Props) => {
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
         add={add}
+        list={list}
       />
     </>
   );

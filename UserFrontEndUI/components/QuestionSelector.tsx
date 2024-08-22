@@ -34,7 +34,7 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
               <H2>Add a question</H2>
             </div>
 
-            <QuestionFinder questions={questions} showFilters add />
+            <QuestionFinder questions={questions} showFilters add list />
           </div>
           <Button
             primary

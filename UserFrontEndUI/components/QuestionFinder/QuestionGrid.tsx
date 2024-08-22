@@ -6,6 +6,7 @@ interface Props {
   selectedTags: string[];
   setSelectedTags: (tags: string[]) => void;
   add?: boolean;
+  list?: boolean;
 }
 
 export const QuestionGrid = ({
@@ -13,9 +14,11 @@ export const QuestionGrid = ({
   selectedTags,
   setSelectedTags,
   add,
+  list,
 }: Props) => {
+  const grid = list ? "" : "md:grid-cols-2";
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-wrap">
+    <div className={`grid grid-cols-1 ${grid} gap-4 flex-wrap`}>
       {questions.map((question: QuestionInterface) => (
         <Question
           question={question}
