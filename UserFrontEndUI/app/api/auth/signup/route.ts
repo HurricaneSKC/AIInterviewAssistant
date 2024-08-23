@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
         password_hash: hashedPassword,
         created_at: new Date().toISOString(),
         questionsAnswered: [],
+        isActive: true,
       },
     };
 
