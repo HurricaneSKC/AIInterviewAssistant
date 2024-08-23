@@ -3,6 +3,7 @@ import MockQuestionData from "../app/data/questionData.json";
 import { H2 } from "./Typography/Header";
 import { QuestionFinder } from "./QuestionFinder/QuestionFinder";
 import Button from "./CTAs/Button";
+import LinkText from "./CTAs/LinkText";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,7 +34,6 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
             <div className="flex justify-between mb-2">
               <H2>Add a question</H2>
             </div>
-
             <QuestionFinder questions={questions} add list />
           </div>
           <Button

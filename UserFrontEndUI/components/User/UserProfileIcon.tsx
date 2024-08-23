@@ -1,3 +1,4 @@
+"use client";
 import { AvatarComponent } from "avatar-initials";
 
 interface Props {

@@ -7,12 +7,21 @@ interface Props {
   linkText: string;
   rightArrow?: boolean;
   primary?: boolean;
+  className?: string;
 }
 
-const LinkText = ({ pageLink, linkText, rightArrow, primary }: Props) => {
+const LinkText = ({
+  pageLink,
+  linkText,
+  rightArrow,
+  primary,
+  className,
+}: Props) => {
   return (
     <Link
-      className={`${primary ? "text-primary" : "text-black"} flex items-center`}
+      className={`${
+        primary ? "text-primary" : "text-black"
+      } flex items-center ${className}`}
       href={pageLink}
     >
       {linkText} {rightArrow && <ChevronRightIcon />}

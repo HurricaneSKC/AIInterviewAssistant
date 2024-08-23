@@ -6,7 +6,7 @@ import {
   MobileLinkText,
   MobileNav,
 } from "@/components/Navigation/MobileNav";
-import { auth } from "@/auth";
+import { CustomUser, auth } from "@/auth";
 import { redirect } from "next/navigation";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
@@ -30,15 +30,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
-
-  console.log(session);
-
   if (!session) {
     redirect("/user/login");
   }
+  const user = session?.user as CustomUser;
+
+  const name = user.name || "User";
+
+  console.log(session);
+
   return (
     <section className="bg-green flex overflow-hidden h-[100lvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
-      <Sidebar>
+      <Sidebar userName={name}>
         <NavLink path="/dashboard" name="Dashboard" />
         <NavLink path="/dashboard/my-interviews" name="My Interviews" />
         <NavLink path="/dashboard/questions" name="Questions" />

@@ -9,8 +9,6 @@ import { redirect } from "next/navigation";
 const SignIn = async () => {
   const session = await auth();
 
-  console.log("dashboard", session);
-
   if (session) {
     redirect("/dashboard");
   }
@@ -20,6 +18,12 @@ const SignIn = async () => {
       <H1>Login</H1>
       <H2>Welcome back</H2>
       <div className="bg-gray-100 rounded-xl w-full flex flex-col p-8">
+        <PTag className="mb-2" small>
+          New here? Click to{" "}
+          <Link className="underline" href={"/user/signup"}>
+            create an account!
+          </Link>
+        </PTag>
         <form
           action={async (formdata) => {
             "use server";
@@ -54,15 +58,9 @@ const SignIn = async () => {
           />
           <Button type="submit" buttonText="Sign in" primary />
         </form>
-        <PTag className="my-1 mt-2 block md:hidden" small>
+        <PTag className="mt-2" small>
           <Link className="underline" href={"/user/forgot-password"}>
             I forgot my password
-          </Link>
-        </PTag>
-        <PTag className="my-1 block md:hidden" small>
-          New here? Click to{" "}
-          <Link className="underline" href={"/user/signup"}>
-            create an account!
           </Link>
         </PTag>
       </div>
