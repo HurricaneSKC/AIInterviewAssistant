@@ -1,7 +1,7 @@
-"use client";
+// components/Navigation/Sidebar.tsx
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { UserProfileButton } from "./UserProfileButton";
+import { ClientNavLink } from "./ClientNavLink";
 
 interface NavLinkProps {
   path: string;
@@ -10,17 +10,14 @@ interface NavLinkProps {
 
 interface SidebarProps {
   children: React.ReactNode;
+  userName?: string;
 }
 
 export const NavLink = ({ path, name }: NavLinkProps) => {
-  const pathname = usePathname();
-  return (
-    <Link href={path} className={`${pathname === path ? "font-bold" : ""}`}>
-      {name}
-    </Link>
-  );
+  return <ClientNavLink path={path} name={name} />;
 };
-export const Sidebar = ({ children }: SidebarProps) => {
+
+export const Sidebar = ({ children, userName = "" }: SidebarProps) => {
   return (
     <nav className="md:flex bg-gray-100 w-[300px] p-10 hidden flex-col text-[20px] justify-between">
       <div className="flex flex-col gap-y-6">
@@ -33,7 +30,7 @@ export const Sidebar = ({ children }: SidebarProps) => {
         </Link>
         {children}
       </div>
-      <UserProfileButton />
+      <UserProfileButton userName={userName} />
     </nav>
   );
 };
