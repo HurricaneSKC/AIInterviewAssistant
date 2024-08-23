@@ -1,8 +1,8 @@
 import React from "react";
-import { QuestionToAdd } from "./Question/QuestionToAdd";
 import MockQuestionData from "../app/data/questionData.json";
-import Link from "next/link";
 import { H2 } from "./Typography/Header";
+import { QuestionFinder } from "./QuestionFinder/QuestionFinder";
+import Button from "./CTAs/Button";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,30 +25,23 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
         onClick={() => toggleQuestionSelector(false)}
         className="fixed top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.5)]"
       >
-        <div
-          className="flex p-8 flex-col overflow-y-auto fixed top-0 right-0 bottom-0 lg:w-[50vw] w-full bg-white"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex justify-between mb-2">
-            <H2>Add a question</H2>
-            <Link href={"/dashboard/questions"}>Question Bank</Link>
-          </div>
+        <div className="flex flex-col p-8 lg:w-[55vw] w-full bg-white fixed top-0 right-0 bottom-0">
+          <div
+            className="flex flex-col overflow-y-auto mb-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between mb-2">
+              <H2>Add a question</H2>
+            </div>
 
-          {/*filter questions by category, difficulty or tag with search inputs suggested dropdown with preselects */}
-
-          <div className="flex-grow w-full grid grid-cols-1 gap-2">
-            {questions.map((question) => (
-              <QuestionToAdd
-                key={question.id}
-                id={question.id}
-                question={question.question}
-                answer={question.answer}
-                category={question.category}
-                difficulty={question.difficulty}
-                tags={question.tags}
-              />
-            ))}
+            <QuestionFinder questions={questions} add list />
           </div>
+          <Button
+            primary
+            buttonText="Close"
+            className="lg:hidden"
+            onClick={() => toggleQuestionSelector(false)}
+          />
         </div>
       </div>
     </>

@@ -4,7 +4,7 @@ import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
 import AddButton from "../CTAs/AddButton";
 import Button from "../CTAs/Button";
 import LinkButton from "../CTAs/LinkButton";
-import { DisplayQuestion } from "../Question/DisplayQuestion";
+import { InterviewCreatorQuestion } from "../Question/InterviewCreatorQuestion";
 import { AddQuestion } from "./AddQuestion";
 import { H2 } from "../Typography/Header";
 
@@ -37,11 +37,9 @@ export const InterviewCreator = ({ toggleQuestionSelector }: Props) => {
           </div>
           {QuestionPlaylist.map((question) => (
             <div key={question.id} className="mb-4">
-              <DisplayQuestion
+              <InterviewCreatorQuestion
                 id={question.id}
                 question={question.question}
-                difficulty={question.difficulty}
-                tags={question.tags}
               />
             </div>
           ))}

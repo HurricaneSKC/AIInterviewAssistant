@@ -1,22 +1,34 @@
 "use client";
+import { toggleTag } from "@/utils/toggleTag";
 import React from "react";
 
 interface TagProps {
   tag: string;
-  selected?: boolean;
-  toggleTag?: () => void;
+  selectedTags?: string[];
+  setSelectedTags?: (tags: string[]) => void;
 }
 
-const Tag = ({ tag, selected, toggleTag }: TagProps) => {
+const Tag = ({ tag, selectedTags, setSelectedTags }: TagProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Stopped");
+    selectedTags &&
+      setSelectedTags &&
+      toggleTag(tag, setSelectedTags, selectedTags);
+  };
+
+  const selected = selectedTags && selectedTags.includes(tag);
+
   return (
-    <p
-      onClick={toggleTag}
+    <button
+      onClick={(e) => handleClick(e)}
       className={`${
         selected ? "bg-primary text-white" : "bg-gray-300"
-      } text-bold rounded-full px-2 py-1 h-fit whitespace-nowrap truncate text-xs flex-grow text-center cursor-pointer`}
+      } text-bold rounded-full px-2 py-1 h-fit whitespace-nowrap truncate text-xs text-center cursor-pointer`}
     >
       {tag}
-    </p>
+    </button>
   );
 };
 

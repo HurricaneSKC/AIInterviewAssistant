@@ -8,6 +8,10 @@ import { Filters } from "./Filters";
 
 interface Props {
   showFilters?: boolean;
+  add?: boolean;
+  clickable?: boolean;
+  list?: boolean;
+  questions: Question[];
 }
 
 const getUniqueTags = (questions: Question[]): string[] => {
@@ -15,15 +19,22 @@ const getUniqueTags = (questions: Question[]): string[] => {
   return Array.from(tagsSet);
 };
 
-export const QuestionFinder = ({ showFilters }: Props) => {
+export const QuestionFinder = ({
+  showFilters,
+  add,
+  clickable,
+  questions,
+  list,
+}: Props) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const questions = Object.values(MockQuestionData);
+
   const tags = getUniqueTags(questions);
   const filteredQuestions = questions.filter(
     (question) =>
-      selectedTags.every((tag) => question.tags.includes(tag)) &&
-      question.question.toLowerCase().includes(searchTerm.toLowerCase())
+      selectedTags.every(
+        (tag) => question.tags.includes(tag) || question.category === tag
+      ) && question.question.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -42,6 +53,9 @@ export const QuestionFinder = ({ showFilters }: Props) => {
         questions={filteredQuestions}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
+        clickable={clickable}
+        add={add}
+        list={list}
       />
     </>
   );
