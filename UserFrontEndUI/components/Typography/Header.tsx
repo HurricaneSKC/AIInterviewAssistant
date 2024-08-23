@@ -1,3 +1,4 @@
+import { getStyles } from "@/utils/getStyles";
 import React from "react";
 
 interface Props {
@@ -6,28 +7,6 @@ interface Props {
   large?: boolean;
   hideMargin?: boolean;
 }
-
-interface GetStylesProps {
-  smallStyles: string;
-  largeStyles: string;
-  normalStyles: string;
-  small?: boolean;
-  large?: boolean;
-  hideMargin?: boolean;
-}
-
-const getStyles = ({
-  smallStyles,
-  largeStyles,
-  normalStyles,
-  small,
-  large,
-  hideMargin,
-}: GetStylesProps) => {
-  const margin = hideMargin ? "" : small ? "mb-2" : large ? "mb-20" : "mb-12";
-  const sizingStyles = small ? smallStyles : large ? largeStyles : normalStyles;
-  return `${margin} ${sizingStyles}`;
-};
 
 export const H1 = ({ children, small, large, hideMargin }: Props) => {
   const styles = getStyles({
@@ -53,4 +32,30 @@ export const H2 = ({ children, small, large, hideMargin }: Props) => {
   });
 
   return <h2 className={styles}>{children}</h2>;
+};
+
+export const H3 = ({ children, small, large, hideMargin }: Props) => {
+  const styles = getStyles({
+    smallStyles: "font-bold",
+    largeStyles: "text-4xl",
+    normalStyles: "text-2xl",
+    small,
+    large,
+    hideMargin,
+  });
+
+  return <h3 className={styles}>{children}</h3>;
+};
+
+export const H4 = ({ children, small, large, hideMargin }: Props) => {
+  const styles = getStyles({
+    smallStyles: "font-bold",
+    largeStyles: "text-2xl",
+    normalStyles: "text-xl",
+    small,
+    large,
+    hideMargin,
+  });
+
+  return <h4 className={styles}>{children}</h4>;
 };
