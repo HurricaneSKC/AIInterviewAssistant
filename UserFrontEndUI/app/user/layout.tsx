@@ -26,7 +26,7 @@ export default async function RootLayout({
     <section className="bg-green flex overflow-hidden h-[100lvh] md:flex-row flex-col scroll-smooth antialiased [font-feature-settings:'ss01']">
       <Sidebar>
         <NavLink path="/user/signup" name="Sign up" />
-        <NavLink path="/user/login" name="Log in" />
+        <NavLink path="/user/signin" name="Sign in" />
         <NavLink path="/user/forgot-password" name="Forgot Password" />
       </Sidebar>
       <div className="w-full md:p-12 md:pt-16 p-4 overflow-y-auto flex-grow">

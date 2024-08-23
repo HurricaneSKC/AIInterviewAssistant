@@ -109,7 +109,7 @@ export default function Home() {
               }}
             >
               <LinkButton
-                pageLink="user/login"
+                pageLink="user/signin"
                 buttonText="Get started"
                 rightArrow
                 primary

@@ -31,7 +31,7 @@ export default async function RootLayout({
 }) {
   const session = await auth();
   if (!session) {
-    redirect("/user/login");
+    redirect("/user/signin");
   }
   const user = session?.user as CustomUser;
 

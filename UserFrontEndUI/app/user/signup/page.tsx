@@ -37,7 +37,7 @@ export default function SignUpPage() {
 
       if (res.ok) {
         console.log("User created successfully:", responseData);
-        router.push("/user/login");
+        router.push("/user/signin");
       } else {
         console.error("Error creating user:", responseData);
       }
@@ -107,8 +107,8 @@ export default function SignUpPage() {
         </form>
         <PTag className="my-2 block md:hidden" small>
           Already registered? Click to{" "}
-          <Link className="underline" href={"/user/login"}>
-            log in!
+          <Link className="underline" href={"/user/signin"}>
+            sign in!
           </Link>
         </PTag>
       </div>

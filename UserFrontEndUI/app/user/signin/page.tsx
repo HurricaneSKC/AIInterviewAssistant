@@ -15,7 +15,7 @@ const SignIn = async () => {
 
   return (
     <AnimateDiv>
-      <H1>Login</H1>
+      <H1>Sign in</H1>
       <H2>Welcome back</H2>
       <div className="bg-gray-100 rounded-xl w-full flex flex-col p-8">
         <PTag className="mb-2" small>
