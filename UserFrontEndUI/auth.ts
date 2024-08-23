@@ -29,7 +29,8 @@ export interface CustomUser extends AdapterUser {
   role: string;
   created_at: string;
   questionsAnswered: QuestionAnswered[];
-  password_hash: string; // Ensure this is included if needed
+  password_hash: string;
+  isActive?: boolean; 
 }
 
 const adapter = DynamoDBAdapter(client, {
@@ -78,6 +79,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!user) {
           console.log(`No user found with email: ${email}`);
           return null;
+        }
+
+        if (user && !user.isActive) {
+          throw new Error("User account is inactive");
         }
     
         console.log("User found:", user);

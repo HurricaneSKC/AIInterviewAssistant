@@ -1,23 +1,16 @@
-"use client";
-import useQuestionPlaylistStore from "@/app/data/stores/questionPlaylist";
+// app/account/page.tsx
+import { CustomUser, auth } from "@/auth";
 import Button from "@/components/CTAs/Button";
+import DeleteUserButton from "@/components/CTAs/DeleteUserButton";
+import SignOutButton from "@/components/CTAs/SignOutButton";
 import { H1, H2 } from "@/components/Typography/Header";
 import { UserProfileIcon } from "@/components/User/UserProfileIcon";
-import { signOut, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { useEffect } from "react";
+import Delete from "@mui/icons-material/Delete";
 
-const Account = () => {
-  const session = useSession();
-
-  useEffect(() => {
-    session.status === "unauthenticated" && redirect("/user/login");
-  }, [session]);
-
-  const handleSignOut = () => {
-    useQuestionPlaylistStore.persist.clearStorage();
-    signOut();
-  };
+const Account = async () => {
+  const session = await auth();
+  if (!session) return null;
+  const user = session?.user as CustomUser;
 
   return (
     <>
@@ -25,24 +18,15 @@ const Account = () => {
 
       <div className="grid grid-cols-1 gap-4">
         <div className="bg-gray-100 p-6 rounded-lg flex flex-col items-center">
-          <UserProfileIcon
-            fullName={session?.data?.user?.name}
-            sizeMultiplier={3}
-          />
-          <p className="text-xl font-semibold mt-4">
-            {session?.data?.user?.name}
-          </p>
-          <p className="text-gray-600">{session?.data?.user?.email}</p>
+          <UserProfileIcon fullName={user.name} sizeMultiplier={3} />
+          <p className="text-xl font-semibold mt-4">{user.name}</p>
+          <p className="text-gray-600">{user.email}</p>
         </div>
         <div>
           <H2 small>Account Management</H2>
           <div className="grid gap-2 grid-cols-1 md:grid-cols-2 mb-4">
-            <Button
-              primary
-              buttonText="Sign Out"
-              onClick={() => handleSignOut()}
-            />
-            <Button buttonText="Delete Account" onClick={() => {}} />
+            <SignOutButton />
+            <DeleteUserButton email={user.email} softDelete />
           </div>
         </div>
       </div>
