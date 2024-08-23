@@ -25,7 +25,7 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
         onClick={() => toggleQuestionSelector(false)}
         className="fixed top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.5)]"
       >
-        <div className="flex flex-col p-8 md:w-[55vw] w-full bg-white fixed top-0 right-0 bottom-0">
+        <div className="flex flex-col p-8 lg:w-[55vw] w-full bg-white fixed top-0 right-0 bottom-0">
           <div
             className="flex flex-col overflow-y-auto mb-4"
             onClick={(e) => e.stopPropagation()}
@@ -34,12 +34,12 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
               <H2>Add a question</H2>
             </div>
 
-            <QuestionFinder questions={questions} showFilters add list />
+            <QuestionFinder questions={questions} add list />
           </div>
           <Button
             primary
             buttonText="Close"
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => toggleQuestionSelector(false)}
           />
         </div>

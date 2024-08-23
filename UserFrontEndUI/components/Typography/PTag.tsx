@@ -25,7 +25,7 @@ const PTag = ({
     hideMargin: !showMargin,
   });
 
-  return <p className={styles}>{children}</p>;
+  return <p className={`${styles} ${className}`}>{children}</p>;
 };
 
 export default PTag;

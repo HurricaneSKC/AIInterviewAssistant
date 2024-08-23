@@ -9,6 +9,7 @@ import { Card } from "@/components/Layout/Card";
 import { TagGrid } from "@/components/Layout/TagGrid";
 import { CtaCard } from "@/components/CTAs/CtaCard";
 import { auth } from "@/auth";
+import LinkButton from "@/components/CTAs/LinkButton";
 
 const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
   const { questionId } = params;
@@ -23,6 +24,8 @@ const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
   if (!question) {
     redirect("/dashboard");
   }
+
+  const completed = false;
 
   const transcript =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum dicta nemo perspiciatis? Dolorem, neque vitae. Est non distinctio optio numquam nihil dolorum magni? Sed, nulla quidem. Ea adipisci laudantium suscipit!";
@@ -47,18 +50,26 @@ const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
       <CtaCard
         mainText="Need some more practice?"
         pageLink="/interview"
-        buttonText="Retry this question"
+        buttonText={completed ? "Retry this question" : "Try this question"}
       />
       <H2 small>My Answer</H2>
 
-      <Card>
-        <H3 small>Answer Transcript</H3>
-        <PTag small showMargin>
-          {transcript}
-        </PTag>
-        <H3 small>Feedback</H3>
-        <PTag small>{feedback}</PTag>
-      </Card>
+      {completed ? (
+        <Card>
+          <H3 small>Answer Transcript</H3>
+          <PTag small showMargin>
+            {transcript}
+          </PTag>
+          <H3 small>Feedback</H3>
+          <PTag small>{feedback}</PTag>
+        </Card>
+      ) : (
+        <Card className="flex flex-col justify-center items-center">
+          <PTag small showMargin className="w-fit">
+            You haven&apos;t answered this question yet.
+          </PTag>
+        </Card>
+      )}
     </AnimateDiv>
   );
 };

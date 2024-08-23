@@ -13,7 +13,7 @@ const QuestionsPage = () => {
     <AnimateDiv>
       <H1>Questions</H1>
       <PTag large>What should I ask?</PTag>
-      <QuestionFinder showFilters questions={questions} />
+      <QuestionFinder clickable showFilters questions={questions} />
     </AnimateDiv>
   );
 };

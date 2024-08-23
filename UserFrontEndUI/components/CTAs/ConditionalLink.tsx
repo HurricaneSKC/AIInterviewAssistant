@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 interface ConditionalLinkProps {
-  condition: boolean;
+  condition: boolean | undefined;
   href: string;
   children: ReactNode;
 }

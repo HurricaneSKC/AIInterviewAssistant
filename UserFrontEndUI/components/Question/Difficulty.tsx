@@ -10,7 +10,7 @@ const difficultyMap = {
 };
 
 const getColor = (value: number, difficulty: number) => {
-  return value <= difficulty ? "bg-black" : "bg-white";
+  return value <= difficulty ? "bg-black" : "bg-gray-300";
 };
 
 export const Difficulty = ({ difficulty }: DifficultyProps) => {
@@ -18,7 +18,7 @@ export const Difficulty = ({ difficulty }: DifficultyProps) => {
     difficultyMap[difficulty as keyof typeof difficultyMap];
   return (
     <div
-      className={`difficulty h-fit flex justify-center gap-1 bg-gray-300 px-2 py-1 min-w-[120px] rounded-full whitespace-nowrap truncate text-xs text-center cursor-pointer`}
+      className={`difficulty h-fit flex justify-between gap-1 whitespace-nowrap truncate text-xs text-center cursor-pointer`}
     >
       <p className="mr-2">{difficulty}</p>
       <div className="flex">
@@ -44,7 +44,7 @@ export const Difficulty = ({ difficulty }: DifficultyProps) => {
           className={`h-full w-[10px] ${getColor(
             4,
             difficultyValue
-          )} border-black rounded-sm`}
+          )} rounded-sm`}
         ></div>
       </div>
     </div>

@@ -54,7 +54,7 @@ const DashboardPage = async () => {
             rightArrow
           />
         </div>
-        <QuestionFinder questions={usersQuestions} />
+        <QuestionFinder clickable questions={usersQuestions} />
       </div>
     </AnimateDiv>
   );

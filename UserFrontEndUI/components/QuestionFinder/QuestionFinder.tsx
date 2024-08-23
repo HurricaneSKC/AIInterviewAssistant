@@ -9,6 +9,7 @@ import { Filters } from "./Filters";
 interface Props {
   showFilters?: boolean;
   add?: boolean;
+  clickable?: boolean;
   list?: boolean;
   questions: Question[];
 }
@@ -21,6 +22,7 @@ const getUniqueTags = (questions: Question[]): string[] => {
 export const QuestionFinder = ({
   showFilters,
   add,
+  clickable,
   questions,
   list,
 }: Props) => {
@@ -30,8 +32,9 @@ export const QuestionFinder = ({
   const tags = getUniqueTags(questions);
   const filteredQuestions = questions.filter(
     (question) =>
-      selectedTags.every((tag) => question.tags.includes(tag)) &&
-      question.question.toLowerCase().includes(searchTerm.toLowerCase())
+      selectedTags.every(
+        (tag) => question.tags.includes(tag) || question.category === tag
+      ) && question.question.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -50,6 +53,7 @@ export const QuestionFinder = ({
         questions={filteredQuestions}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
+        clickable={clickable}
         add={add}
         list={list}
       />

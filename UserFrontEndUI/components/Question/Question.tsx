@@ -9,6 +9,7 @@ import { QuestionToggle } from "./QuestionToggle";
 interface QuestionProps {
   question: QuestionInterface;
   add?: boolean;
+  clickable?: boolean;
   selectedTags?: string[];
   setSelectedTags?: (tags: string[]) => void;
 }
@@ -16,24 +17,28 @@ interface QuestionProps {
 export const Question = ({
   question,
   add,
+  clickable,
   selectedTags,
   setSelectedTags,
 }: QuestionProps) => {
   const { id, question: questionText, category, difficulty, tags } = question;
 
-  const completed = true; // Add logic here
-
   return (
-    <ConditionalLink condition={completed} href={`/dashboard/question/${id}`}>
+    <ConditionalLink condition={clickable} href={`/dashboard/question/${id}`}>
       <Card className="h-full flex flex-col w-full justify-between gap-y-4">
         <div className="flex justify-between w-full">
-          <h3 className="text-[14px] mr-2">{questionText}</h3>
+          <h3 className="text-[16px] mr-2">{questionText}</h3>
           {add && <QuestionToggle question={question} />}
         </div>
 
         <TagGrid>
           <Difficulty difficulty={difficulty} />
-          <Tag key={"category"} tag={category} />
+          <Tag
+            key={"category"}
+            tag={category}
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+          />
           {tags.map((tag) => (
             <Tag
               key={tag}

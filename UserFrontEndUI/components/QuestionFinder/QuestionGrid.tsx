@@ -7,6 +7,7 @@ interface Props {
   setSelectedTags: (tags: string[]) => void;
   add?: boolean;
   list?: boolean;
+  clickable?: boolean;
 }
 
 export const QuestionGrid = ({
@@ -14,6 +15,7 @@ export const QuestionGrid = ({
   selectedTags,
   setSelectedTags,
   add,
+  clickable,
   list,
 }: Props) => {
   const grid = list ? "" : "md:grid-cols-2";
@@ -23,6 +25,7 @@ export const QuestionGrid = ({
         <Question
           question={question}
           key={question.id}
+          clickable={clickable}
           selectedTags={selectedTags}
           setSelectedTags={setSelectedTags}
           add={add}
