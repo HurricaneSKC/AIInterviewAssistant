@@ -28,6 +28,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
+    // Check if user already exists
+    const user = await client.get({
+      TableName: 'users',
+      Key: { email, id: email },
+    });
+
+    if (user.Item) {
+      return NextResponse.json({ message: 'User already exists' }, { status: 409 });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const params = {

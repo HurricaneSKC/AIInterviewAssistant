@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { H1, H2 } from "@/components/Typography/Header";
 import PTag from "@/components/Typography/PTag";
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, set } from "react-hook-form";
 
 type SignUpFormData = {
   name: string;
@@ -19,6 +19,7 @@ export default function SignUpPage() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<SignUpFormData>();
   const router = useRouter();
 
@@ -38,6 +39,9 @@ export default function SignUpPage() {
       if (res.ok) {
         console.log("User created successfully:", responseData);
         router.push("/user/signin");
+      } else if (res.status === 409) {
+        console.error("User already exists:", responseData);
+        setError("email", { message: "User already exists" });
       } else {
         console.error("Error creating user:", responseData);
       }
@@ -65,7 +69,9 @@ export default function SignUpPage() {
             {...register("name", { required: "Name is required" })}
             className="p-2 rounded-xl"
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.name && (
+            <span className="text-red-500">{errors.name.message}</span>
+          )}
 
           <label className="sr-only" htmlFor="email">
             Email
@@ -83,7 +89,9 @@ export default function SignUpPage() {
             })}
             className="p-2 rounded-xl"
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.email && (
+            <span className="text-red-500">{errors.email.message}</span>
+          )}
 
           <label className="sr-only" htmlFor="password">
             Password
@@ -101,7 +109,9 @@ export default function SignUpPage() {
             })}
             className="p-2 rounded-xl"
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && (
+            <span className="text-red-500">{errors.password.message}</span>
+          )}
 
           <Button buttonText="Sign Up" type="submit" primary />
         </form>
