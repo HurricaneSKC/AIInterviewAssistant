@@ -102,7 +102,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }
   }),],
   pages: {
-    signIn: "/user/signin"
+    signIn: "/user/signin",
   },
   adapter,
   callbacks: {
