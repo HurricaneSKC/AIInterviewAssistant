@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     description:
       "AIIA is an AI-powered mock interview platform that helps you practice for your next job interview.",
   },
-  themeColor: "#FFF",
 };
 
 export default async function RootLayout({

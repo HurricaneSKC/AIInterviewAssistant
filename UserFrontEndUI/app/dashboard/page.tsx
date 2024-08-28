@@ -9,6 +9,7 @@ import { QuestionFinder } from "@/components/QuestionFinder/QuestionFinder";
 import { Card } from "@/components/Layout/Card";
 import { CtaCard } from "@/components/CTAs/CtaCard";
 import { QuestionAnswered } from "../data/stores/user";
+import LinkButton from "@/components/CTAs/LinkButton";
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
@@ -37,11 +38,13 @@ const DashboardPage = async () => {
           <h2 className="text-4xl">15</h2>
         </div>
       </Card>
-      <CtaCard
-        mainText="Need some more practice?"
-        pageLink="dashboard/my-interviews"
-        buttonText="Create an interview"
-      />
+      <CtaCard mainText="Need some more practice?">
+        <LinkButton
+          pageLink="dashboard/my-interviews"
+          buttonText="Create an interview"
+          rightArrow
+        />
+      </CtaCard>
       <div className="flex my-8 flex-col">
         <div className="flex justify-between mb-2">
           <H2 small hideMargin>
