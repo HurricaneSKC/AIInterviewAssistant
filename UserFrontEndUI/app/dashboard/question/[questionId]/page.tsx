@@ -8,14 +8,25 @@ import Tag from "@/components/Question/Tag";
 import { Card } from "@/components/Layout/Card";
 import { TagGrid } from "@/components/Layout/TagGrid";
 import { CtaCard } from "@/components/CTAs/CtaCard";
-import { auth } from "@/auth";
-import LinkButton from "@/components/CTAs/LinkButton";
+import { CustomUser, auth } from "@/auth";
+import AddQuestionToPLaylistButton from "@/components/CTAs/AddQuestionToPLaylistButton";
 
 const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
   const { questionId } = params;
   const questions = Object.values(MockQuestionData);
   const session = await auth();
-  console.log(session);
+  const user = session?.user as CustomUser;
+
+  let transcript: string = "You haven't answered this question yet.";
+  let evaluation: string = "You haven't answered this question yet.";
+  let completed: boolean = false;
+  user.questionsAnswered.forEach((question) => {
+    if (question.QuestionId.toString() === questionId) {
+      completed = true;
+      evaluation = question.evaluation;
+      transcript = question.transcript;
+    }
+  });
 
   const question = questions.find(
     (question) => question.id === parseInt(questionId)
@@ -24,13 +35,6 @@ const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
   if (!question) {
     redirect("/dashboard");
   }
-
-  const completed = false;
-
-  const transcript =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum dicta nemo perspiciatis? Dolorem, neque vitae. Est non distinctio optio numquam nihil dolorum magni? Sed, nulla quidem. Ea adipisci laudantium suscipit!";
-  const feedback =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum dicta nemo perspiciatis? Dolorem, neque vitae. Est non distinctio optio numquam nihil dolorum magni? Sed, nulla quidem. Ea adipisci laudantium suscipit!";
 
   return (
     <AnimateDiv>
@@ -47,11 +51,12 @@ const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
           ))}
         </TagGrid>
       </Card>
-      <CtaCard
-        mainText="Need some more practice?"
-        pageLink="/interview"
-        buttonText={completed ? "Retry this question" : "Try this question"}
-      />
+      <CtaCard mainText="Need some more practice?">
+        <AddQuestionToPLaylistButton
+          buttonText={completed ? "Retry this question" : "Try this question"}
+          question={question}
+        />
+      </CtaCard>
       <H2 small>My Answer</H2>
 
       {completed ? (
@@ -61,7 +66,7 @@ const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
             {transcript}
           </PTag>
           <H3 small>Feedback</H3>
-          <PTag small>{feedback}</PTag>
+          <PTag small>{evaluation}</PTag>
         </Card>
       ) : (
         <Card className="flex flex-col justify-center items-center">
