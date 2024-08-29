@@ -340,7 +340,7 @@ export default function Interview({ userEmail }: { userEmail: string | null }) {
   // needs to built and passed
   const currentVideoSrc =
     selectedInterviewer && playList[currentQuestionIndex]
-      ? `${AWS_URL}${selectedInterviewer.name}${
+      ? `${AWS_URL}${selectedInterviewer.name}/${selectedInterviewer.name}${
           playList[currentQuestionIndex]?.category
         }${playList[currentQuestionIndex]?.id.toString()}.mp4`
       : `videos/${selectedInterviewer.name}${
