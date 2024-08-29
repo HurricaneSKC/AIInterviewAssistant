@@ -32,10 +32,10 @@ const DashboardPage = async () => {
       <H2 small>Your progress</H2>
       <Card className="mb-2 grid grid-cols-1 md:grid-cols-2 gap-4 flex-wrap">
         <div className="flex flex-col">
-          <p className="text-sm">
+          <h3 className="text-sm">
             <b>Questions answered</b>
-          </p>
-          <h2 className="text-4xl">15</h2>
+          </h3>
+          <p className="text-4xl">{user.questionsAnswered.length}</p>
         </div>
       </Card>
       <CtaCard mainText="Need some more practice?">
