@@ -1,7 +1,6 @@
-// pages/api/auth/reset-password.ts
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import { DynamoDB } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocument, GetCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
+import { DynamoDBDocument, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import bcrypt from 'bcryptjs';
 
 const dynamoDb = DynamoDBDocument.from(new DynamoDB({
@@ -12,12 +11,8 @@ const dynamoDb = DynamoDBDocument.from(new DynamoDB({
   region: process.env.AUTH_DYNAMODB_REGION,
 }));
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).end();
-  }
-
-  const { token, password } = req.body;
+export async function POST(request: Request) {
+  const { token, password } = await request.json();
 
   try {
     // Find user with the reset token
@@ -31,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     if (!result.Items || result.Items.length === 0) {
-      return res.status(400).json({ message: 'Invalid or expired reset token' });
+      return NextResponse.json({ message: 'Invalid or expired reset token' }, { status: 400 });
     }
 
     const user = result.Items[0];
@@ -51,9 +46,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     }));
 
-    res.status(200).json({ message: 'Password has been reset successfully' });
+    return NextResponse.json({ message: 'Password has been reset successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).json({ message: 'An error occurred' });
+    return NextResponse.json({ message: 'An error occurred' }, { status: 500 });
   }
 }

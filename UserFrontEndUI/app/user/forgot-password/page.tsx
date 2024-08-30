@@ -56,8 +56,8 @@ export default function ForgotPassword() {
           onSubmit={handleSubmit(onSubmit)}
           className="w-full flex flex-col gap-4"
         >
-          <label className="sr-only" htmlFor="email">
-            Email
+          <label className="" htmlFor="email">
+            Enter your email address and we&apos;ll send you a link to reset
           </label>
           <input
             type="email"
@@ -72,7 +72,7 @@ export default function ForgotPassword() {
             <span className="text-red-500">{errors.email.message}</span>
           )}
 
-          <Button buttonText="Sign Up" type="submit" primary />
+          <Button buttonText="Send Reset Email" type="submit" primary />
         </form>
       </div>
     </AnimateDiv>

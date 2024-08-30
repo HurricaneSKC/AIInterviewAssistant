@@ -9,7 +9,7 @@ import { Card } from "@/components/Layout/Card";
 import { TagGrid } from "@/components/Layout/TagGrid";
 import { CtaCard } from "@/components/CTAs/CtaCard";
 import { CustomUser, auth } from "@/auth";
-import AddQuestionToPLaylistButton from "@/components/CTAs/AddQuestionToPLaylistButton";
+import AddQuestionToPLaylistButton from "@/components/CTAs/AddQuestionToPlaylistButton";
 
 const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
   const { questionId } = params;

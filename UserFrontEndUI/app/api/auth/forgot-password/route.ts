@@ -1,9 +1,8 @@
-// pages/api/auth/forgot-password.ts
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import { DynamoDB } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocument, GetCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import crypto from 'crypto';
-import { sendResetEmail } from '@/utils/email'; // You'll need to implement this
+import { sendResetEmail } from '@/utils/email';
 
 const dynamoDb = DynamoDBDocument.from(new DynamoDB({
   credentials: {
@@ -13,14 +12,10 @@ const dynamoDb = DynamoDBDocument.from(new DynamoDB({
   region: process.env.AUTH_DYNAMODB_REGION,
 }));
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).end();
-  }
-
-  const { email } = req.body;
-
+export async function POST(request: Request) {
   try {
+    const { email } = await request.json();
+
     // Check if user exists
     const user = await dynamoDb.send(new GetCommand({
       TableName: 'users',
@@ -29,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (!user.Item) {
       // Don't reveal if user exists or not
-      return res.status(200).json({ message: 'If an account exists, a reset email has been sent.' });
+      return NextResponse.json({ message: 'If an account exists, a reset email has been sent.' }, { status: 200 });
     }
 
     // Generate reset token
@@ -50,9 +45,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Send reset email
     await sendResetEmail(email, resetToken);
 
-    res.status(200).json({ message: 'If an account exists, a reset email has been sent.' });
+    return NextResponse.json({ message: 'If an account exists, a reset email has been sent.' }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).json({ message: 'An error occurred' });
+    return NextResponse.json({ message: 'An error occurred' }, { status: 500 });
   }
 }
