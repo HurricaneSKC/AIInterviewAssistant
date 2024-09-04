@@ -10,7 +10,7 @@ const ResourcesPage = () => {
   return (
     <AnimateDiv>
       <H1>Resources</H1>
-      <ul className="grid grid-cols-4 gap-x-2 gap-y-3 pb-8">
+      <ul className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-3 pb-8">
         {Resources.map((resource, index) => (
           <li
             key={index}

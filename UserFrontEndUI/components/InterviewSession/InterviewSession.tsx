@@ -11,6 +11,7 @@ import CountDownTimer from "../CountDownTimer";
 import BackGroundSVG from "../SVGs/BackGroundSVG";
 import LoadingSpinner from "../SVGs/LoadingSpinner";
 import RightArrowWhiteSVG from "../SVGs/RightArrowWhiteSVG";
+import InterviewContinueCTA from "./InterviewContinueCTA";
 
 interface Props {
   completed: boolean;
@@ -45,6 +46,8 @@ interface Props {
   setStep: Dispatch<SetStateAction<number>>;
   userEmail: string | null;
   isFallbackQuestion: boolean;
+  currentQuestionIndex: number;
+  playlistLength: number;
 }
 
 const InterviewSession = ({
@@ -76,6 +79,8 @@ const InterviewSession = ({
   setStep,
   userEmail,
   isFallbackQuestion,
+  currentQuestionIndex,
+  playlistLength,
 }: Props) => {
   const handleQuestionAnswered = async () => {
     if (completed) {
@@ -109,10 +114,8 @@ const InterviewSession = ({
     }
   };
 
-  const handleContinue = () => {
-    handleQuestionAnswered();
-    handleNextQuestion();
-  };
+  const lastQuestion = currentQuestionIndex === playlistLength - 1;
+  console.log("lastQuestion", lastQuestion);
 
   return (
     <>
@@ -157,7 +160,7 @@ const InterviewSession = ({
                 <p className="prose prose-sm max-w-none">
                   {transcript.length > 0
                     ? transcript
-                    : "Don't think you said anything. Want to try again?"}
+                    : `Don't think you said anything. Want to try again?`}
                 </p>
               </div>
               <div className="mt-8">
@@ -180,12 +183,18 @@ const InterviewSession = ({
                   primary
                 />
               ) : (
-                <Button
-                  onClick={handleContinue}
-                  buttonText="Continue"
-                  primary
-                  rightArrow
-                />
+                <>
+                  <Button
+                    onClick={restartVideo}
+                    buttonText="Try again"
+                    rightArrow
+                  />
+                  <InterviewContinueCTA
+                    lastQuestion={lastQuestion}
+                    handleNextQuestion={handleNextQuestion}
+                    handleQuestionAnswered={handleQuestionAnswered}
+                  />
+                </>
               )}
             </div>
           </div>
@@ -303,7 +312,7 @@ const InterviewSession = ({
                             <div className="flex flex-row gap-2">
                               {!isSubmitting && (
                                 <WhiteButton
-                                  onClick={() => restartVideo}
+                                  onClick={restartVideo}
                                   buttonText="Restart"
                                 />
                               )}

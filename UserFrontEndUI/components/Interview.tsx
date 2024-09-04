@@ -53,7 +53,7 @@ const ffmpeg = createFFmpeg({
 
 export default function Interview({ userEmail }: { userEmail: string | null }) {
   const playList = useQuestionPlaylistStore((state) => state.questions);
-  console.log("playList", playList);
+  console.log("playList", playList.length - 1);
 
   const interviewers = useInterviewerStore((state) => state.interviewers);
 
@@ -237,7 +237,7 @@ export default function Interview({ userEmail }: { userEmail: string | null }) {
           }. ${
             currentQuestion.category === "Behavioral"
               ? "Please also give feedback on the candidate's communication skills. Make sure their response is structured"
-              : "Please also give feedback on the candidate's communication skills. Make sure they accurately explain their thoughts in a coherent way. Make sure they stay on topic and relevant to the question."
+              : "Please also give feedback on the candidate's communication skills. Make sure they accurately explain their thoughts in a coherent way. Make sure they stay on topic and relevant to the question. Make sure they answer to the level of a senior developer, Always try to give some constructive feedback"
           } \n\n\ Feedback on the candidate's response:`;
 
           setGeneratedFeedback("");
@@ -284,11 +284,18 @@ export default function Interview({ userEmail }: { userEmail: string | null }) {
 
   // fix restart video
   function restartVideo() {
+    console.log("Restarting video");
+
+    setStep(2);
+    setCompleted(false);
+    setGeneratedFeedback("");
+    setTranscript("");
     setRecordedChunks([]);
     setVideoEnded(false);
     setCapturing(false);
     setIsVisible(true);
     setSeconds(150);
+    setIsSuccess(false);
   }
 
   const videoConstraints = isDesktop
@@ -383,6 +390,8 @@ export default function Interview({ userEmail }: { userEmail: string | null }) {
           setStep={setStep}
           userEmail={userEmail}
           isFallbackQuestion={isFallbackQuestion}
+          currentQuestionIndex={currentQuestionIndex}
+          playlistLength={playList.length}
         />
       ) : (
         <div className="flex flex-col md:flex-row w-full md:overflow-hidden">

@@ -45,7 +45,7 @@ const DashboardPage = async () => {
           rightArrow
         />
       </CtaCard>
-      <div className="flex my-8 flex-col">
+      <div className="flex mt-8 pb-8 flex-col">
         <div className="flex justify-between mb-2">
           <H2 small hideMargin>
             My Questions
