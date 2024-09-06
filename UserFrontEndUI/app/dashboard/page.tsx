@@ -16,7 +16,7 @@ async function fetchQuestionsAnswered() {
   const cookieStore = cookies();
 
   const response = await fetch(
-    "http://localhost:3000/api/user/question-answered",
+    `${process.env.VERCEL_URL}/api/user/question-answered`,
     {
       method: "GET",
       headers: {
