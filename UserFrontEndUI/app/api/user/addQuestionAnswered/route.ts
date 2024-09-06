@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DynamoDBDocument } from '@aws-sdk/lib-dynamodb';
 import { DynamoDB, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
+import { v4 as uuidv4 } from 'uuid';
 
 const config: DynamoDBClientConfig = {
   credentials: {
@@ -18,7 +19,6 @@ const client = DynamoDBDocument.from(new DynamoDB(config), {
   },
 });
 
-
 export async function POST(req: NextRequest) {
   try {
     const { email, questionAnswered } = await req.json();
@@ -27,16 +27,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
-    // Use both partitionKey and sortKey
     const params = {
-      TableName: 'users',
+      TableName: 'questionsAnswered',
       Key: { 
-        email: email,  // Use the partition key
-        id: email      // Use the sort key, assuming 'id' is the same as 'email' or adjust accordingly
+        email: email,
+        id: email, // Generate a new unique ID for each question
       },
-      UpdateExpression: 'SET questionsAnswered = list_append(questionsAnswered, :newQuestion)',
+      UpdateExpression: 'SET questions = list_append(if_not_exists(questionsAnswered, :empty_list), :newQuestion)',
       ExpressionAttributeValues: {
         ':newQuestion': [questionAnswered],
+        ':empty_list': [],
       },
     };
 
