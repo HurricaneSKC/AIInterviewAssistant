@@ -17,17 +17,19 @@ async function fetchQuestionsAnswered() {
   const cookieStore = cookies();
   console.log("cookieStore", cookieStore.toString());
 
-  const response = await fetch(
-    `${process.env.VERCEL_URL}/api/user/question-answered`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Cookie: cookieStore.toString(),
-      },
-      cache: "no-store",
-    }
-  );
+  const URL =
+    process.env.VERCEL_ENV === "development"
+      ? `http://localhost:3000/api/user/question-answered`
+      : `https://${process.env.VERCEL_URL}/api/user/question-answered`;
+
+  const response = await fetch(URL, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookieStore.toString(),
+    },
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     console.log("response", response);
