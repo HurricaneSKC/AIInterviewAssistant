@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         email: email,
         id: email, // Generate a new unique ID for each question
       },
-      UpdateExpression: 'SET questions = list_append(if_not_exists(questionsAnswered, :empty_list), :newQuestion)',
+      UpdateExpression: 'SET questionsAnswered = list_append(if_not_exists(questionsAnswered, :empty_list), :newQuestion)',
       ExpressionAttributeValues: {
         ':newQuestion': [questionAnswered],
         ':empty_list': [],
