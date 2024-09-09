@@ -13,7 +13,9 @@ import LinkButton from "@/components/CTAs/LinkButton";
 import { cookies } from "next/headers";
 
 async function fetchQuestionsAnswered() {
+  console.log("VERCEL_URL", process.env.VERCEL_URL);
   const cookieStore = cookies();
+  console.log("cookieStore", cookieStore.toString());
 
   const response = await fetch(
     `${process.env.VERCEL_URL}/api/user/question-answered`,
@@ -28,6 +30,8 @@ async function fetchQuestionsAnswered() {
   );
 
   if (!response.ok) {
+    console.log("response", response);
+
     if (response.status === 401) {
       console.error("Unauthorized: User not authenticated");
       return { questionsAnswered: [] };
@@ -60,7 +64,10 @@ const DashboardPage = async () => {
   let questionsAnswered: QuestionAnswered[] = [];
   try {
     // Fetch questions answered from the API
+    console.log("fetchQuestionsAnswered");
+
     const data = await fetchQuestionsAnswered();
+    console.log("Data:", data);
     questionsAnswered = data.questionsAnswered || [];
   } catch (error) {
     console.error("Error fetching questions answered:", error);
