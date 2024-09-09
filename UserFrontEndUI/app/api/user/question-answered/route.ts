@@ -26,9 +26,7 @@ export async function GET(req: NextRequest) {
   try {
     // Get the authenticated session
     const session = await auth();
-    console.log("route question A",session);
-    
-    
+    console.log("route question A", session);
 
     // Check if the user is authenticated
     if (!session || !session.user?.email) {
@@ -41,17 +39,18 @@ export async function GET(req: NextRequest) {
     // Define the parameters for querying the questionsAnswered table
     const params = {
       TableName: "questionsAnswered",
-      KeyConditionExpression: "email = :email",
+      KeyConditionExpression: "email = :email AND id = :id",
       ExpressionAttributeValues: {
         ":email": userEmail,
+        ":id": userEmail,
       },
     };
 
     // Execute the query
     const result = await client.send(new QueryCommand(params));
 
-    // Extract and flatten the questions from the query result
-    const questionsAnswered = result.Items?.flatMap(item => item.questions) || [];
+    // Extract the questions from the query result
+    const questionsAnswered = result.Items?.[0]?.questionsAnswered || [];
 
     // Return the questionsAnswered data as JSON
     return NextResponse.json({ questionsAnswered }, { status: 200 });
