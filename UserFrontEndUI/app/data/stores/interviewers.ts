@@ -27,18 +27,6 @@ const useInterviewerStore = create<InterviewerState>((set) => ({
       "name": "Sarah",
       "description": "Product Management",
       "level": "L5"
-    },
-    {
-      "id": "Richard",
-      "name": "Richard",
-      "description": "Other",
-      "level": "L7"
-    },
-    {
-      "id": "Peter",
-      "name": "Peter",
-      "description": "Sales",
-      "level": "L5"
     }
   ],
   addInterviewer: (newInterviewer) => set((state) => ({
