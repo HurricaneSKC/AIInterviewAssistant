@@ -19,8 +19,10 @@ async function fetchQuestionsAnswered() {
 
   const URL =
     process.env.VERCEL_ENV === "development"
-      ? `http://localhost:3000/api/user/question-answered`
-      : `https://${process.env.VERCEL_URL}/api/user/question-answered`;
+      ? `http://${process.env.VERCEL_URL}/api/user/question-answered`
+      : process.env.VERCEL_ENV === "production"
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/api/user/question-answered`
+      : `http://${process.env.VERCEL_URL}/api/user/question-answered`;
 
   const response = await fetch(URL, {
     method: "GET",
