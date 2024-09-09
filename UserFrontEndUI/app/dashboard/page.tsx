@@ -1,5 +1,5 @@
 import AnimateDiv from "@/components/Animation/AnimateDiv";
-import React from "react";
+import React, { cache } from "react";
 import MockQuestionData from "../../app/data/questionData.json";
 import { H1, H2 } from "@/components/Typography/Header";
 import PTag from "@/components/Typography/PTag";
@@ -10,6 +10,51 @@ import { Card } from "@/components/Layout/Card";
 import { CtaCard } from "@/components/CTAs/CtaCard";
 import { QuestionAnswered } from "../data/stores/user";
 import LinkButton from "@/components/CTAs/LinkButton";
+import { cookies } from "next/headers";
+
+async function fetchQuestionsAnswered() {
+  console.log("VERCEL_URL", process.env.VERCEL_URL);
+  const cookieStore = cookies();
+  console.log("cookieStore", cookieStore.toString());
+
+  const URL =
+    process.env.VERCEL_ENV === "development"
+      ? `http://localhost:3000/api/user/question-answered`
+      : `https://${process.env.VERCEL_URL}/api/user/question-answered`;
+
+  const response = await fetch(URL, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: cookieStore.toString(),
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    console.log("response", response);
+
+    if (response.status === 401) {
+      console.error("Unauthorized: User not authenticated");
+      return { questionsAnswered: [] };
+    }
+    throw new Error(
+      `Failed to fetch questions answered: ${response.statusText}`
+    );
+  }
+
+  const data = await response.json();
+  console.log("API Response:", data);
+
+  // Filter out null values and ensure it's an array
+  const filteredQuestions = Array.isArray(data.questionsAnswered)
+    ? data.questionsAnswered.filter(
+        (question: QuestionAnswered) => question !== null
+      )
+    : [];
+
+  return { questionsAnswered: filteredQuestions };
+}
 
 const DashboardPage = async () => {
   const questions = Object.values(MockQuestionData);
@@ -18,10 +63,25 @@ const DashboardPage = async () => {
 
   const userName = user.name?.split(" ")[0];
 
+  let questionsAnswered: QuestionAnswered[] = [];
+  try {
+    // Fetch questions answered from the API
+    console.log("fetchQuestionsAnswered");
+
+    const data = await fetchQuestionsAnswered();
+    console.log("Data:", data);
+    questionsAnswered = data.questionsAnswered || [];
+  } catch (error) {
+    console.error("Error fetching questions answered:", error);
+    // You might want to set an error state here or handle it differently
+  }
+
+  console.log("questionsAnswered", questionsAnswered.length);
+
   const usersQuestions = questions.filter((question) => {
-    return user.questionsAnswered.some(
+    return questionsAnswered.some(
       (userQuestion: QuestionAnswered) =>
-        userQuestion.QuestionId === question.id
+        userQuestion && userQuestion.QuestionId === question.id
     );
   });
 
@@ -35,7 +95,7 @@ const DashboardPage = async () => {
           <h3 className="text-sm">
             <b>Questions answered</b>
           </h3>
-          <p className="text-4xl">{user.questionsAnswered.length}</p>
+          <p className="text-4xl">{questionsAnswered.length}</p>
         </div>
       </Card>
       <CtaCard mainText="Need some more practice?">

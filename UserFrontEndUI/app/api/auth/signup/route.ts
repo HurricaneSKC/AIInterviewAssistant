@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const params = {
+    const userParams = {
       TableName: 'users',
       Item: {
         id: email,
@@ -49,12 +49,24 @@ export async function POST(req: NextRequest) {
         role: 'user', // Default role
         password_hash: hashedPassword,
         created_at: new Date().toISOString(),
-        questionsAnswered: [],
         isActive: true,
       },
     };
 
-    await client.put(params);
+    const questionsAnsweredParams = {
+      TableName: 'questionsAnswered',
+      Item: {
+        email: email,
+        id: email,
+        questionsAnswered: [] // Initialize with an empty array
+      },
+    };
+
+    await Promise.all([
+      client.put(userParams),
+      client.put(questionsAnsweredParams)
+    ]);
+
     return NextResponse.json({ message: 'User created successfully' }, { status: 201 });
   } catch (error) {
     console.error('Error saving user to DynamoDB:', error);

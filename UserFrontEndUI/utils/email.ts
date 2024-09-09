@@ -12,7 +12,8 @@ const transporter = nodemailer.createTransport({
 
 // Function to send reset email
 export async function sendResetEmail(email: string, token: string) {
-  const resetUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/user/reset-password/${token}`;
+  const envURL = process.env.VERCEL_ENV === 'development' ? `http://${process.env.VERCEL_URL}` : `https://${process.env.VERCEL_URL}`;
+  const resetUrl = `${envURL}/user/reset-password/${token}`;
 
   const mailOptions = {
     from: '"AIIA" <noreply@yourapp.com>',
