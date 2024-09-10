@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import { DynamoDBAdapter } from "@auth/dynamodb-adapter";
 import { AdapterUser } from "next-auth/adapters";
 import { QuestionAnswered } from "./app/data/stores/user";
- 
+
 const config: DynamoDBClientConfig = {
   credentials: {
     accessKeyId: process.env.AUTH_DYNAMODB_ID ?? "",
@@ -28,9 +28,8 @@ const client = DynamoDBDocument.from(dynamoDBClient, {
 export interface CustomUser extends AdapterUser {
   role: string;
   created_at: string;
-  questionsAnswered: QuestionAnswered[];
   password_hash: string;
-  isActive?: boolean; 
+  isActive?: boolean;
 }
 
 const adapter = DynamoDBAdapter(client, {
@@ -135,7 +134,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.email = customUser.email;
         token.role = customUser.role;
         token.created_at = customUser.created_at;
-        token.questionsAnswered = customUser.questionsAnswered;
       }
       return token;
     }

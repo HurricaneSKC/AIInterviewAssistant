@@ -12,44 +12,7 @@ import { CustomUser, auth } from "@/auth";
 import AddQuestionToPLaylistButton from "@/components/CTAs/AddQuestionToPlaylistButton";
 import { cookies } from "next/headers";
 import { QuestionAnswered } from "@/app/data/stores/user";
-
-async function fetchQuestionsAnswered() {
-  const cookieStore = cookies();
-
-  const response = await fetch(
-    `${process.env.VERCEL_URL}/api/user/question-answered`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Cookie: cookieStore.toString(),
-      },
-      cache: "no-store",
-    }
-  );
-
-  if (!response.ok) {
-    if (response.status === 401) {
-      console.error("Unauthorized: User not authenticated");
-      return { questionsAnswered: [] };
-    }
-    throw new Error(
-      `Failed to fetch questions answered: ${response.statusText}`
-    );
-  }
-
-  const data = await response.json();
-  console.log("API Response:", data);
-
-  // Filter out null values and ensure it's an array
-  const filteredQuestions = Array.isArray(data.questionsAnswered)
-    ? data.questionsAnswered.filter(
-        (question: QuestionAnswered) => question !== null
-      )
-    : [];
-
-  return { questionsAnswered: filteredQuestions };
-}
+import { fetchQuestionsAnswered } from "@/utils/fetchQuestionAnswered";
 
 const QuestionPage = async ({ params }: { params: { questionId: string } }) => {
   const { questionId } = params;
