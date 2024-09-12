@@ -344,12 +344,16 @@ export default function Interview({ userEmail }: { userEmail: string | null }) {
   //AWS
   const AWS_URL = "https://aiinterviewassistant.s3.eu-north-1.amazonaws.com/";
 
+  const AWS_CLOUDFRONT_URL = "https://d3tf507cneffp7.cloudfront.net/";
+
   // needs to built and passed
   const currentVideoSrc =
     selectedInterviewer && playList[currentQuestionIndex]
-      ? `${AWS_URL}${selectedInterviewer.name}/${selectedInterviewer.name}${
-          playList[currentQuestionIndex]?.category
-        }${playList[currentQuestionIndex]?.id.toString()}.mp4`
+      ? `${AWS_CLOUDFRONT_URL}${selectedInterviewer.name}/${
+          selectedInterviewer.name
+        }${playList[currentQuestionIndex]?.category}${playList[
+          currentQuestionIndex
+        ]?.id.toString()}.mp4`
       : `videos/${selectedInterviewer.name}${
           currentQuestion.category
         }${currentQuestion.id.toString()}.mp4`;

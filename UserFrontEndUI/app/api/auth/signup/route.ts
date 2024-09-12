@@ -58,7 +58,9 @@ export async function POST(req: NextRequest) {
       Item: {
         email: email,
         id: email,
-        questionsAnswered: [] // Initialize with an empty array
+        questionsAnswered: [], // Initialize with an empty array
+        usageLimit: 10, // initialize with 10
+        usageCount: 0,
       },
     };
 
