@@ -6,12 +6,14 @@ export async function fetchQuestionsAnswered() {
   const cookieStore = cookies();
   console.log("cookieStore", cookieStore.toString());
 
+  const PATH = "/api/user/question-answered";
+
   const URL =
     process.env.VERCEL_ENV === "development"
-      ? `http://${process.env.VERCEL_URL}/api/user/question-answered`
+      ? `http://${process.env.VERCEL_URL}${PATH}`
       : process.env.VERCEL_ENV === "production"
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/api/user/question-answered`
-      : `https://${process.env.VERCEL_URL}/api/user/question-answered`;
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}${PATH}`
+      : `https://${process.env.VERCEL_URL}${PATH}`;
 
   const response = await fetch(URL, {
     method: "GET",

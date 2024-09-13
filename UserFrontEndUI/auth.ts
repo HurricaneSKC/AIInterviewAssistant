@@ -5,7 +5,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs';
 import { DynamoDBAdapter } from "@auth/dynamodb-adapter";
 import { AdapterUser } from "next-auth/adapters";
-import { QuestionAnswered } from "./app/data/stores/user";
 
 const config: DynamoDBClientConfig = {
   credentials: {

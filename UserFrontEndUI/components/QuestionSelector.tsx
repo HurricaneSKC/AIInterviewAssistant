@@ -4,6 +4,7 @@ import { H2 } from "./Typography/Header";
 import { QuestionFinder } from "./QuestionFinder/QuestionFinder";
 import Button from "./CTAs/Button";
 import LinkText from "./CTAs/LinkText";
+import PTag from "./Typography/PTag";
 
 interface Props {
   toggleQuestionSelector: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,6 +34,7 @@ const QuestionSelector = ({ toggleQuestionSelector }: Props) => {
           >
             <div className="flex justify-between mb-2">
               <H2>Add a question</H2>
+              <PTag>press + on a question to add to your list</PTag>
             </div>
             <QuestionFinder questions={questions} add list />
           </div>
