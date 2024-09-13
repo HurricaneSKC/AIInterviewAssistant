@@ -5,7 +5,7 @@ import RightArrowWhiteSVG from "../SVGs/RightArrowWhiteSVG";
 
 interface Props {
   pageLink: string;
-  buttonText: string;
+  buttonText?: string;
   rightArrow?: boolean;
   primary?: boolean;
   onClick?: () => void;
