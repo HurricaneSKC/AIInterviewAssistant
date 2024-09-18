@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DynamoDBDocument, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { DynamoDB, DynamoDBClientConfig } from "@aws-sdk/client-dynamodb";
-import { auth } from '@/auth'; // Adjust this import based on your auth file location
+import { auth } from '@/auth'; 
 
 // Configure DynamoDB client
 const config: DynamoDBClientConfig = {
