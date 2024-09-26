@@ -6,7 +6,7 @@ export async function fetchQuestionsAnswered() {
   const cookieStore = cookies();
   console.log("cookieStore", cookieStore.toString());
 
-  const PATH = "/api/user/question-answered";
+  const PATH = "/api/user/v1/question-answered";
 
   const URL =
     process.env.VERCEL_ENV === "development"

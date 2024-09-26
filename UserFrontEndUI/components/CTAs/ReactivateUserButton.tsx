@@ -14,7 +14,7 @@ const ReactivateUserButton: React.FC<ReactivateUserButtonProps> = ({
   const handleReactivateUser = async () => {
     if (confirm("Are you sure you want to reactivate your account?")) {
       try {
-        const response = await fetch("/api/user/reactivate", {
+        const response = await fetch("/api/user/v1/reactivate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
