@@ -22,7 +22,7 @@ const DeleteUserButton: React.FC<DeleteUserButtonProps> = ({
       )
     ) {
       try {
-        const response = await fetch("/api/user/delete", {
+        const response = await fetch("/api/user/v1/delete", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

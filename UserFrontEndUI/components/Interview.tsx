@@ -11,6 +11,7 @@ import Webcam from "react-webcam";
 import { v4 as uuid } from "uuid";
 import useInterviewerStore from "@/app/data/stores/interviewers";
 import InterviewerPresentation from "./InterviewerPresentation";
+import { incrementUsageCount } from "@/utils/incrementUsageLimits";
 
 export interface Interviewer {
   id: string;
@@ -154,6 +155,15 @@ export default function Interview({ userEmail }: { userEmail: string | null }) {
       clearInterval(timer);
     };
   });
+
+  const incrementRateLimit = async () => {
+    const success = await incrementUsageCount();
+    if (success) {
+      console.log("Usage count incremented successfully");
+    } else {
+      console.log("Failed to increment usage count");
+    }
+  };
 
   const handleDownload = async () => {
     if (recordedChunks.length) {
@@ -396,6 +406,7 @@ export default function Interview({ userEmail }: { userEmail: string | null }) {
           isFallbackQuestion={isFallbackQuestion}
           currentQuestionIndex={currentQuestionIndex}
           playlistLength={playList.length}
+          incrementRateLimit={incrementRateLimit}
         />
       ) : (
         <div className="flex flex-col md:flex-row w-full md:overflow-hidden">

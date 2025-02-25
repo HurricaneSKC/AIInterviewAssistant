@@ -2,13 +2,26 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import { Metadata } from "next";
 import { auth } from "@/auth";
+import { url } from "inspector";
 
 export const metadata: Metadata = {
   title: "AIIA - AI-Powered Mock Interviews",
+  description:
+    "AIIA is an AI-powered mock interview platform that helps you practice for your next job interview.",
   openGraph: {
     title: "AIIA - AI-Powered Mock Interviews",
     description:
       "AIIA is an AI-powered mock interview platform that helps you practice for your next job interview.",
+    type: "website",
+    url: "https://ai-interview-assistant.vercel.app",
+    images: [
+      {
+        url: "../public/aiia.png",
+        width: 800, // Optional: specify image width
+        height: 600, // Optional: specify image height
+        alt: "AIIA Logo",
+      },
+    ],
   },
 };
 

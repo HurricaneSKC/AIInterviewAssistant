@@ -36,7 +36,7 @@ const InterviewerSelector = ({
       }}
       className="max-w-lg mx-auto px-4 lg:px-0"
     >
-      <H2>Select an interview</H2>
+      <H2>Select an interviewer</H2>
       <StepParagraph
         paragraphText="Choose whoever makes you feel comfortable. You can always 
         try again with another one."

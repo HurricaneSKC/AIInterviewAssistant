@@ -6,7 +6,6 @@ import Webcam from "react-webcam";
 import Button from "../CTAs/Button";
 import LinkButton from "../CTAs/LinkButton";
 import LinkText from "../CTAs/LinkText";
-import WhiteButton from "../CTAs/WhiteButton";
 import CountDownTimer from "../CountDownTimer";
 import BackGroundSVG from "../SVGs/BackGroundSVG";
 import LoadingSpinner from "../SVGs/LoadingSpinner";
@@ -48,6 +47,7 @@ interface Props {
   isFallbackQuestion: boolean;
   currentQuestionIndex: number;
   playlistLength: number;
+  incrementRateLimit: () => Promise<void>;
 }
 
 const InterviewSession = ({
@@ -81,6 +81,7 @@ const InterviewSession = ({
   isFallbackQuestion,
   currentQuestionIndex,
   playlistLength,
+  incrementRateLimit,
 }: Props) => {
   const handleQuestionAnswered = async () => {
     if (completed) {
@@ -95,7 +96,7 @@ const InterviewSession = ({
       console.log("status", email, questionsAnswered);
 
       try {
-        const response = await fetch("api/user/addQuestionAnswered", {
+        const response = await fetch("api/user/v1/question-answered", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -115,7 +116,11 @@ const InterviewSession = ({
   };
 
   const lastQuestion = currentQuestionIndex === playlistLength - 1;
-  console.log("lastQuestion", lastQuestion);
+
+  const handleQuestionCompleted = () => {
+    handleDownload();
+    incrementRateLimit();
+  };
 
   return (
     <>
@@ -311,15 +316,15 @@ const InterviewSession = ({
                           ) : (
                             <div className="flex flex-row gap-2">
                               {!isSubmitting && (
-                                <WhiteButton
+                                <Button
                                   onClick={restartVideo}
                                   buttonText="Restart"
                                 />
                               )}
                               <button
-                                onClick={handleDownload}
+                                onClick={handleQuestionCompleted}
                                 disabled={isSubmitting}
-                                className="group rounded-full min-w-[140px] px-4 py-2 text-[13px] font-semibold transition-all flex items-center justify-center bg-[#1E2B3A] text-white hover:[linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #0D2247] no-underline flex  active:scale-95 scale-100 duration-75  disabled:cursor-not-allowed"
+                                className="group rounded-full min-w-[140px] px-4 py-2 font-semibold transition-all flex items-center justify-center bg-[#1E2B3A] text-white hover:[linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #0D2247] no-underline flex  active:scale-95 scale-100 duration-75  disabled:cursor-not-allowed"
                                 style={{
                                   boxShadow:
                                     "0px 1px 4px rgba(13, 34, 71, 0.17), inset 0px 0px 0px 1px #061530, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.1)",
